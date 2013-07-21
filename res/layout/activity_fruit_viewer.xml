@@ -51,9 +51,9 @@
     <ImageView
         android:id="@+id/fruitImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_height="wrap_content"        
         android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:src="@drawable/orange" />
 
 </RelativeLayout>
