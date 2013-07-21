@@ -5,22 +5,29 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="1"
         android:targetSdkVersion="17" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.quizmaniafruits.MainActivity"
+            android:name="com.quizmania.activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.quizmania.activities.Language"
+            android:label="@string/title_activity_language" >
+        </activity>
+        <activity
+            android:name="com.quizmania.activities.QuizLevelViewer"
+            android:label="@string/title_activity_fruit_viewer" >
         </activity>
     </application>
 

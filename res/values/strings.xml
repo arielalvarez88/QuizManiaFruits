@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">QuizManiaFruits</string>
+    <string name="app_name">com.quizmania</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="StartButton">Start</string>
+    <string name="OptionsButton">Options</string>
+    <string name="EnglishButton">English</string>
+    <string name="FrenchButton">French</string>
+    <string name="PortugesButton">Portugues</string>
+    <string name="title_activity_language">Language</string>
+    <string name="title_activity_fruit_viewer">FruitViewer</string>
 
 </resources>
