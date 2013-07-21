@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.quizmaniafruits.R;
-import com.quizmaina.entities.QuizElement;
 import com.quizmania.activities.MainActivity;
+import com.quizmania.entities.QuizElement;
 
 public class QuizMainFragment extends Fragment {
 

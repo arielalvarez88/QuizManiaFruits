@@ -1,4 +1,4 @@
-package com.quizmaina.entities;
+package com.quizmania.entities;
 
 import java.util.List;
 import java.util.Map;

@@ -10,7 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 
 import com.example.quizmaniafruits.R;
-import com.quizmaina.entities.QuizElement;
+import com.quizmania.entities.QuizElement;
 import com.quizmania.fragments.QuizMainFragment;
 import com.quizmania.utils.QuizElementsLoader;
 
