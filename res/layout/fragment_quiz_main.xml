@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+<ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_toLeftOf="@+id/imageView2"
+        android:src="@drawable/letter_holder" />
+
+    <ImageView
+        android:id="@+id/ImageView02"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"        
+        android:src="@drawable/letter_holder" />
+
+    <ImageView
+        android:id="@+id/ImageView03"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/ImageView02"
+        android:layout_toRightOf="@+id/ImageView02"
+        android:src="@drawable/letter_holder" />
+
+    <ImageView
+        android:id="@+id/ImageView04"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/ImageView03"
+        android:layout_toRightOf="@+id/ImageView03"
+        android:src="@drawable/letter_holder" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignTop="@+id/ImageView02"
+        android:layout_toLeftOf="@+id/ImageView02"
+        android:src="@drawable/letter_holder" />
+
+    <ImageView
+        android:id="@+id/fruitImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"        
+        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/orange" />
+    
+</RelativeLayout>

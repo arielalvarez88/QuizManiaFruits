@@ -22,10 +22,10 @@ public class QuizElement {
 	
 	
 	
-	public String  getImage() {
+	public String  getImageName() {
 		return imageName;
 	}
-	public void setImage(String image) {
+	public void setImageName(String image) {
 		this.imageName = image;
 	}
 	public Map<String, String> getLanguagueToNameMap() {
