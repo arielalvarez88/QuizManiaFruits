@@ -1,4 +1,4 @@
-package com.quzmaina.entities;
+package com.quizmaina.entities;
 
 import java.util.List;
 import java.util.Map;

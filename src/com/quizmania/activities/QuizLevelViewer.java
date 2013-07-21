@@ -11,8 +11,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.quizmaniafruits.R;
+import com.quizmaina.entities.QuizElement;
 import com.quizmania.utils.QuizElementsLoader;
-import com.quzmaina.entities.QuizElement;
 
 public class QuizLevelViewer extends Activity {
 
