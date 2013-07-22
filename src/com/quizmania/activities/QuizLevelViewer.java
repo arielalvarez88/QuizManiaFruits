@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.example.quizmaniafruits.R;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.fragments.QuizMainFragment;
 import com.quizmania.utils.QuizElementsLoader;
+import com.quizmania.utils.QuizPager;
 
 public class QuizLevelViewer extends FragmentActivity {
 	List<QuizElement> elements;
@@ -25,36 +27,11 @@ public class QuizLevelViewer extends FragmentActivity {
 		elements = initializeQuizElements();
 
 		fragmentManager = getSupportFragmentManager();
-		
-		QuizMainFragment quizLevelFragment = new QuizMainFragment();
-		quizLevelFragment.setElement(elements.get(0));
-
-		fragmentManager.beginTransaction()
-				.add(R.id.fragment_container, quizLevelFragment).commit();
-
+		QuizPager quizPager = new QuizPager(elements, fragmentManager);
+		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);
+		quizPagerView.setAdapter(quizPager);
 	}
 	
-	
-	public void fruitViewClick(View view){
-		System.out.println("CLICK!");
-		currentSlide++;
-		if(currentSlide >= elements.size()){
-			return;
-		}
-		
-		QuizMainFragment test = new QuizMainFragment();
-		test.setElement(elements.get(currentSlide));
-		FragmentTransaction tx=  fragmentManager.beginTransaction();
-		
-		tx.replace(R.id.fragment_container, test);
-		
-		tx.addToBackStack(null);
-
-		
-		tx.commit();
-		
-	}
-
 	
 	
 	private List<QuizElement> initializeQuizElements() {
