@@ -6,15 +6,13 @@ import java.util.List;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 
 import com.example.quizmaniafruits.R;
 import com.quizmania.entities.QuizElement;
-import com.quizmania.fragments.QuizMainFragment;
 import com.quizmania.utils.QuizElementsLoader;
 import com.quizmania.utils.QuizPager;
+import com.quizmania.utils.StaticGlobalVariables;
 
 public class QuizLevelViewer extends FragmentActivity {
 	List<QuizElement> elements;
@@ -23,9 +21,15 @@ public class QuizLevelViewer extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fruit_viewer);
+		setContentView(R.layout.activity_quiz_level);
 		elements = initializeQuizElements();
+		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME);		
+		initializeLevelPager();
+	}
 
+
+
+	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
 		QuizPager quizPager = new QuizPager(elements, fragmentManager);
 		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);

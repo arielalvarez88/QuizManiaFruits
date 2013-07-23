@@ -6,20 +6,25 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.quizmaniafruits.R;
+import com.quizmania.utils.StaticGlobalVariables;
 
-public class Language extends Activity {
+public class LevelChooser extends Activity {
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_language);
+		setContentView(R.layout.activity_choose_level);
+		
 		
 	}
 
 	
 
-	public void goToFruitViewerActivity(View clickedButton) {
+	public void goToLevel(View clickedButton) {
 		Intent intent = new Intent(this, QuizLevelViewer.class);
+		intent.putExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME, "english");
 		startActivity(intent);
+		
 	}
 }

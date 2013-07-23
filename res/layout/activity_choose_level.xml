@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"   
-    tools:context=".Language" >
+    tools:context=".LevelChooser" >
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -22,7 +22,7 @@
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
                 android:text="@string/EnglishButton" 
-                android:onClick="goToFruitViewerActivity"/>
+                android:onClick="goToLevel"/>
             
             <Button
                 android:id="@+id/button2"
@@ -30,7 +30,7 @@
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
                 android:text="@string/PortugesButton" 
-                android:onClick="goToFruitViewerActivity"/>
+                android:onClick="goToLevel"/>
             
             <Button
                 android:id="@+id/button3"
@@ -38,7 +38,7 @@
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
                 android:text="@string/FrenchButton" 
-                android:onClick="goToFruitViewerActivity"/>
+                android:onClick="goToLevel"/>
 
         </LinearLayout>
     </ScrollView>

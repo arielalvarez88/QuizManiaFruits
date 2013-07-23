@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.quizmania.activities.Language"
+            android:name="com.quizmania.activities.LevelChooser"
             android:label="@string/title_activity_language" >
         </activity>
         <activity

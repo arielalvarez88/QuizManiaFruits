@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 	
 	
 	public void goToLanguageActivity(View clickedButton) {
-		Intent intent = new Intent(this, Language.class);
+		Intent intent = new Intent(this, LevelChooser.class);
 		startActivity(intent);
 	}
 	
