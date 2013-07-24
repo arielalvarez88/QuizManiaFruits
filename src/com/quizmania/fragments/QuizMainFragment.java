@@ -48,9 +48,11 @@ public class QuizMainFragment extends Fragment {
 
 	private void setAutocomplete(View quizElementView) {
 		AutoCompleteTextView textView = (AutoCompleteTextView) quizElementView.findViewById(R.id.autocomplete_quiz);
-						 
+		textView.setThreshold(1);
+		
 		ArrayAdapter<String> adapter = 
-		        new ArrayAdapter<String>(getActivity(), R.layout.fragment_quiz_main, StaticGlobalVariables.quizSuggestions);
+		        new ArrayAdapter<String>(getActivity(), R.layout.autocomplete,StaticGlobalVariables.quizSuggestions);
+		
 		textView.setAdapter(adapter);
 	}
 

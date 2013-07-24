@@ -3,6 +3,7 @@ package com.quizmania.activities;
 import java.io.IOException;
 import java.util.List;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -22,8 +23,9 @@ public class QuizLevelViewer extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz_level);
-		elements = initializeQuizElements();
-		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME);		
+		
+		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME);
+		elements = initializeQuizElements();				
 		initializeLevelPager();
 	}
 
