@@ -11,5 +11,6 @@
     <string name="PortugesButton">Portugues</string>
     <string name="title_activity_language">Language</string>
     <string name="title_activity_fruit_viewer">FruitViewer</string>
+    <string name="title_activity_element_chooser">ElementChooser</string>
 
 </resources>
