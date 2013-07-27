@@ -1,6 +1,5 @@
 package com.quizmania.fragments;
 
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,16 +10,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
 import com.example.quizmaniafruits.R;
-import com.quizmania.activities.MainActivity;
 import com.quizmania.entities.QuizElement;
+import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.StaticGlobalVariables;
 
 public class QuizMainFragment extends Fragment {
 
 	QuizElement element;
-	
-	
-	
+
+
+
 	public QuizElement getElement() {
 		return element;
 	}
@@ -71,18 +70,12 @@ public class QuizMainFragment extends Fragment {
 
 	private void drawElementImage(View quizElementView) {
 		
-		int resID = getQuizImageResourceId();
+		int resID = QuizElementUtil.getResourceIdFromQuizElement(this, element);
 		ImageView quizElementImage = (ImageView) quizElementView.findViewById(R.id.fruitImage);
 		quizElementImage.setImageResource(resID);
 	}
 
 
 
-	private int getQuizImageResourceId() {
-		Resources res = getResources();
-		String imageName= element.getImageName();
-		int resID = res.getIdentifier(imageName, "drawable",
-				MainActivity.PACKAGE_NAME);
-		return resID;
-	}
+	
 }
