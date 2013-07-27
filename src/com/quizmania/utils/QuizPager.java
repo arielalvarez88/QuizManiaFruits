@@ -12,18 +12,21 @@ import com.quizmania.fragments.QuizMainFragment;
 public class QuizPager extends FragmentStatePagerAdapter {
 
 	List<QuizElement> elements;
-	boolean firstTime = true;
-	private QuizElement firstElementToShow;
+	private int initialPosition;
+
 	
 
 	public QuizPager(List<QuizElement> elements, FragmentManager fm) {		
-        this(elements,fm,null);
+        this(elements,fm,0);
+        
     }
 
-	public QuizPager(List<QuizElement> elements, FragmentManager fm, QuizElement firstElementToShow) {		
+	public QuizPager(List<QuizElement> elements, FragmentManager fm, int initialPosition) {		
         super(fm);
         this.elements = elements;
-        this.firstElementToShow = firstElementToShow;
+        this.initialPosition = initialPosition;
+        
+        
     }
 
 	public List<QuizElement> getElements() {
@@ -34,22 +37,7 @@ public class QuizPager extends FragmentStatePagerAdapter {
 		this.elements = elements;
 	}
 
-	public boolean isFirstTime() {
-		return firstTime;
-	}
-
-	public void setFirstTime(boolean firstTime) {
-		this.firstTime = firstTime;
-	}
-
-	public QuizElement getFirstElementToShow() {
-		return firstElementToShow;
-	}
-
-	public void setFirstElementToShow(QuizElement firstElementToShow) {
-		this.firstElementToShow = firstElementToShow;
-	}
-
+	
 	@Override
 	public Fragment getItem(int numberToGet) {
 		QuizElement toShow = getElementToShow(numberToGet);
@@ -62,10 +50,6 @@ public class QuizPager extends FragmentStatePagerAdapter {
 
 	private QuizElement getElementToShow(int numberToGet) {
 		
-		if(firstTime && firstElementToShow != null){
-			firstTime = false;
-			return firstElementToShow;
-		}
 		return elements.get(numberToGet);
 	}
 

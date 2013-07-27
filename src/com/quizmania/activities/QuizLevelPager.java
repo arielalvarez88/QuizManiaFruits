@@ -16,24 +16,35 @@ import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
 
 public class QuizLevelPager extends FragmentActivity {
-	List<QuizElement> elements;
+	List<QuizElement> levelElements;
 	FragmentManager fragmentManager;
 	QuizElement initialElement;
-	int currentSlide=0;
+	int initialSlide=0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz_level);
-		initializeElementsFromIntent();
+		initializeElementsFromIntent();		
+		calculateInitialSlide();
 		initializeLevelPager();
+		
 	}
 
 	
 
 
+	private void calculateInitialSlide() {
+		initialSlide = levelElements.indexOf(initialElement);
+		
+	}
+
+
+
+
 	private void initializeElementsFromIntent() {
 		initialElement = (QuizElement) getIntent().getExtras().get("clickedElement");
-		elements =  (List<QuizElement>) getIntent().getExtras().get("allElements");
+		levelElements =  (List<QuizElement>) getIntent().getExtras().get("levelElements");
 	}
 
 
@@ -41,22 +52,25 @@ public class QuizLevelPager extends FragmentActivity {
 
 	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
-		QuizPager quizPager = new QuizPager(elements, fragmentManager,firstElementToShow);
-		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);
+		QuizPager quizPager = new QuizPager(levelElements, fragmentManager,initialSlide);
+		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);		
 		quizPagerView.setAdapter(quizPager);
+		quizPagerView.setCurrentItem(initialSlide);
+		
+		
 	}
 	
 	
 	
 	private List<QuizElement> initializeQuizElements() {
 		try {
-			elements = QuizElementsLoader
+			levelElements = QuizElementsLoader
 					.loadElementsFromLevel("english", this);			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return elements;
+		return levelElements;
 
 	}
 

@@ -13,12 +13,12 @@ public class QuizElementUtil {
 		
 		
 			Resources res = context.getResources();
-			return getResourceIdFromQuizElement(res, element);
+			return getResourceIdFromResourceName(res, element.getImageName());
 		}
 	
-	public static int getResourceIdFromQuizElement(Resources res, QuizElement element){
-		String imageName= element.getImageName();
-		int resID = res.getIdentifier(imageName, "drawable",
+	public static int getResourceIdFromResourceName(Resources res, String resourceName){
+		
+		int resID = res.getIdentifier(resourceName, "drawable",
 				StaticGlobalVariables.packageName);
 		return resID;
 		
@@ -27,6 +27,6 @@ public class QuizElementUtil {
 		
 		
 		Resources res = context.getResources();
-		return getResourceIdFromQuizElement(res, element);
+		return getResourceIdFromResourceName(res, element.getImageName());
 	}
 }

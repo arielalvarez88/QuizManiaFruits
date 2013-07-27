@@ -44,6 +44,7 @@ public class ElementList extends Activity {
 				
 				@Override
 				public void onClick(View v) {
+					System.out.println("click?");
 					changeToSliderView(element);
 					
 				}
@@ -62,6 +63,7 @@ public class ElementList extends Activity {
 		Intent intent = new Intent(this, QuizLevelPager.class);
 		intent.putExtra("clickedElement", element);
 		intent.putExtra("levelElements", ((ArrayList<QuizElement>) elements));
+		startActivity(intent);
 		
 	}
 

@@ -41,6 +41,17 @@ public class QuizElement implements Serializable {
 		this.levels = levels;
 	}
 	
+	@Override
+	public boolean equals(Object toCompare){
+		if(!(toCompare instanceof QuizElement))
+			return false;
+		
+		QuizElement toCompareCasted = (QuizElement) toCompare;
+		
+		return toCompareCasted.getImageName().equals(this.imageName);
+		
+	}
+	
 	
 
 }
