@@ -15,25 +15,33 @@ import com.quizmania.utils.QuizElementsLoader;
 import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
 
-public class QuizLevelViewer extends FragmentActivity {
+public class QuizLevelPager extends FragmentActivity {
 	List<QuizElement> elements;
 	FragmentManager fragmentManager;
+	QuizElement initialElement;
 	int currentSlide=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz_level);
-		
-		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME);
-		elements = initializeQuizElements();				
+		initializeElementsFromIntent();
 		initializeLevelPager();
 	}
+
+	
+
+
+	private void initializeElementsFromIntent() {
+		initialElement = (QuizElement) getIntent().getExtras().get("clickedElement");
+		elements =  (List<QuizElement>) getIntent().getExtras().get("allElements");
+	}
+
 
 
 
 	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
-		QuizPager quizPager = new QuizPager(elements, fragmentManager);
+		QuizPager quizPager = new QuizPager(elements, fragmentManager,firstElementToShow);
 		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);
 		quizPagerView.setAdapter(quizPager);
 	}

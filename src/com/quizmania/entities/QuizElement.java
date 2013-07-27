@@ -1,14 +1,11 @@
 package com.quizmania.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import org.xmlpull.v1.XmlSerializer;
 
-import android.widget.ImageView;
-
-
-public class QuizElement {
+public class QuizElement implements Serializable {
 	
 	@Override
 	public String toString() {
