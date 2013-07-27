@@ -15,40 +15,62 @@ import com.quizmania.utils.QuizElementsLoader;
 import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
 
-public class QuizLevelViewer extends FragmentActivity {
-	List<QuizElement> elements;
+public class QuizLevelPager extends FragmentActivity {
+	List<QuizElement> levelElements;
 	FragmentManager fragmentManager;
-	int currentSlide=0;
+	QuizElement initialElement;
+	int initialSlide=0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz_level);
-		
-		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME);
-		elements = initializeQuizElements();				
+		initializeElementsFromIntent();		
+		calculateInitialSlide();
 		initializeLevelPager();
+		
 	}
+
+	
+
+
+	private void calculateInitialSlide() {
+		initialSlide = levelElements.indexOf(initialElement);
+		
+	}
+
+
+
+
+	private void initializeElementsFromIntent() {
+		initialElement = (QuizElement) getIntent().getExtras().get("clickedElement");
+		levelElements =  (List<QuizElement>) getIntent().getExtras().get("levelElements");
+	}
+
 
 
 
 	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
-		QuizPager quizPager = new QuizPager(elements, fragmentManager);
-		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);
+		QuizPager quizPager = new QuizPager(levelElements, fragmentManager);
+		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);		
 		quizPagerView.setAdapter(quizPager);
+		quizPagerView.setCurrentItem(initialSlide);
+		
+		
 	}
 	
 	
 	
 	private List<QuizElement> initializeQuizElements() {
 		try {
-			elements = QuizElementsLoader
+			levelElements = QuizElementsLoader
 					.loadElementsFromLevel("english", this);			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return elements;
+		return levelElements;
 
 	}
 

@@ -1,14 +1,11 @@
 package com.quizmania.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import org.xmlpull.v1.XmlSerializer;
 
-import android.widget.ImageView;
-
-
-public class QuizElement {
+public class QuizElement implements Serializable {
 	
 	@Override
 	public String toString() {
@@ -42,6 +39,17 @@ public class QuizElement {
 
 	public void setLevels(List<String> levels) {
 		this.levels = levels;
+	}
+	
+	@Override
+	public boolean equals(Object toCompare){
+		if(!(toCompare instanceof QuizElement))
+			return false;
+		
+		QuizElement toCompareCasted = (QuizElement) toCompare;
+		
+		return toCompareCasted.getImageName().equals(this.imageName);
+		
 	}
 	
 	

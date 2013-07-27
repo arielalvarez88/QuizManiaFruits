@@ -22,7 +22,7 @@ public class LevelChooser extends Activity {
 	
 
 	public void goToLevel(View clickedButton) {
-		Intent intent = new Intent(this, QuizLevelViewer.class);
+		Intent intent = new Intent(this, ElementList.class);
 		intent.putExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME, "english");
 		startActivity(intent);
 		
