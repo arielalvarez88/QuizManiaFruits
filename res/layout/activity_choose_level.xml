@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"   
-    tools:context=".LevelChooser" >
+    tools:context=".LevelChooser"
+    android:background="@color/white">
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -22,23 +23,41 @@
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
                 android:text="@string/EnglishButton" 
-                android:onClick="goToLevel"/>
-            
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="match_parent"
-                android:layout_height="176dp"
-                android:layout_margin="10dp"
-                android:text="@string/PortugesButton" 
-                android:onClick="goToLevel"/>
-            
+                android:onClick="goToLevel"
+                android:textSize="@dimen/button_text_lang"
+                android:background="@drawable/bt_lang_en"/>
+
             <Button
                 android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
-                android:text="@string/FrenchButton" 
-                android:onClick="goToLevel"/>
+                android:text="@string/SpanishButton"
+                android:onClick="goToLevel"
+                android:background="@drawable/bt_lang_sp"
+                android:textSize="@dimen/button_text_lang"/>
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_margin="10dp"
+                android:text="@string/PortButton"
+                android:onClick="goToLevel"
+                android:textSize="@dimen/button_text_lang"
+                android:background="@drawable/bt_lang_pt"/>
+
+            <Button
+                    android:id="@+id/button4"
+                    android:layout_width="match_parent"
+                    android:layout_height="176dp"
+                    android:layout_margin="10dp"
+                    android:text="@string/FrenchButton"
+                    android:onClick="goToLevel"
+                    android:textSize="@dimen/button_text_lang"
+                    android:background="@drawable/bt_lang_fr"
+                    android:textColorHint="@color/blue"
+                    android:textColorLink="@color/red"/>
 
         </LinearLayout>
     </ScrollView>
