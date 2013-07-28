@@ -36,10 +36,10 @@ public class ElementList extends Activity {
 	
 	private void createView() {
 		ViewGroup scrollView = (ViewGroup) findViewById(R.id.quizElementsList);
-		
+		StringBuilder iconNameStringBuilder = new StringBuilder();
 		
 		for(final QuizElement element: elements){
-			View elementVisualRepresentation = getElementView(element);
+			View elementVisualRepresentation = getElementView(element,iconNameStringBuilder);
 			elementVisualRepresentation.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -68,15 +68,17 @@ public class ElementList extends Activity {
 	}
 
 
-	private View getElementView(QuizElement element) {
+	private View getElementView(QuizElement element, StringBuilder iconNameStringBuilder) {
 		View elementlRepresentation = getLayoutInflater().inflate(R.layout.quiz_list_element, null);
 		
 		TextView quizElementNameHolder = (TextView)elementlRepresentation.findViewById(R.id.listElementText);		
 		quizElementNameHolder.setText(element.getLanguagueToNameMap().get(StaticGlobalVariables.language));
 		
-		ImageView quizElementImageHolder = (ImageView)elementlRepresentation.findViewById(R.id.listElementImage);		
-		quizElementImageHolder.setImageResource(QuizElementUtil.getResourceIdFromQuizElement(this, element));
+		ImageView quizElementImageHolder = (ImageView)elementlRepresentation.findViewById(R.id.listElementImage);
 		
+		iconNameStringBuilder.append("ic_").append(element.getImageName());
+		quizElementImageHolder.setImageResource(QuizElementUtil.getResourceIdFromResourceName(this.getResources(), iconNameStringBuilder.toString()));
+		iconNameStringBuilder.setLength(0);
 		return elementlRepresentation;
 	}
 
