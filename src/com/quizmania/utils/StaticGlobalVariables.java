@@ -8,5 +8,6 @@ public class StaticGlobalVariables {
 	public static String packageName;
 	public static String language;
 	public static final String LANGUAGE_ATTRIBUTE_NAME = "language";
+	public static final String LEVEL_ATTRIBUTE_NAME = "level";
 
 }

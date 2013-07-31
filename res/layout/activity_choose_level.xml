@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/englishLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
@@ -28,7 +28,7 @@
                 android:background="@drawable/bt_lang_en"/>
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/spanishLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
@@ -38,7 +38,7 @@
                 android:textSize="@dimen/button_text_lang"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/portugueseLevelButton"
                 android:layout_width="match_parent"
                 android:layout_height="176dp"
                 android:layout_margin="10dp"
@@ -48,7 +48,7 @@
                 android:background="@drawable/bt_lang_pt"/>
 
             <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/frenchLevelButton"
                     android:layout_width="match_parent"
                     android:layout_height="176dp"
                     android:layout_margin="10dp"

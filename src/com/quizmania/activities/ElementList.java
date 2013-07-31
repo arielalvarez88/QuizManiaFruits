@@ -28,7 +28,7 @@ public class ElementList extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_element_list);
-		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LANGUAGE_ATTRIBUTE_NAME);
+		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
 		elements = initializeQuizElements();
 		createView();
 	}
