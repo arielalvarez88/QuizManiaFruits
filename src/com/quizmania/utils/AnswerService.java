@@ -2,6 +2,7 @@ package com.quizmania.utils;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,15 +31,30 @@ public class AnswerService {
 	}
 	
 
-	public boolean setAnswer(QuizElement element, String userAnswer){
-		String correctAnswerInCurrentLanguage = element.getLanguagueToNameMap().get(StaticGlobalVariables.language);
-		if(correctAnswerInCurrentLanguage.equals(userAnswer)){
+	public boolean tryToAnswer(QuizElement element, String userAnswer){
+		List<String> correctAnswers = element.getLanguageToNamesMap().get(StaticGlobalVariables.language).getNames();
+		
+		
+		boolean isACorrectAnswer = isACorrectAnswer(element, userAnswer, correctAnswers);
+		
+		if(isACorrectAnswer){
 			placeAnswerInMapAnswer(element);
-			return true;
 		}
 		
-		return false;
+		return isACorrectAnswer;
+	}
+
+	private boolean isACorrectAnswer(QuizElement element, String userAnswer,
+			List<String> correctAnswers) {
 		
+		for(String correctAnswerInCurrentLanguage: correctAnswers){
+			if(correctAnswerInCurrentLanguage.equals(userAnswer)){				
+				return true;
+			}
+		}
+		
+		
+		return false;
 	}
 	
 	private void placeAnswerInMapAnswer(QuizElement element) {

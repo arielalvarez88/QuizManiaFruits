@@ -21,7 +21,7 @@ import com.quizmania.utils.StaticGlobalVariables;
 
 public class ElementList extends Activity {
 
-	private List<QuizElement> elements;
+	
 
 
 	@Override
@@ -29,7 +29,8 @@ public class ElementList extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_element_list);
 		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
-		elements = initializeQuizElements();
+		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;
+		System.out.println();
 		createView();
 	}
 
@@ -38,7 +39,7 @@ public class ElementList extends Activity {
 		ViewGroup scrollView = (ViewGroup) findViewById(R.id.quizElementsList);
 		StringBuilder iconNameStringBuilder = new StringBuilder();
 		
-		for(final QuizElement element: elements){
+		for(final QuizElement element: StaticGlobalVariables.getLevelElements()){
 			View elementVisualRepresentation = getElementView(element,iconNameStringBuilder);
 			elementVisualRepresentation.setOnClickListener(new OnClickListener() {
 				
@@ -62,7 +63,7 @@ public class ElementList extends Activity {
 	protected void changeToSliderView(QuizElement element) {
 		Intent intent = new Intent(this, QuizLevelPager.class);
 		intent.putExtra("clickedElement", element);
-		intent.putExtra("levelElements", ((ArrayList<QuizElement>) elements));
+		intent.putExtra("levelElements", ((ArrayList<QuizElement>) StaticGlobalVariables.getLevelElements()));
 		startActivity(intent);
 		
 	}
@@ -71,8 +72,9 @@ public class ElementList extends Activity {
 	private View getElementView(QuizElement element, StringBuilder iconNameStringBuilder) {
 		View elementlRepresentation = getLayoutInflater().inflate(R.layout.quiz_list_element, null);
 		
-		TextView quizElementNameHolder = (TextView)elementlRepresentation.findViewById(R.id.listElementText);		
-		quizElementNameHolder.setText(element.getLanguagueToNameMap().get(StaticGlobalVariables.language));
+		TextView quizElementNameHolder = (TextView)elementlRepresentation.findViewById(R.id.listElementText);
+		String elementPrincipalName= element.getLanguageToNamesMap().get(StaticGlobalVariables.language).getNames().get(0);
+		quizElementNameHolder.setText(elementPrincipalName);
 		
 		ImageView quizElementImageHolder = (ImageView)elementlRepresentation.findViewById(R.id.listElementImage);
 		
@@ -85,13 +87,13 @@ public class ElementList extends Activity {
 
 	private List<QuizElement> initializeQuizElements() {
 		try {
-			elements = QuizElementsLoader
+			return QuizElementsLoader
 					.loadElementsFromLevel("english", this);			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return elements;
+		return null;
 
 	}
 	

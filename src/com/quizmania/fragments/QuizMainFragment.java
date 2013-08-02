@@ -96,7 +96,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		
 		AutoCompleteTextView textView = (AutoCompleteTextView) v;
 		Log.d("QuizMainFragment","La respuesta del usuario: " + textView.getText().toString());
-		boolean correctAnswer = AnswerService.getAnswerService().setAnswer(element, textView.getText().toString());
+		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
 		Log.d("QuizMainFragment", "Fue correcta la respuesta: " + correctAnswer);
 		return false;
 	}

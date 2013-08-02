@@ -3,55 +3,57 @@ package com.quizmania.entities;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
-
+import java.util.Set;
 
 public class QuizElement implements Serializable {
-	
+
 	@Override
 	public String toString() {
 		return "QuizElement [image=" + imageName + ", languagueToNameMap="
-				+ languagueToNameMap + ", levels=" + levels + "]";
+				+ languageToNamesMap + ", levels=" + levels + "]";
 	}
 
 	String imageName;
-	Map<String,String> languagueToNameMap;
+	Map<String, QuizElementNames> languageToNamesMap;
 	private List<String> levels;
-	
-	
-	
-	public String  getImageName() {
+
+	public String getImageName() {
 		return imageName;
 	}
+
 	public void setImageName(String image) {
 		this.imageName = image;
 	}
-	public Map<String, String> getLanguagueToNameMap() {
-		return languagueToNameMap;
-	}
-	public void setLanguagueToNameMap(Map<String, String> languagueToNameMap) {
-		this.languagueToNameMap = languagueToNameMap;
-	}
 
 	public List<String> getLevels() {
-		
+
 		return this.levels;
+	}
+
+
+
+	public Map<String, QuizElementNames> getLanguageToNamesMap() {
+		return languageToNamesMap;
+	}
+
+	public void setLanguageToNamesMap(
+			Map<String, QuizElementNames> languageToNamesMap) {
+		this.languageToNamesMap = languageToNamesMap;
 	}
 
 	public void setLevels(List<String> levels) {
 		this.levels = levels;
 	}
-	
+
 	@Override
-	public boolean equals(Object toCompare){
-		if(!(toCompare instanceof QuizElement))
+	public boolean equals(Object toCompare) {
+		if (!(toCompare instanceof QuizElement))
 			return false;
-		
+
 		QuizElement toCompareCasted = (QuizElement) toCompare;
-		
+
 		return toCompareCasted.getImageName().equals(this.imageName);
-		
+
 	}
-	
-	
 
 }
