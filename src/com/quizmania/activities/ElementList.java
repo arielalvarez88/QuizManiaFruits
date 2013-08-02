@@ -63,7 +63,7 @@ public class ElementList extends Activity {
 	protected void changeToSliderView(QuizElement element) {
 		Intent intent = new Intent(this, QuizLevelPager.class);
 		intent.putExtra("clickedElement", element);
-		intent.putExtra("levelElements", ((ArrayList<QuizElement>) StaticGlobalVariables.getLevelElements()));
+		
 		startActivity(intent);
 		
 	}

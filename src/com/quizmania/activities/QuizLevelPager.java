@@ -19,7 +19,7 @@ import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
 
 public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
-	List<QuizElement> levelElements;
+	
 	FragmentManager fragmentManager;
 	QuizElement initialElement;
 	int initialSlide=0;
@@ -39,13 +39,13 @@ public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
 
 
 	private void calculateInitialSlide() {
-		initialSlide = levelElements.indexOf(initialElement);
+		initialSlide = StaticGlobalVariables.getLevelElements().indexOf(initialElement);
 		
 	}
 	
 	private void initializeElementsFromIntent() {
 		initialElement = (QuizElement) getIntent().getExtras().get("clickedElement");
-		levelElements =  (List<QuizElement>) getIntent().getExtras().get("levelElements");
+	
 	}
 
 
@@ -53,7 +53,7 @@ public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
 
 	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
-		QuizPager quizPager = new QuizPager(levelElements, fragmentManager);
+		QuizPager quizPager = new QuizPager(StaticGlobalVariables.getLevelElements(), fragmentManager);
 		ViewPager quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);		
 		quizPagerView.setAdapter(quizPager);
 		quizPagerView.setCurrentItem(initialSlide);
@@ -62,22 +62,6 @@ public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
 		
 	}
 	
-	
-	
-	private List<QuizElement> initializeQuizElements() {
-		try {
-			levelElements = QuizElementsLoader
-					.loadElementsFromLevel("english", this);			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return levelElements;
-
-	}
-
-
-
 
 	@Override
 	public boolean onKey(View v, int keyCode, KeyEvent event) {
