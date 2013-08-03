@@ -55,8 +55,17 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		if(isCorrectAnswered){
 			showCorrectImage();
 		}else{
-			showIncorrectImage();
+			removeAnswerImage();
 		}
+		
+	}
+
+
+
+	private void removeAnswerImage() {
+		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
+		answerIcon.setVisibility(View.GONE);  
+
 		
 	}
 
@@ -141,6 +150,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 	private void showIncorrectImage() {
 		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setImageResource(R.drawable.incorrect);
+		answerIcon.setVisibility(View.VISIBLE);
 		
 	}
 
@@ -165,6 +175,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		System.out.println("showCorrectImage");
 		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setImageResource(R.drawable.correct);
+		answerIcon.setVisibility(View.VISIBLE);
 		
 	}
 
