@@ -15,15 +15,11 @@ public class AnswerService {
 	Map<QuizElement,Set<String>> answers;
 	private static AnswerService service;
 	private AnswerService(){
+	
+			answers = new HashMap<QuizElement,Set<String>>();
 		
 	}
-	
-	public void initiazlize(){
-		if(answers ==null){
-			answers = new HashMap<QuizElement,Set<String>>();
-		}
-	}
-	
+		
 	public boolean isAwnsered(QuizElement element, String language){
 		
 		boolean answerForQuizElementIsInCurrentLanguage = answers.containsKey(element) && answers.get(element).contains(language);
@@ -39,16 +35,23 @@ public class AnswerService {
 		
 		if(isACorrectAnswer){
 			placeAnswerInMapAnswer(element);
+		}else{
+			removeAnswerInMapAnser(element);
 		}
 		
 		return isACorrectAnswer;
 	}
 
+	private void removeAnswerInMapAnser(QuizElement element) {
+		// TODO Auto-generated method stub
+		answers.remove(element);
+	}
+
 	private boolean isACorrectAnswer(QuizElement element, String userAnswer,
 			List<String> correctAnswers) {
-		
+		userAnswer = userAnswer.trim();
 		for(String correctAnswerInCurrentLanguage: correctAnswers){
-			if(correctAnswerInCurrentLanguage.equals(userAnswer)){				
+			if(correctAnswerInCurrentLanguage.equalsIgnoreCase(userAnswer)){				
 				return true;
 			}
 		}
@@ -73,6 +76,8 @@ public class AnswerService {
 		}
 		if(service == null && !isAnswerServiceInSDCard()){
 			service = new AnswerService();
+			
+			System.out.println("Initialized AnswerService");
 		}
 		
 		

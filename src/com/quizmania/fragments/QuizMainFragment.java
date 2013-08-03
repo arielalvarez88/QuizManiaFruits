@@ -21,7 +21,7 @@ import com.quizmania.utils.StaticGlobalVariables;
 public class QuizMainFragment extends Fragment implements OnKeyListener {
 
 	QuizElement element;
-
+	View thisView;
 
 
 	public QuizElement getElement() {
@@ -43,8 +43,21 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		View quizElementView = constructViewFromQuizElement(inflater, container);
 		setAutocomplete(quizElementView);
 		setEventListeners(quizElementView);
+		drawAnswerIconIfAnswered();
         return quizElementView;
 
+	}
+
+
+
+	private void drawAnswerIconIfAnswered() {
+		boolean isCorrectAnswered = AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language);
+		if(isCorrectAnswered){
+			showCorrectImage();
+		}else{
+			showIncorrectImage();
+		}
+		
 	}
 
 
@@ -73,7 +86,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		View quizElementView = inflater.inflate(R.layout.fragment_quiz_main, container, false);
 		
 		drawElementImage(quizElementView);
-		
+		thisView = quizElementView;
 		return quizElementView;
 	}
 
@@ -95,10 +108,64 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		
 		
 		AutoCompleteTextView textView = (AutoCompleteTextView) v;
-		Log.d("QuizMainFragment","La respuesta del usuario: " + textView.getText().toString());
+		
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
-		Log.d("QuizMainFragment", "Fue correcta la respuesta: " + correctAnswer);
+		
+		if(correctAnswer){
+			placeCorrectIcon();
+		}else{
+			placeIncorrectIcon();
+		}
+		Log.d("QuizMa/inFragment", "Fue correcta la respuesta: " + correctAnswer);
 		return false;
+	}
+
+
+
+	private void placeIncorrectIcon() {
+		// TODO Auto-generated method stub
+		showIncorrectImage();
+		playIncorrectSound();
+		
+	}
+
+
+
+	private void playIncorrectSound() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	private void showIncorrectImage() {
+		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
+		answerIcon.setImageResource(R.drawable.incorrect);
+		
+	}
+
+
+
+	private void placeCorrectIcon() {
+		showCorrectImage();
+		playCorrectSound();
+		
+	}
+
+
+
+	private void playCorrectSound() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	private void showCorrectImage() {
+		System.out.println("showCorrectImage");
+		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
+		answerIcon.setImageResource(R.drawable.correct);
+		
 	}
 
 
