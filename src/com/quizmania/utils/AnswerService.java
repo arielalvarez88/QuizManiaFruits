@@ -1,19 +1,29 @@
 package com.quizmania.utils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OptionalDataException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import android.text.Editable;
+import android.os.Environment;
+import android.util.Log;
 
 import com.quizmania.entities.QuizElement;
 
 public class AnswerService {
 	
 	Map<QuizElement,Set<String>> answers;
-	private static AnswerService service;
+	private static AnswerService answerSingletonInstance;
+	private static String answersFilePath = Environment.getExternalStorageDirectory().toString()  + "QuizMania_Fruits/answers.quizmania";
 	private AnswerService(){
 	
 			answers = new HashMap<QuizElement,Set<String>>();
@@ -71,17 +81,13 @@ public class AnswerService {
 	
 	public static AnswerService getAnswerService(){
 		
-		if(service == null && isAnswerServiceInSDCard()){
-			initializeFromMemory();			
-		}
-		if(service == null && !isAnswerServiceInSDCard()){
-			service = new AnswerService();
+		if(answerSingletonInstance == null){
 			
-			System.out.println("Initialized AnswerService");
+			answerSingletonInstance = isAnswerServiceInSDCard() ? initializeFromMemory() : new AnswerService();			
 		}
 		
 		
-		return service;
+		return answerSingletonInstance;
 		
 		
 	}
@@ -89,13 +95,40 @@ public class AnswerService {
 
 
 
-	private static void initializeFromMemory() {
+	private static AnswerService initializeFromMemory() {
 		// TODO Auto-generated method stub
+		
+		try {
+			ObjectInputStream serializedAnswers = new ObjectInputStream(new FileInputStream(answersFilePath));
+			answerSingletonInstance = (AnswerService) serializedAnswers.readObject();
+			serializedAnswers.close();
+			System.out.print("AnswerService loaded from SD CARD");
+		} catch (OptionalDataException e) {
+			e.printStackTrace();
+			answerSingletonInstance = new AnswerService();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			answerSingletonInstance = new AnswerService();
+		} catch (IOException e) {
+			e.printStackTrace();
+			answerSingletonInstance = new AnswerService();
+		}
+		return answerSingletonInstance;
+		
 		
 	}
 
 	private static boolean isAnswerServiceInSDCard() {
 		// TODO Auto-generated method stub
-		return false;
+	    File answersFile = new File(answersFilePath);
+	    return answersFile.exists();
+	   
+	}
+	
+	public void saveToSDCard() throws FileNotFoundException, IOException{
+		ObjectOutputStream serializer = new ObjectOutputStream(new FileOutputStream(answersFilePath));		
+		serializer.writeObject(answersFilePath);
+		serializer.close();
 	}
 }

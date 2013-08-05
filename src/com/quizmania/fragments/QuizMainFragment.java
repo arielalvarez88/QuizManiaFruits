@@ -1,6 +1,10 @@
 package com.quizmania.fragments;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.provider.MediaStore.Audio.Media;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,6 +21,7 @@ import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.StaticGlobalVariables;
+import com.quizmania.utils.UserConfig;
 
 public class QuizMainFragment extends Fragment implements OnKeyListener {
 
@@ -53,16 +58,23 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 	private void drawAnswerIconIfAnswered() {
 		boolean isCorrectAnswered = AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language);
 		if(isCorrectAnswered){
-			showCorrectImage();
+			showCorrectAnsweredIcon();
 		}else{
-			removeAnswerImage();
+			hideAnswerIcon();
 		}
 		
 	}
 
 
+	@Override
+	public void onResume(){
+		if(!AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language)){
+			hideAnswerIcon();
+		}
+	}
 
-	private void removeAnswerImage() {
+
+	private void hideAnswerIcon() {
 		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setVisibility(View.GONE);  
 
@@ -132,16 +144,30 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 
 
 	private void placeIncorrectIcon() {
-		// TODO Auto-generated method stub
+
 		showIncorrectImage();
 		playIncorrectSound();
+		vibrate();
+		
+	}
+	
+
+
+
+	private void vibrate() {
+		if(UserConfig.getInstance().isVibrationActivated()){
+			Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);		 		
+			v.vibrate(500);
+		}
 		
 	}
 
 
 
 	private void playIncorrectSound() {
-		// TODO Auto-generated method stub
+
+		MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.fail);
+		playerMedia.start();
 		
 	}
 
@@ -157,22 +183,23 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 
 
 	private void placeCorrectIcon() {
-		showCorrectImage();
+		showCorrectAnsweredIcon();
 		playCorrectSound();
 		
 	}
 
 
 
-	private void playCorrectSound() {
-		// TODO Auto-generated method stub
+	private void playCorrectSound() {		
+		MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.fail);
+		playerMedia.start();
 		
 	}
 
 
 
-	private void showCorrectImage() {
-		System.out.println("showCorrectImage");
+	private void showCorrectAnsweredIcon() {
+		System.out.println("showCorrectAnsweredIcon");
 		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setImageResource(R.drawable.correct);
 		answerIcon.setVisibility(View.VISIBLE);

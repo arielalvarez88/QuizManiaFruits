@@ -9,11 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.quizmaniafruits.R;
+import com.quizmania.utils.Languages;
 import com.quizmania.utils.StaticGlobalVariables;
 
 public class LevelChooser extends Activity {
 
-	Map<Integer,String> viewIdToLanguageMap;
+	Map<Integer,Languages> viewIdToLanguageMap;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,11 @@ public class LevelChooser extends Activity {
 	
 
 	private void initializeViewToLanguageMap() {
-		viewIdToLanguageMap =  new HashMap<Integer, String>();
-		viewIdToLanguageMap.put(R.id.englishLevelButton,"english");
-		viewIdToLanguageMap.put(R.id.spanishLevelButton,"spanish");
-		viewIdToLanguageMap.put(R.id.portugueseLevelButton,"portuguese");
-		viewIdToLanguageMap.put(R.id.frenchLevelButton,"french");
+		
+		viewIdToLanguageMap.put(R.id.englishLevelButton,Languages.ENGLISH);
+		viewIdToLanguageMap.put(R.id.spanishLevelButton,Languages.SPANISH);
+		viewIdToLanguageMap.put(R.id.portugueseLevelButton,Languages.PORTUGUESE);
+		viewIdToLanguageMap.put(R.id.frenchLevelButton,Languages.FRENCH);
 		
 		
 	}
@@ -39,7 +40,7 @@ public class LevelChooser extends Activity {
 
 	public void goToLevel(View clickedButton) {
 		Intent intent = new Intent(this, ElementList.class);
-		String level = viewIdToLanguageMap.get(clickedButton.getId());
+		String level = viewIdToLanguageMap.get(clickedButton.getId()).getStringReperesentation();
 		intent.putExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME, level);
 		startActivity(intent);
 		
