@@ -32,6 +32,7 @@ public class QuizElementsLoader {
 		StringBuilder fileContent = getQuizElementsDeclarationsFileContent(activity);		
 		List<QuizElement> levelElements = getQuizLevelElements(level,
 				fileContent);
+		fillAutocompleteSuggestionsWithAllElements(levelElements);
 		return levelElements;
 
 	}
@@ -39,10 +40,7 @@ public class QuizElementsLoader {
 	private static List<QuizElement> getQuizLevelElements(String level,
 			StringBuilder fileContent) {
 		
-		List<QuizElement> allQuizElements= getAllQuizElementsFromFileContent(fileContent);
-		System.out.println("All Quiz Elements: ");
-		System.out.println(allQuizElements);
-		fillAutocompleteSuggestionsWithAllElements(allQuizElements);
+		List<QuizElement> allQuizElements= getAllQuizElementsFromFileContent(fileContent);		
 		List<QuizElement> filteredByLevelList = filterQuizElementsByLevel(level,allQuizElements);
 		
 		return filteredByLevelList ;
@@ -53,10 +51,11 @@ public class QuizElementsLoader {
 
 	private static void fillAutocompleteSuggestionsWithAllElements(
 			List<QuizElement> allQuizElements) {
-		
+			String language = UserConfig.getInstance().getLanguage();			
 			StaticGlobalVariables.quizSuggestions = new ArrayList<String>();
 			for(QuizElement quizElement : allQuizElements){
-				StaticGlobalVariables.quizSuggestions.add(quizElement.getLanguageToNamesMap().get(StaticGlobalVariables.language).getNames().get(0));	
+				
+				StaticGlobalVariables.quizSuggestions.add(quizElement.getLanguageToNamesMap().get(language).getNames().get(0));	
 			}
 			Collections.sort(StaticGlobalVariables.quizSuggestions);							
 		
@@ -93,9 +92,19 @@ public class QuizElementsLoader {
 
 	private static Map<String,QuizElementNames> parseLanguageToNamesMap(Gson gson,
 			Iterator<JsonElement> iterator, JsonElement quizElementJsonElement) {
-		JsonObject quizElementJsonObject = quizElementJsonElement.getAsJsonObject();
-		JsonObject languageToMapJsonObject = quizElementJsonObject.getAsJsonObject("languageToNamesMap");
+		JsonObject languageToMapJsonObject = getLanguateToNamesMapJsonObject(quizElementJsonElement);
 		Set<Entry<String,JsonElement>> languagueToNamesUnparsedMap = languageToMapJsonObject.entrySet();
+		
+		
+		Map<String, QuizElementNames> languageToNamesMap = createJavaMapFromJsonEntries(
+				gson, languagueToNamesUnparsedMap);
+		
+		return languageToNamesMap;
+	}
+
+	private static Map<String, QuizElementNames> createJavaMapFromJsonEntries(
+			Gson gson,
+			Set<Entry<String, JsonElement>> languagueToNamesUnparsedMap) {
 		Map<String,QuizElementNames> languageToNamesMap = new HashMap<String, QuizElementNames>();
 		for(Entry<String,JsonElement> languageToNameEntry : languagueToNamesUnparsedMap){
 			
@@ -103,8 +112,14 @@ public class QuizElementsLoader {
 			QuizElementNames quizElementNames = gson.fromJson(languageToNameEntry.getValue(), QuizElementNames.class);
 			languageToNamesMap.put(language, quizElementNames);
 		}
-		
 		return languageToNamesMap;
+	}
+
+	private static JsonObject getLanguateToNamesMapJsonObject(
+			JsonElement quizElementJsonElement) {
+		JsonObject quizElementJsonObject = quizElementJsonElement.getAsJsonObject();
+		JsonObject languageToMapJsonObject = quizElementJsonObject.getAsJsonObject("languageToNamesMap");
+		return languageToMapJsonObject;
 	}
 
 	private static StringBuilder getQuizElementsDeclarationsFileContent(

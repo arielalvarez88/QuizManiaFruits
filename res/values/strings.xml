@@ -13,5 +13,6 @@
     <string name="title_activity_language">Language</string>
     <string name="title_activity_fruit_viewer">FruitViewer</string>
     <string name="title_activity_element_chooser">ElementChooser</string>
+    <string name="appPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgKJtYi0ahjUU7JAkZ/gRx9RhQbiXXoBmVLb4dExwEJMH6g2SVoIcmp2KlXq93+MM/9R3x8td5bhtpyY/sb03GHvL5RcYGlalmQCTCFmuQ03YJTCLFs+u+CjPvr/W/osggdTrB3YPhLh+iuBbdz+Oexl/JZWUVQR9nJo4FDyVU/vHE04lvOggBcOQbV6HS0U3AJFbuW14lMYOgksb5alBgkRIdTSUu6e8/zsUaabPnGlkGcSqnE8w37chcwX6li1OVzW+st6xHqNzuC0sf+e2yxHnYaHtfWPp6I9F6SjojeuBn40SdmwB1eSrs5qPVeH6v564lvt74ecAupj3v849oQIDAQAB</string>
 
 </resources>
