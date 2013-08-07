@@ -14,25 +14,30 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.example.quizmaniafruits.R;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.QuizElementsLoader;
 import com.quizmania.utils.StaticGlobalVariables;
+import com.quizmania.utils.UserConfig;
 
 public class ElementList extends Activity {
 
 	
 	Map<QuizElement,View> quizElementToViewMap;
-
+	String level;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		quizElementToViewMap = new HashMap<QuizElement, View>();
 		setContentView(R.layout.activity_element_list);
-		StaticGlobalVariables.language = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
+		level = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
+		
+		UserConfig.getInstance().setLanguage(level);
+		StaticGlobalVariables.language = level; 
+		
+		
 		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;		
 		createView();
 		showOrHideNamesDependingIfElementIsAnswered();
@@ -50,7 +55,7 @@ public class ElementList extends Activity {
 				
 				@Override
 				public void onClick(View v) {
-					System.out.println("click?");
+					
 					changeToSliderView(element);
 					
 				}
@@ -113,7 +118,7 @@ public class ElementList extends Activity {
 	private List<QuizElement> initializeQuizElements() {
 		try {
 			return QuizElementsLoader
-					.loadElementsFromLevel("english", this);			
+					.loadElementsFromLevel(level, this);			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

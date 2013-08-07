@@ -46,7 +46,7 @@ public class UserConfig {
 	private UserConfig(){
 		vibrationActivated = true;
 		soundActivated = true;
-		language = Locale.ENGLISH.getDisplayLanguage();
+		language = Languages.ENGLISH.getStringReperesentation();
 		System.out.println("language: " +   language);
 		
 	}

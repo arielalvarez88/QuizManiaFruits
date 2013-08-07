@@ -68,6 +68,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 
 	@Override
 	public void onResume(){
+		super.onResume();
 		if(!AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language)){
 			hideAnswerIcon();
 		}

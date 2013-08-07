@@ -18,6 +18,6 @@ public enum Languages {
 	}
 
 	private Languages(String stringReperesentation){
-		
+		this.stringReperesentation = stringReperesentation;
 	}
 }
