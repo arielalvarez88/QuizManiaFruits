@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements OnIabSetupFinishedListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		StaticGlobalVariables.packageName = getPackageName();
-		initializeBiling();
+		//initializeBiling();
 	}
 
 
