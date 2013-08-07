@@ -192,7 +192,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 
 
 	private void playCorrectSound() {		
-		MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.fail);
+		MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.correct);
 		playerMedia.start();
 		
 	}
