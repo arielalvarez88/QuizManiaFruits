@@ -37,7 +37,10 @@ public class MainActivity extends Activity implements OnIabSetupFinishedListener
 	}
 	
 	
-	
+	public void goToOptionsActivity(View button){
+		Intent intent = new Intent(this, OptionsActivity.class);
+		startActivity(intent);
+	}
 	public void goToLanguageActivity(View clickedButton) {
 		Intent intent = new Intent(this, LevelChooser.class);
 		startActivity(intent);

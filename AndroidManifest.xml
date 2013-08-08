@@ -36,11 +36,14 @@
             android:name="com.quizmania.activities.ElementList"
             android:label="@string/title_activity_element_chooser" >
         </activity>
+        <activity
+            android:name="com.quizmania.activities.OptionsActivity"
+            android:label="@string/title_activity_options" >
+        </activity>
     </application>
-    
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    
 
 </manifest>

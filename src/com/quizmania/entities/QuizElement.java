@@ -55,5 +55,10 @@ public class QuizElement implements Serializable {
 		return toCompareCasted.getImageName().equals(this.imageName);
 
 	}
+	
+	@Override
+	public int hashCode(){
+		return imageName.hashCode();
+	}
 
 }

@@ -1,6 +1,11 @@
 package com.quizmania.fragments;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -22,8 +27,9 @@ import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
+import com.quizmania.utils.ViewUtils;
 
-public class QuizMainFragment extends Fragment implements OnKeyListener {
+public class QuizMainFragment extends Fragment implements OnKeyListener, OnClickListener {
 
 	QuizElement element;
 	View thisView;
@@ -135,6 +141,13 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		
 		if(correctAnswer){
 			placeCorrectIcon();
+			try {
+				AnswerService.getAnswerService().saveToSDCard();
+			} catch (FileNotFoundException e) {
+				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),this);
+			} catch (IOException e) {
+				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),this);
+			}
 		}else{
 			placeIncorrectIcon();
 		}
@@ -204,6 +217,14 @@ public class QuizMainFragment extends Fragment implements OnKeyListener {
 		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setImageResource(R.drawable.correct);
 		answerIcon.setVisibility(View.VISIBLE);
+		
+	}
+
+
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		// TODO Auto-generated method stub
 		
 	}
 
