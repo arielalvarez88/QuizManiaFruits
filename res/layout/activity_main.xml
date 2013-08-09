@@ -31,6 +31,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:textSize="@dimen/button_text_lang"
-        android:onClick="goToOptionsActivity"/>
+        android:onClick="goToOptionsActivity"/>   
 
 </RelativeLayout>

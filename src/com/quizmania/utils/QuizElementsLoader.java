@@ -128,7 +128,7 @@ public class QuizElementsLoader {
 		AssetManager assetManager = activity.getAssets();
 		InputStream stream = assetManager.open("quiz_elements.json");
 		BufferedReader reader = new BufferedReader(
-				new InputStreamReader(stream));
+				new InputStreamReader(stream,"UTF-8"));
 		StringBuilder fileContent = new StringBuilder();
 		String line;
 		while ((line = reader.readLine()) != null) {
