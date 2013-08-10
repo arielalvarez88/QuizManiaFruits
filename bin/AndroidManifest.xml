@@ -34,11 +34,13 @@
         </activity>
         <activity
             android:name="com.quizmania.activities.ElementList"
-            android:label="@string/title_activity_element_chooser" >
+            android:label="@string/title_activity_element_chooser" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.quizmania.activities.OptionsActivity"
-            android:label="@string/title_activity_options" >
+            android:label="@string/title_activity_options" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

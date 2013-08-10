@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
-    
-<ImageView
+    android:background="@color/white" >
+
+    <ImageView
         android:id="@+id/ImageView01"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -17,7 +17,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"        
+        android:layout_centerHorizontal="true"
         android:src="@drawable/letter_holder" />
 
     <ImageView
@@ -47,26 +47,38 @@
     <ImageView
         android:id="@+id/fruitImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"        
-        />
-    
-      <ImageView
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true" />
+
+    <ImageView
         android:id="@+id/answerIcon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"        
-        />
-    
-    
-    <AutoCompleteTextView  
-    android:id="@+id/autocomplete_quiz"
-    android:layout_width="fill_parent"
-    android:layout_height="40dp" 
-    android:layout_alignParentBottom="true"
-    android:textColor="@android:color/primary_text_light"
-    android:background="@drawable/border"    
-    />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:layout_alignParentBottom="true">
+
+        <EditText
+            android:id="@+id/answerTextbox"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+         	android:layout_weight=".90"
+            android:background="@drawable/border"
+            android:inputType="text"
+            android:textColor="@android:color/primary_text_light" />
+
+        <Button
+            android:id="@+id/answerButton"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight=".10"            
+            android:text="Ok" />
+    </LinearLayout>
+
 </RelativeLayout>

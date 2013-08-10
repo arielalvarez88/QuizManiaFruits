@@ -32,7 +32,7 @@ public class QuizElementsLoader {
 		StringBuilder fileContent = getQuizElementsDeclarationsFileContent(activity);		
 		List<QuizElement> levelElements = getQuizLevelElements(level,
 				fileContent);
-		fillAutocompleteSuggestionsWithAllElements(levelElements);
+		
 		return levelElements;
 
 	}
@@ -48,18 +48,6 @@ public class QuizElementsLoader {
 	}
 
 	
-
-	private static void fillAutocompleteSuggestionsWithAllElements(
-			List<QuizElement> allQuizElements) {
-			String language = UserConfig.getInstance().getLanguage();			
-			StaticGlobalVariables.quizSuggestions = new ArrayList<String>();
-			for(QuizElement quizElement : allQuizElements){
-				
-				StaticGlobalVariables.quizSuggestions.add(quizElement.getLanguageToNamesMap().get(language).getNames().get(0));	
-			}
-			Collections.sort(StaticGlobalVariables.quizSuggestions);							
-		
-	}
 
 	private static List<QuizElement> filterQuizElementsByLevel(String level,
 			List<QuizElement> allQuizElements) {

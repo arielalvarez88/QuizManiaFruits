@@ -4,22 +4,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.provider.MediaStore.Audio.Media;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.quizmaniafruits.R;
 import com.quizmania.entities.QuizElement;
@@ -51,8 +49,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);
-		setAutocomplete(quizElementView);
+		View quizElementView = constructViewFromQuizElement(inflater, container);		
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
         return quizElementView;
@@ -91,22 +88,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void setEventListeners(View quizElementView) {
-		AutoCompleteTextView textView = (AutoCompleteTextView) quizElementView.findViewById(R.id.autocomplete_quiz);
-		textView.setOnKeyListener(this);		
+		TextView textView = (TextView) quizElementView.findViewById(R.id.answerTextbox);
+		textView.setOnKeyListener(this);
+		Button answerButton =  (Button) quizElementView.findViewById(R.id.answerButton);
+		answerButton.setOnClickListener(this);
 	}
-
-
-
-	private void setAutocomplete(View quizElementView) {
-		AutoCompleteTextView textView = (AutoCompleteTextView) quizElementView.findViewById(R.id.autocomplete_quiz);
-		textView.setThreshold(1);
-		
-		ArrayAdapter<String> adapter = 
-		        new ArrayAdapter<String>(getActivity(), R.layout.autocomplete,StaticGlobalVariables.quizSuggestions);
-		
-		textView.setAdapter(adapter);
-	}
-
 
 
 	private View constructViewFromQuizElement(LayoutInflater inflater,
@@ -133,9 +119,15 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public boolean onKey(View v, int keyCode, KeyEvent event) {
 		if(keyCode != KeyEvent.KEYCODE_ENTER)
 			return false;
-		
-		
-		AutoCompleteTextView textView = (AutoCompleteTextView) v;
+				
+		tryToAnswer();
+		return false;
+	}
+
+
+
+	public void tryToAnswer() {
+		TextView textView = (TextView) thisView.findViewById(R.id.answerTextbox);
 		
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
 		
@@ -144,15 +136,14 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			try {
 				AnswerService.getAnswerService().saveToSDCard();
 			} catch (FileNotFoundException e) {
-				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),this);
+				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),null);
 			} catch (IOException e) {
-				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),this);
+				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),null);
 			}
 		}else{
 			placeIncorrectIcon();
 		}
 		Log.d("QuizMa/inFragment", "Fue correcta la respuesta: " + correctAnswer);
-		return false;
 	}
 
 
@@ -179,9 +170,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void playIncorrectSound() {
-
-		MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.fail);
-		playerMedia.start();
+		if(UserConfig.getInstance().isSoundActivated()){
+			MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.fail);
+			playerMedia.start();
+		}
+	
 		
 	}
 
@@ -204,9 +197,12 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 
-	private void playCorrectSound() {		
-		MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.correct);
-		playerMedia.start();
+	private void playCorrectSound() {
+		if(UserConfig.getInstance().isSoundActivated()){
+			MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.correct);
+			playerMedia.start();	
+		}
+		
 		
 	}
 
@@ -223,9 +219,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		// TODO Auto-generated method stub
-		
+	public void onClick(View button) {		
+		tryToAnswer();
 	}
 
 
