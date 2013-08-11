@@ -1,6 +1,7 @@
 package com.quizmania.utils;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -95,6 +96,24 @@ public class IOUtils {
 		 
 				 
 	}
+
+	public static void removeFile(String answersFilePath,Activity activity) {
+		File file = new File(answersFilePath);
+		try{
+			file.delete();
+		}		
+		catch (Exception e) {
+
+				e.printStackTrace();
+				ViewUtils.showAlertMessage(activity, activity.getResources().getString(R.string.sdCardError), null);
+		}
+		
+		
+		
+		
+		
+	}
+
 
 	
 }

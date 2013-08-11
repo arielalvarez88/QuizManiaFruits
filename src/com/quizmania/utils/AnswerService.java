@@ -18,7 +18,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	Map<QuizElement,Set<String>> answers;
 	private static AnswerService answerSingletonInstance;
-	private static String answersFilePath = Environment.getExternalStorageDirectory() + "/Android/data/" + StaticGlobalVariables.packageName + "/answers.quizmania";
+	public static final String ANSWERS_FILE_PATH = Environment.getExternalStorageDirectory() + "/Android/data/" + StaticGlobalVariables.packageName + "/answers.quizmania";
 	private AnswerService(){
 	
 			answers = new HashMap<QuizElement,Set<String>>();
@@ -79,7 +79,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		
 		if(answerSingletonInstance == null){
 			
-			answerSingletonInstance = IOUtils.isFileSavedInSDCard(answersFilePath) ? initializeFromMemory() : new AnswerService();
+			answerSingletonInstance = IOUtils.isFileSavedInSDCard(ANSWERS_FILE_PATH) ? initializeFromMemory() : new AnswerService();
 			
 		}
 		
@@ -97,7 +97,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		Log.d(AnswerService.class.toString(), "Initializaing from memory!");
 		try {
 			
-			answerSingletonInstance = (AnswerService) IOUtils.loadFromSDCard(answersFilePath);
+			answerSingletonInstance = (AnswerService) IOUtils.loadFromSDCard(ANSWERS_FILE_PATH);
 			
 			
 		} catch (OptionalDataException e) {
@@ -121,7 +121,12 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	@Override
 	public String getUserConfigFilePath() {
 		
-		return answersFilePath;
+		return ANSWERS_FILE_PATH;
+	}
+
+	public void reset() {
+		this.answerSingletonInstance = new AnswerService();
+		
 	}
 	
 	

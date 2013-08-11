@@ -19,8 +19,10 @@
     <string name="off">Off</string>
     <string name="resetGameOptionText">"Reset Game:\n(you won\'t loose your hints)"</string>
     <string name="sdCardError">Could not write to SD Card in this moment.</string>
-    
+    <string name="resetGameAreYouSure">Are you sure you want to reset the game? (you will loose all the answers)</string>
     <string name="resetText">Reset</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
      
     <string name="appPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgKJtYi0ahjUU7JAkZ/gRx9RhQbiXXoBmVLb4dExwEJMH6g2SVoIcmp2KlXq93+MM/9R3x8td5bhtpyY/sb03GHvL5RcYGlalmQCTCFmuQ03YJTCLFs+u+CjPvr/W/osggdTrB3YPhLh+iuBbdz+Oexl/JZWUVQR9nJo4FDyVU/vHE04lvOggBcOQbV6HS0U3AJFbuW14lMYOgksb5alBgkRIdTSUu6e8/zsUaabPnGlkGcSqnE8w37chcwX6li1OVzW+st6xHqNzuC0sf+e2yxHnYaHtfWPp6I9F6SjojeuBn40SdmwB1eSrs5qPVeH6v564lvt74ecAupj3v849oQIDAQAB</string>
     <string name="title_activity_options">OptionsActivity</string>
