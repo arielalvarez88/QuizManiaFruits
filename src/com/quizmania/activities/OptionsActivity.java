@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ToggleButton;
 
@@ -51,17 +52,8 @@ public class OptionsActivity extends Activity implements OnClickListener {
 	
 	@Override
 	public void onStop(){
-		super.onStop();
-		
-		try {
-			UserConfig.getInstance().saveToSDCard();
-		} catch (FileNotFoundException e) {
-			ViewUtils.showAlertMessage(this,getResources().getString(R.string.sdCardError),this);
-			
-
-		} catch (IOException e) {
-			ViewUtils.showAlertMessage(this,getResources().getString(R.string.sdCardError),this);
-		}
+		super.onStop();		
+		UserConfig.getInstance().saveToSDCard(this);
 	}
 
 

@@ -1,24 +1,21 @@
 package com.quizmania.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.io.StreamCorruptedException;
-import java.util.Locale;
 
 import android.os.Environment;
+import android.util.Log;
 
-public class UserConfig {
+public class UserConfig extends SDCardSavableEntity implements Serializable{
 	
 	private static UserConfig instance;
 	private boolean vibrationActivated;
 	private boolean soundActivated;	
 	private String language;
-	private static String userConfigFilePath = Environment.getExternalStorageDirectory().toString()  + "QuizMania_Fruits/userConfig.quizmania";
+	
+	private static String userConfigFilePath = Environment.getExternalStorageDirectory().toString()  + "/Android/data/" + StaticGlobalVariables.packageName + "userConfig.quizmania";
 	public String getLanguage() {
 		return language;
 	}
@@ -52,28 +49,25 @@ public class UserConfig {
 	}
 	
 	public static UserConfig getInstance(){
-		if(instance==null){
-			
-			instance = isConfSavedInSDCard() ? loadConfFromSDCard() : new UserConfig();
+
+		Log.d(UserConfig.class.getCanonicalName() , "getExternalStorageState From UserConfig: " + Environment.getExternalStorageState()); 
+		if(instance==null){			
+			instance = IOUtils.isFileSavedInSDCard(userConfigFilePath) ? loadFromSDCard() : new UserConfig();
 		}
 		return instance;
 	}
 
-	private static boolean isConfSavedInSDCard() {
-		File savedUserConfigFile = new File(userConfigFilePath);		
-		return savedUserConfigFile.exists();
-	}
+	
 
-	private static UserConfig loadConfFromSDCard() {
+	private static UserConfig loadFromSDCard() {		
 		
-		ObjectInputStream serializedUserConfig;
 		try {
-			serializedUserConfig = new ObjectInputStream(new FileInputStream(userConfigFilePath));
-			instance = (UserConfig) serializedUserConfig.readObject();
-			serializedUserConfig.close();
-			System.out.print("User config loaded from SD CARD");
+			
+						
+			instance = (UserConfig) IOUtils.loadFromSDCard(userConfigFilePath);						
+						
 		} catch (StreamCorruptedException e) {
-			instance = new UserConfig();
+			instance = new UserConfig();			
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			instance = new UserConfig();
@@ -88,12 +82,12 @@ public class UserConfig {
 		return instance;
 		
 	}
+
+	@Override
+	public String getUserConfigFilePath() {
+		return userConfigFilePath;
+	}
 	
 	
 
-	public void saveToSDCard() throws FileNotFoundException, IOException{
-		ObjectOutputStream serializer = new ObjectOutputStream(new FileOutputStream(userConfigFilePath));		
-		serializer.writeObject(instance);
-		serializer.close();
-	}
 }

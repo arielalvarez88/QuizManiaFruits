@@ -132,14 +132,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
 		
 		if(correctAnswer){
-			placeCorrectIcon();
-			try {
-				AnswerService.getAnswerService().saveToSDCard();
-			} catch (FileNotFoundException e) {
-				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),null);
-			} catch (IOException e) {
-				ViewUtils.showAlertMessage(getActivity(),getResources().getString(R.string.sdCardError),null);
-			}
+			placeCorrectIcon();			
+			AnswerService.getAnswerService().saveToSDCard(getActivity());
+			
 		}else{
 			placeIncorrectIcon();
 		}
@@ -209,7 +204,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void showCorrectAnsweredIcon() {
-		System.out.println("showCorrectAnsweredIcon");
+		
 		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setImageResource(R.drawable.correct);
 		answerIcon.setVisibility(View.VISIBLE);
