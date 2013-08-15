@@ -14,7 +14,7 @@ import android.app.Activity;
 import android.os.Environment;
 import android.util.Log;
 
-import com.example.quizmaniafruits.R;
+import com.quizmania.fruits.R;
 
 public class IOUtils {
 

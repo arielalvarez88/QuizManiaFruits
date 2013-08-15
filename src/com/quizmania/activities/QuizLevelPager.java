@@ -12,7 +12,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
 
-import com.example.quizmaniafruits.R;
+import com.quizmania.fruits.R;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.QuizElementsLoader;
 import com.quizmania.utils.QuizPager;

@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.example.quizmaniafruits.R;
-import com.google.inAppBilling.IabHelper;
-import com.google.inAppBilling.IabHelper.OnIabSetupFinishedListener;
-import com.google.inAppBilling.IabResult;
+import com.android.vending.billing.IabHelper;
+import com.android.vending.billing.IabHelper.OnIabSetupFinishedListener;
+import com.android.vending.billing.IabResult;
+import com.quizmania.fruits.R;
 import com.quizmania.utils.StaticGlobalVariables;
 
 public class MainActivity extends Activity implements OnIabSetupFinishedListener{
@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements OnIabSetupFinishedListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		StaticGlobalVariables.packageName = getPackageName();
-		//initializeBiling();
+		initializeBiling();
 	}
 
 
@@ -32,6 +32,7 @@ public class MainActivity extends Activity implements OnIabSetupFinishedListener
 	private void initializeBiling() {
 		Resources resources = getResources();
 		String appPublicKey = resources.getString(R.string.appPublicKey);
+		System.out.println("Public key : " + appPublicKey);
 		IabHelper billingHelper = new IabHelper(this, appPublicKey);
 		billingHelper.startSetup(this);
 	}

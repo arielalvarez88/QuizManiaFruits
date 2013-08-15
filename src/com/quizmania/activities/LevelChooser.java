@@ -9,7 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.quizmaniafruits.R;
+import com.quizmania.fruits.R;
 import com.quizmania.utils.Languages;
 import com.quizmania.utils.StaticGlobalVariables;
 

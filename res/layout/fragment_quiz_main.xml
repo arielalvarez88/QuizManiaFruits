@@ -45,7 +45,7 @@
         android:src="@drawable/letter_holder" />
 
     <ImageView
-        android:id="@+id/fruitImage"
+        android:id="@+id/elementImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

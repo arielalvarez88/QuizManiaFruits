@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
 
-import com.example.quizmaniafruits.R;
+import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.IOUtils;
 import com.quizmania.utils.UserConfig;

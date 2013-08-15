@@ -1,8 +1,5 @@
 package com.quizmania.fragments;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -11,23 +8,26 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.quizmaniafruits.R;
 import com.quizmania.entities.QuizElement;
+import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
-import com.quizmania.utils.ViewUtils;
 
-public class QuizMainFragment extends Fragment implements OnKeyListener, OnClickListener {
+public class QuizMainFragment extends Fragment implements OnKeyListener, OnClickListener, OnTouchListener {
 
 	QuizElement element;
 	View thisView;
@@ -88,19 +88,46 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void setEventListeners(View quizElementView) {
-		TextView textView = (TextView) quizElementView.findViewById(R.id.answerTextbox);
-		textView.setOnKeyListener(this);
-		Button answerButton =  (Button) quizElementView.findViewById(R.id.answerButton);
+		addAnswerTextboxEvents();
+		addAnswerButtonEvents();
+		addElementImageEvents();
+		
+	}
+
+
+
+	private void addElementImageEvents() {
+		ImageView imageView = getElementImageView();
+		imageView.setOnTouchListener(this);
+	}
+
+
+
+	private void addAnswerButtonEvents() {
+		Button answerButton =  (Button) thisView.findViewById(R.id.answerButton);
 		answerButton.setOnClickListener(this);
+	}
+
+
+
+	private void addAnswerTextboxEvents() {
+		TextView answerTextbox = (TextView) thisView.findViewById(R.id.answerTextbox);
+		answerTextbox.setOnKeyListener(this);
+	}
+
+
+
+	private ImageView getElementImageView() {
+		ImageView imageView =  (ImageView) thisView.findViewById(R.id.elementImage);
+		return imageView;
 	}
 
 
 	private View constructViewFromQuizElement(LayoutInflater inflater,
 			ViewGroup container) {
 		View quizElementView = inflater.inflate(R.layout.fragment_quiz_main, container, false);
-		
-		drawElementImage(quizElementView);
 		thisView = quizElementView;
+		drawElementImage(quizElementView);
 		return quizElementView;
 	}
 
@@ -109,7 +136,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	private void drawElementImage(View quizElementView) {
 		
 		int resID = QuizElementUtil.getResourceIdFromQuizElement(this, element);
-		ImageView quizElementImage = (ImageView) quizElementView.findViewById(R.id.fruitImage);
+		ImageView quizElementImage =  getElementImageView();
 		quizElementImage.setImageResource(resID);
 	}
 
@@ -176,7 +203,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void showIncorrectImage() {
-		ImageView answerIcon = (ImageView) thisView.findViewById(R.id.answerIcon);
+		ImageView answerIcon =  getElementImageView();
 		answerIcon.setImageResource(R.drawable.incorrect);
 		answerIcon.setVisibility(View.VISIBLE);
 		
@@ -216,6 +243,18 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	@Override
 	public void onClick(View button) {		
 		tryToAnswer();
+	}
+
+
+
+	@Override
+	public boolean onTouch(View arg0, MotionEvent arg1) {
+		InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+			      Context.INPUT_METHOD_SERVICE);
+		EditText answerTextBox = (EditText) thisView.findViewById(R.id.answerTextbox);
+			imm.hideSoftInputFromWindow(answerTextBox.getWindowToken(), 0);
+		return true;
+		
 	}
 
 

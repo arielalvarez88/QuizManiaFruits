@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-package com.google.inAppBilling;
+package com.android.vending.billing;
 
 import android.text.TextUtils;
 import android.util.Log;

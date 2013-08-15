@@ -14,7 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.quizmaniafruits.R;
+import com.quizmania.fruits.R;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
@@ -46,6 +46,7 @@ public class ElementList extends Activity {
 	
 	private void createView() {
 		ViewGroup scrollView = (ViewGroup) findViewById(R.id.quizElementsList);
+		scrollView.removeAllViews();
 		StringBuilder iconNameStringBuilder = new StringBuilder();
 		
 		for(final QuizElement element: StaticGlobalVariables.getLevelElements()){
@@ -82,6 +83,7 @@ public class ElementList extends Activity {
 	@Override
 	public void onResume(){
 		super.onResume();
+		createView();
 		showOrHideNamesDependingIfElementIsAnswered();
 	}
 
