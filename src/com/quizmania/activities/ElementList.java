@@ -19,10 +19,12 @@ import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.QuizElementsLoader;
+import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
+import com.quizmania.utils.ViewUtils;
 
-public class ElementList extends Activity {
+public class ElementList extends Activity implements QuizManiaActivity{
 
 	
 	Map<QuizElement,View> quizElementToViewMap;
@@ -31,7 +33,8 @@ public class ElementList extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		quizElementToViewMap = new HashMap<QuizElement, View>();
-		setContentView(R.layout.activity_element_list);
+		setContentView(R.layout.template);
+		ViewUtils.inflateContentInTemplate(this, R.layout.activity_element_list);
 		level = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
 		
 		UserConfig.getInstance().setLanguage(level);
@@ -127,6 +130,13 @@ public class ElementList extends Activity {
 		}
 		return null;
 
+	}
+
+
+	@Override
+	public void navigateBack(View view) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

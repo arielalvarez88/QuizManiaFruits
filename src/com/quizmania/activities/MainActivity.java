@@ -18,9 +18,11 @@ import com.android.vending.billing.Purchase;
 import com.quizmania.fruits.R;
 import com.quizmania.utils.BillingContext;
 import com.quizmania.utils.BillingUtil;
+import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.StaticGlobalVariables;
+import com.quizmania.utils.ViewUtils;
 
-public class MainActivity extends Activity{
+public class MainActivity extends Activity implements QuizManiaActivity{
 
 	private static final String TAG = "MainActivity";
 	public static String PACKAGE_NAME;
@@ -29,13 +31,16 @@ public class MainActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.template);
+		ViewUtils.inflateContentInTemplate(this, R.layout.activity_main);
 		StaticGlobalVariables.packageName = getPackageName();
-
+		
 	}
 
 	
-	
+	public void navigateBack(View backGUIButton){
+		super.onBackPressed();
+	}
 	
 
 

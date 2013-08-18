@@ -3,6 +3,11 @@ package com.quizmania.utils;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface.OnClickListener;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.quizmania.fruits.R;
 
 public class ViewUtils {
 
@@ -14,5 +19,11 @@ public class ViewUtils {
         alertDialog.show();
 	}
 	
+	public static void inflateContentInTemplate(Activity activity, int viewsResourceIdToInflate){
+		
+		View templateContent = activity.findViewById(R.id.templateContent);
+		LayoutInflater inflater = activity.getLayoutInflater();
+		inflater.inflate(viewsResourceIdToInflate, (ViewGroup) templateContent);
+	}
 	
 }

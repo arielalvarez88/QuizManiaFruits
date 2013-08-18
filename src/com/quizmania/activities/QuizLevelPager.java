@@ -15,10 +15,12 @@ import android.view.View.OnKeyListener;
 import com.quizmania.fruits.R;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.QuizElementsLoader;
+import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
+import com.quizmania.utils.ViewUtils;
 
-public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
+public class QuizLevelPager extends FragmentActivity implements QuizManiaActivity{
 	
 	FragmentManager fragmentManager;
 	QuizElement initialElement;
@@ -27,15 +29,14 @@ public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_quiz_level);
+		setContentView(R.layout.template);
+		ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
 		initializeElementsFromIntent();		
 		calculateInitialSlide();
 		initializeLevelPager();
 		
 		
 	}
-
-	
 
 
 	private void calculateInitialSlide() {
@@ -47,7 +48,6 @@ public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
 		initialElement = (QuizElement) getIntent().getExtras().get("clickedElement");
 	
 	}
-
 
 
 
@@ -63,11 +63,11 @@ public class QuizLevelPager extends FragmentActivity implements OnKeyListener{
 	}
 	
 
-	
 	@Override
-	public boolean onKey(View v, int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		return false;
+	public void navigateBack(View view) {
+		super.onBackPressed();
 	}
+
+
 
 }

@@ -11,19 +11,24 @@ import android.widget.ToggleButton;
 import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.IOUtils;
+import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.UserConfig;
+import com.quizmania.utils.ViewUtils;
 
-public class OptionsActivity extends Activity implements OnClickListener {
+public class OptionsActivity extends Activity implements OnClickListener, QuizManiaActivity{
 
 	AlertDialog confirmGameReset;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_options);
+		setContentView(R.layout.template);
+		ViewUtils.inflateContentInTemplate(this, R.layout.activity_options);
 		initializeOnOffButtons();
         initializeConfirmGameResetDialog();
         
 	}
+	
+	
 	
 	
 	private void initializeConfirmGameResetDialog() {
@@ -78,6 +83,14 @@ public class OptionsActivity extends Activity implements OnClickListener {
 	public void onClick(DialogInterface dialog, int which) {
 		IOUtils.removeFile(AnswerService.ANSWERS_FILE_PATH,this);		
 		AnswerService.getAnswerService().reset();
+	}
+
+
+
+
+	@Override
+	public void navigateBack(View view) {
+		super.onBackPressed();		
 	}
 
 	

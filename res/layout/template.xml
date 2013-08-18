@@ -8,17 +8,20 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
          TODO put images
-        <TextView android:text="Back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView android:text="Hint"
+        <Button android:text="Back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
+            android:onClick="navigateBack"/>
+        <Button android:text="Hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:onClick="navigateBack"/>
         
     </RelativeLayout> 
     
-    <RelativeLayout android:layout_width="fill_parent"
+    <RelativeLayout android:id="@+id/templateContent" 
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         
         
