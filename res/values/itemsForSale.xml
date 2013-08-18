@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array
+        name="itemsForSale">
+        <item>50_hint_pack</item>
+    </string-array>
+</resources>

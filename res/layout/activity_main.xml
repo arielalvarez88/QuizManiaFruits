@@ -31,6 +31,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="12dp"
         android:textSize="@dimen/button_text_lang"
-        android:onClick="goToOptionsActivity"/>   
-
+        android:onClick="goToOptionsActivity"/>
+       
+	  <Button
+        android:id="@+id/hintsButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hintsButtonText"
+        android:background="@drawable/bt_start"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:textSize="@dimen/button_text_lang"
+        android:onClick="goToItemStoreActivity"/>   
+    
 </RelativeLayout>

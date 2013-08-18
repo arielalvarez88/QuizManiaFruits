@@ -23,8 +23,10 @@
     <string name="resetText">Reset</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
-     
-    <string name="appPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgKJtYi0ahjUU7JAkZ/gRx9RhQbiXXoBmVLb4dExwEJMH6g2SVoIcmp2KlXq93+MM/9R3x8td5bhtpyY/sb03GHvL5RcYGlalmQCTCFmuQ03YJTCLFs+u+CjPvr/W/osggdTrB3YPhLh+iuBbdz+Oexl/JZWUVQR9nJo4FDyVU/vHE04lvOggBcOQbV6HS0U3AJFbuW14lMYOgksb5alBgkRIdTSUu6e8/zsUaabPnGlkGcSqnE8w37chcwX6li1OVzW+st6xHqNzuC0sf+e2yxHnYaHtfWPp6I9F6SjojeuBn40SdmwB1eSrs5qPVeH6v564lvt74ecAupj3v849oQIDAQAB</string>
+    <string name="hintsButtonText">Get Hints</string>
+    <string name="appPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArGPyOPJR5NuhrZ1DSxy4eZ69a9YfN8isI4XH8FFtVBSCnNMMst9gXCtW7X6pDYTIXqnJPSLX6dVce1P0IjoalRhbuYZDq6/hQWBCKECxoqWQL1LOz0DUMPMRTrJNURdnCmzxM221GhwyqljRggzwBtBz7EpZJ5UiwWW/MSZKAUA3HdPMP4TqXJonf00i/9M++vHhMApjbYbPY+NhO0m8PtQAWYHQcV8mtz2j8RGcjY3jded6RqXr5flqjYm+LXb5d9lsggJP8/aLibS14zlJ0X7uD3GrDjOjzdWF4Dj5aPk61DdVRMRg0pwt9++3Yz6ALxR8mBKq6MJl2jBOHwN00wIDAQAB</string>
     <string name="title_activity_options">OptionsActivity</string>
-
+    <string name="title_activity_item_store">ItemStore</string>
+	<string name="buy">Buy</string>
+	<string name="hintsPackCode50">50_hint_pack</string>
 </resources>

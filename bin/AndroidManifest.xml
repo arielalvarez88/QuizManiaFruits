@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.quizmania.fruits"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.2" >
 
     <uses-sdk
-        android:minSdkVersion="4"
+        android:minSdkVersion="5"
         android:targetSdkVersion="17" />
 
     <application
@@ -34,13 +34,17 @@
         </activity>
         <activity
             android:name="com.quizmania.activities.ElementList"
-            android:label="@string/title_activity_element_chooser" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_element_chooser"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.quizmania.activities.OptionsActivity"
-            android:label="@string/title_activity_options" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_options"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.quizmania.activities.ItemStore"
+            android:label="@string/title_activity_item_store" >
         </activity>
     </application>
 

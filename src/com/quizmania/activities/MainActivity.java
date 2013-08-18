@@ -1,5 +1,10 @@
 package com.quizmania.activities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -8,36 +13,34 @@ import android.util.Log;
 import android.view.View;
 
 import com.android.vending.billing.IabHelper;
-import com.android.vending.billing.IabHelper.OnIabSetupFinishedListener;
 import com.android.vending.billing.IabResult;
+import com.android.vending.billing.Purchase;
 import com.quizmania.fruits.R;
+import com.quizmania.utils.BillingContext;
+import com.quizmania.utils.BillingUtil;
 import com.quizmania.utils.StaticGlobalVariables;
 
-public class MainActivity extends Activity implements OnIabSetupFinishedListener{
+public class MainActivity extends Activity{
 
 	private static final String TAG = "MainActivity";
 	public static String PACKAGE_NAME;
 	private IabHelper billingHelper;
-	
+	private BillingUtil billingUtil;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.activity_main);
 		StaticGlobalVariables.packageName = getPackageName();
-		initializeBiling();
+
 	}
 
-
-
-	private void initializeBiling() {
-		Resources resources = getResources();
-		String appPublicKey = resources.getString(R.string.appPublicKey);
-		System.out.println("Public key : " + appPublicKey);
-		IabHelper billingHelper = new IabHelper(this, appPublicKey);
-		billingHelper.startSetup(this);
-	}
 	
 	
+	
+
+
+
+
 	public void goToOptionsActivity(View button){
 		Intent intent = new Intent(this, OptionsActivity.class);
 		startActivity(intent);
@@ -48,24 +51,20 @@ public class MainActivity extends Activity implements OnIabSetupFinishedListener
 	}
 
 
-
-	@Override
-	public void onIabSetupFinished(IabResult result) {
-			
-	      if (!result.isSuccess()) {
-	          // Oh noes, there was a problem.
-	          Log.d(TAG, "Problem setting up In-app Billing: " + result);
-	       }            
-	      Log.d(TAG, "In-app Billing success" + result);  
-
+	public void goToItemStoreActivity(View buyButton){
+		Intent intent = new Intent(this,ItemStore.class);
+		startActivity(intent);
 	}
+	
+	
 	
 	@Override
 	public void onDestroy() {
 	   super.onDestroy();
-	   if (billingHelper != null) billingHelper.dispose();
-	   billingHelper = null;
+	   if (billingUtil != null) billingUtil.dispose();
+	   billingUtil = null;
 	}
+	
 
 
 }

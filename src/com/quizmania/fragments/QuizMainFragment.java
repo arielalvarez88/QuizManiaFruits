@@ -203,7 +203,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void showIncorrectImage() {
-		ImageView answerIcon =  getElementImageView();
+		ImageView answerIcon =  (ImageView) thisView.findViewById(R.id.answerIcon);
 		answerIcon.setImageResource(R.drawable.incorrect);
 		answerIcon.setVisibility(View.VISIBLE);
 		
