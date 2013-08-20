@@ -57,7 +57,7 @@ public class HintLetterAdapter extends BaseAdapter {
 		
     	int realPosition = position + offset;
     	TextView hintLetter = ViewUtils.createHintLetter(androidContext);    			
-		hintLetter.setText("" + letters[realPosition]);
+		//hintLetter.setText("" + letters[realPosition]);
 		hintLetter.setLayoutParams(layoutParam);
 		return hintLetter;
     }

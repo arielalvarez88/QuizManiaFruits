@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -182,7 +183,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		Log.d("*********","screenWdith: " + screenWidth);
 		Log.d("*********","hintLetterWdith: " + hintStlye.getWidth());
 		Log.d("*********","numberOfLettersThatFitInTheFirstLine: " + hintStlye.getWidth());		
-
+		
 		addLettersToFirstLineCentralized(elementNameLetters,numberOfLettersThatFitInTheFirstLine,hintStlye);		
 		addLettersInOtherLines(elementNameLetters,numberOfLettersThatFitInTheFirstLine,hintStlye);
 		
@@ -195,9 +196,13 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		LinearLayout centralizedHintHolder = (LinearLayout) thisView.findViewById(R.id.centralizedHintHolder);
 		LayoutParams layoutParams = new LayoutParams(hintStlye.getWidth(),hintStlye.getHeight());
 		
-		for(int i=0; i < numberOfLettersThatFitInTheFirstLine-1; i++){
+		for(int i=0; i < elementNameLetters.length; i++){
+			if(i >= numberOfLettersThatFitInTheFirstLine)
+				break;
+			char letter = elementNameLetters[i];
 			TextView hintLetter = ViewUtils.createHintLetter(getActivity());
 			hintLetter.setLayoutParams(layoutParams);
+			
 			centralizedHintHolder.addView(hintLetter);
 		}
 	}

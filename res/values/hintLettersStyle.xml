@@ -3,7 +3,7 @@
     <style name="hintLettersStyle">
         
         <item name="android:textSize">20sp</item>        
-        
+                
     </style>
     
 </resources>
