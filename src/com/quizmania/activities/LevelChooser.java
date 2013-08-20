@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.quizmania.entities.Language;
 import com.quizmania.fruits.R;
-import com.quizmania.utils.Languages;
 import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
@@ -33,10 +33,10 @@ public class LevelChooser extends Activity implements QuizManiaActivity{
 	private void initializeViewToLanguageMap() {
 		viewIdToLanguageMap = new HashMap<Integer, String>();
 		
-		viewIdToLanguageMap.put(R.id.englishLevelButton,Languages.ENGLISH.getStringReperesentation());
-		viewIdToLanguageMap.put(R.id.spanishLevelButton,Languages.SPANISH.getStringReperesentation());
-		viewIdToLanguageMap.put(R.id.portugueseLevelButton,Languages.PORTUGUESE.getStringReperesentation());
-		viewIdToLanguageMap.put(R.id.frenchLevelButton,Languages.FRENCH.getStringReperesentation());
+		viewIdToLanguageMap.put(R.id.englishLevelButton,Language.ENGLISH);
+		viewIdToLanguageMap.put(R.id.spanishLevelButton,Language.SPANISH);
+		viewIdToLanguageMap.put(R.id.portugueseLevelButton,Language.PORTUGUESE);
+		viewIdToLanguageMap.put(R.id.frenchLevelButton,Language.FRENCH);
 		
 		
 	}

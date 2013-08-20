@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.quizmania.fruits.R;
+import com.quizmania.entities.Language;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
@@ -37,9 +38,10 @@ public class ElementList extends Activity implements QuizManiaActivity{
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_element_list);
 		level = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
 		
-		UserConfig.getInstance().setLanguage(level);
-		StaticGlobalVariables.language = level; 
+		//In QuizMania Fruits, the language is the level.
+		Language language = new Language(level);
 		
+		UserConfig.getInstance().setLanguage(language);
 		
 		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;		
 		createView();
@@ -95,7 +97,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 		View elementlRepresentation = getLayoutInflater().inflate(R.layout.quiz_list_element, null);
 		
 		TextView quizElementNameHolder = (TextView)elementlRepresentation.findViewById(R.id.listElementText);
-		String elementPrincipalName= element.getLanguageToNamesMap().get(StaticGlobalVariables.language).getNames().get(0);
+		String elementPrincipalName= element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
 		quizElementNameHolder.setText(elementPrincipalName);
 					
 		ImageView quizElementImageHolder = (ImageView)elementlRepresentation.findViewById(R.id.listElementImage);
@@ -110,7 +112,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 	private void showOrHideNamesDependingIfElementIsAnswered() {
 		
 		for(QuizElement element : quizElementToViewMap.keySet()){
-			boolean isFruitAnswered = AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language);
+			boolean isFruitAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance().getLanguage());
 			int fruitNameVisibility = isFruitAnswered? View.VISIBLE : View.INVISIBLE;
 			
 			quizElementToViewMap.get(element).findViewById(R.id.listElementText).setVisibility(fruitNameVisibility);
@@ -125,7 +127,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 			return QuizElementsLoader
 					.loadElementsFromLevel(level, this);			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return null;
@@ -135,7 +137,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 
 	@Override
 	public void navigateBack(View view) {
-		// TODO Auto-generated method stub
+		super.onBackPressed();
 		
 	}
 	

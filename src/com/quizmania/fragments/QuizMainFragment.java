@@ -1,6 +1,8 @@
 package com.quizmania.fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -17,21 +19,28 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.quizmania.activities.ItemStore;
+import com.quizmania.entities.Hint;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
+import com.quizmania.utils.HintLetterAdapter;
+import com.quizmania.utils.HintStyle;
 import com.quizmania.utils.QuizElementUtil;
-import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
+import com.quizmania.utils.ViewUtils;
 
 public class QuizMainFragment extends Fragment implements OnKeyListener, OnClickListener, OnTouchListener {
 
 	QuizElement element;
 	View thisView;
-
+	Button hintButton;
 
 	public QuizElement getElement() {
 		return element;
@@ -49,7 +58,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);		
+		View quizElementView = constructViewFromQuizElement(inflater, container);
+		hintButton = (Button) getActivity().findViewById(R.id.hintButton);
+		hintButton.setVisibility(View.VISIBLE);
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
         return quizElementView;
@@ -59,7 +70,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void drawAnswerIconIfAnswered() {
-		boolean isCorrectAnswered = AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language);
+		boolean isCorrectAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance().getLanguage());
 		if(isCorrectAnswered){
 			showCorrectAnsweredIcon();
 		}else{
@@ -72,7 +83,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	@Override
 	public void onResume(){
 		super.onResume();
-		if(!AnswerService.getAnswerService().isAwnsered(element, StaticGlobalVariables.language)){
+		if(!AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance().getLanguage())){
 			hideAnswerIcon();
 		}
 	}
@@ -91,6 +102,32 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		addAnswerTextboxEvents();
 		addAnswerButtonEvents();
 		addElementImageEvents();
+		addHintButtonEvents();
+		
+	}
+
+
+
+	private void addHintButtonEvents() {
+		hintButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(UserConfig.getInstance().getHints() > 0){
+					Hint hint = AnswerService.getAnswerService().revealRandomLetter(element, UserConfig.getInstance().getLanguage());
+					revealLetters(hint);
+				}else{
+					Intent intent = new Intent(getActivity(),ItemStore.class);
+					getActivity().startActivity(intent);
+				}
+				
+			}
+
+			private void revealLetters(Hint hint) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 
@@ -128,7 +165,52 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		View quizElementView = inflater.inflate(R.layout.fragment_quiz_main, container, false);
 		thisView = quizElementView;
 		drawElementImage(quizElementView);
+		drawHintLetters();
 		return quizElementView;
+	}
+
+
+
+	private void drawHintLetters() {
+				
+		
+		char[] elementNameLetters = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0).toCharArray();		 		
+		int screenWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
+		HintStyle hintStlye = new HintStyle(getActivity());
+					
+		int numberOfLettersThatFitInTheFirstLine = screenWidth/hintStlye.getWidth();
+		Log.d("*********","screenWdith: " + screenWidth);
+		Log.d("*********","hintLetterWdith: " + hintStlye.getWidth());
+		Log.d("*********","numberOfLettersThatFitInTheFirstLine: " + hintStlye.getWidth());		
+
+		addLettersToFirstLineCentralized(elementNameLetters,numberOfLettersThatFitInTheFirstLine,hintStlye);		
+		addLettersInOtherLines(elementNameLetters,numberOfLettersThatFitInTheFirstLine,hintStlye);
+		
+		
+	}
+
+
+
+	private void addLettersToFirstLineCentralized(char[] elementNameLetters, int numberOfLettersThatFitInTheFirstLine, HintStyle hintStlye) {
+		LinearLayout centralizedHintHolder = (LinearLayout) thisView.findViewById(R.id.centralizedHintHolder);
+		LayoutParams layoutParams = new LayoutParams(hintStlye.getWidth(),hintStlye.getHeight());
+		
+		for(int i=0; i < numberOfLettersThatFitInTheFirstLine-1; i++){
+			TextView hintLetter = ViewUtils.createHintLetter(getActivity());
+			hintLetter.setLayoutParams(layoutParams);
+			centralizedHintHolder.addView(hintLetter);
+		}
+	}
+
+
+
+	private void addLettersInOtherLines(char[] elementNameLetters,
+			int numberOfLettersThatFitInTheFirstLine,HintStyle hintStlye) {
+		GridView multipleLineHintHolder = (GridView) thisView.findViewById(R.id.multipleLineHintHolder);
+		HintLetterAdapter adapter = new HintLetterAdapter(getActivity(),elementNameLetters,numberOfLettersThatFitInTheFirstLine,hintStlye);
+		multipleLineHintHolder.setAdapter(adapter);
+		
+		
 	}
 
 

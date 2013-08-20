@@ -14,7 +14,7 @@ public class QuizElement implements Serializable {
 	}
 
 	String imageName;
-	Map<String, QuizElementNames> languageToNamesMap;
+	transient Map<Language, QuizElementNames> languageToNamesMap;
 	private List<String> levels;
 
 	public String getImageName() {
@@ -32,12 +32,12 @@ public class QuizElement implements Serializable {
 
 
 
-	public Map<String, QuizElementNames> getLanguageToNamesMap() {
+	public Map<Language, QuizElementNames> getLanguageToNamesMap() {
 		return languageToNamesMap;
 	}
 
 	public void setLanguageToNamesMap(
-			Map<String, QuizElementNames> languageToNamesMap) {
+			Map<Language, QuizElementNames> languageToNamesMap) {
 		this.languageToNamesMap = languageToNamesMap;
 	}
 

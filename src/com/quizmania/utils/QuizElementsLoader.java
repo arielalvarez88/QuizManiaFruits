@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +20,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.quizmania.entities.Language;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.entities.QuizElementNames;
 
@@ -78,25 +78,25 @@ public class QuizElementsLoader {
 		return allQuizElements;
 	}
 
-	private static Map<String,QuizElementNames> parseLanguageToNamesMap(Gson gson,
+	private static Map<Language,QuizElementNames> parseLanguageToNamesMap(Gson gson,
 			Iterator<JsonElement> iterator, JsonElement quizElementJsonElement) {
 		JsonObject languageToMapJsonObject = getLanguateToNamesMapJsonObject(quizElementJsonElement);
 		Set<Entry<String,JsonElement>> languagueToNamesUnparsedMap = languageToMapJsonObject.entrySet();
 		
 		
-		Map<String, QuizElementNames> languageToNamesMap = createJavaMapFromJsonEntries(
+		Map<Language, QuizElementNames> languageToNamesMap = createJavaMapFromJsonEntries(
 				gson, languagueToNamesUnparsedMap);
 		
 		return languageToNamesMap;
 	}
 
-	private static Map<String, QuizElementNames> createJavaMapFromJsonEntries(
+	private static Map<Language, QuizElementNames> createJavaMapFromJsonEntries(
 			Gson gson,
 			Set<Entry<String, JsonElement>> languagueToNamesUnparsedMap) {
-		Map<String,QuizElementNames> languageToNamesMap = new HashMap<String, QuizElementNames>();
+		Map<Language,QuizElementNames> languageToNamesMap = new HashMap<Language, QuizElementNames>();
 		for(Entry<String,JsonElement> languageToNameEntry : languagueToNamesUnparsedMap){
 			
-			String language = languageToNameEntry.getKey();
+			Language language =  new Language(languageToNameEntry.getKey());
 			QuizElementNames quizElementNames = gson.fromJson(languageToNameEntry.getValue(), QuizElementNames.class);
 			languageToNamesMap.put(language, quizElementNames);
 		}

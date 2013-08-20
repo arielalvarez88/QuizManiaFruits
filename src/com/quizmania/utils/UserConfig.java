@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.io.StreamCorruptedException;
 
+import com.quizmania.entities.Language;
+
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,15 +15,27 @@ public class UserConfig extends SDCardSavableEntity implements Serializable{
 	private static UserConfig instance;
 	private boolean vibrationActivated;
 	private boolean soundActivated;	
-	private String language;
+	private Language language;
 	private int hints;
 	
 	private static String userConfigFilePath = Environment.getExternalStorageDirectory().toString()  + "/Android/data/" + StaticGlobalVariables.packageName + "userConfig.quizmania";
-	public String getLanguage() {
+	public Language getLanguage() {
 		return language;
 	}
 
-	public void setLanguage(String language) {
+	public int getHints() {
+		return hints;
+	}
+
+	public void setHints(int hints) {
+		this.hints = hints;
+	}
+
+	public static void setUserConfigFilePath(String userConfigFilePath) {
+		UserConfig.userConfigFilePath = userConfigFilePath;
+	}
+
+	public void setLanguage(Language language) {
 		this.language = language;
 	}
 
@@ -44,7 +58,7 @@ public class UserConfig extends SDCardSavableEntity implements Serializable{
 	private UserConfig(){
 		vibrationActivated = true;
 		soundActivated = true;
-		language = Languages.ENGLISH.getStringReperesentation();
+		language = new Language(Language.ENGLISH);
 		hints = 10;
 		System.out.println("language: " +   language);
 		

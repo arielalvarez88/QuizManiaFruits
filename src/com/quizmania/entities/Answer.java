@@ -1,6 +1,8 @@
 package com.quizmania.entities;
 
-public class Answer {
+import java.io.Serializable;
+
+public class Answer implements Serializable{
 
 	public String language;
 	public String response;

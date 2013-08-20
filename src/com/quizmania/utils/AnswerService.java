@@ -12,28 +12,44 @@ import java.util.Set;
 import android.os.Environment;
 import android.util.Log;
 
+import com.quizmania.entities.Hint;
+import com.quizmania.entities.Language;
 import com.quizmania.entities.QuizElement;
 
 public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
-	Map<QuizElement,Set<String>> answers;
+	Map<QuizElement,Set<Language>> answers;
+	Map<QuizElement,Map<Language,Hint>> revealedHints;
 	private static AnswerService answerSingletonInstance;
 	public static final String ANSWERS_FILE_PATH = Environment.getExternalStorageDirectory() + "/Android/data/" + StaticGlobalVariables.packageName + "/answers.quizmania";
-	private AnswerService(){
-	
-			answers = new HashMap<QuizElement,Set<String>>();
-		
+	private AnswerService(){	
+			answers = new HashMap<QuizElement,Set<Language>>();
+			revealedHints = new HashMap<QuizElement, Map<Language,Hint>>();
 	}
 		
-	public boolean isAwnsered(QuizElement element, String language){
+	public Hint revealRandomLetter(QuizElement element, Language language){
+		
+		Hint hintToReturn; 
+		boolean isNewHint = !revealedHints.containsKey(element) || !revealedHints.get(element).containsKey(language);
+		String elementName = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		hintToReturn = isNewHint ? new Hint() : revealedHints.get(element).get(language);
+		int randomLetterIndex; 	
+		do{
+			randomLetterIndex = (int) (Math.random() * (elementName.length() +1) ); 
+													
+		}while(hintToReturn.hasLetterRevealed(randomLetterIndex));
+		hintToReturn.getLettersRevealed().put(randomLetterIndex, elementName.charAt(randomLetterIndex));
+		return hintToReturn;
+							
+	}
+	public boolean isAwnsered(QuizElement element, Language language){
 		
 		boolean answerForQuizElementIsInCurrentLanguage = answers.containsKey(element) && answers.get(element).contains(language);
 		return answerForQuizElementIsInCurrentLanguage; 
 	}
 	
-
 	public boolean tryToAnswer(QuizElement element, String userAnswer){
-		List<String> correctAnswers = element.getLanguageToNamesMap().get(StaticGlobalVariables.language).getNames();
+		List<String> correctAnswers = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames();
 		
 		
 		boolean isACorrectAnswer = isACorrectAnswer(element, userAnswer, correctAnswers);
@@ -41,16 +57,12 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		if(isACorrectAnswer){
 			placeAnswerInMapAnswer(element);
 		}else{
-			removeAnswerInMapAnser(element);
+			answers.remove(element);
 		}
 		
 		return isACorrectAnswer;
 	}
 
-	private void removeAnswerInMapAnser(QuizElement element) {
-		// TODO Auto-generated method stub
-		answers.remove(element);
-	}
 
 	private boolean isACorrectAnswer(QuizElement element, String userAnswer,
 			List<String> correctAnswers) {
@@ -67,10 +79,10 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	private void placeAnswerInMapAnswer(QuizElement element) {
 		if(!answers.containsKey(element)){
-			answers.put(element,new HashSet<String>());
+			answers.put(element,new HashSet<Language>());
 		}
 				
-		answers.get(element).add(StaticGlobalVariables.language);
+		answers.get(element).add(UserConfig.getInstance().getLanguage());
 	}
 	
 	
@@ -93,7 +105,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 
 
 	private static AnswerService initializeFromMemory() {
-		// TODO Auto-generated method stub
+		
 		Log.d(AnswerService.class.toString(), "Initializaing from memory!");
 		try {
 			
