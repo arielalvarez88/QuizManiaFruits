@@ -345,9 +345,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	}
 
 	
-	public void navigateBack(View view) {
-		getActivity().onBackPressed();
-	}
+
 
 
 	@Override

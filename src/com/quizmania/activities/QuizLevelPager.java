@@ -14,7 +14,7 @@ import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
 
-public class QuizLevelPager extends FragmentActivity{
+public class QuizLevelPager extends FragmentActivity implements QuizManiaActivity{
 	
 	FragmentManager fragmentManager;
 	QuizElement initialElement;
@@ -52,6 +52,13 @@ public class QuizLevelPager extends FragmentActivity{
 		quizPagerView.setCurrentItem(initialSlide);
 		
 		
+		
+	}
+
+
+	@Override
+	public void navigateBack(View view) {
+		super.onBackPressed();
 		
 	}
 		
