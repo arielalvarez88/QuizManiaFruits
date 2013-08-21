@@ -1,20 +1,14 @@
 package com.quizmania.activities;
 
-import java.io.IOException;
-import java.util.List;
-
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnKeyListener;
+import android.widget.Button;
 
-import com.quizmania.fruits.R;
 import com.quizmania.entities.QuizElement;
-import com.quizmania.utils.QuizElementsLoader;
+import com.quizmania.fruits.R;
 import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
@@ -34,7 +28,8 @@ public class QuizLevelPager extends FragmentActivity implements QuizManiaActivit
 		initializeElementsFromIntent();		
 		calculateInitialSlide();
 		initializeLevelPager();
-		
+		Button hintButton = (Button) findViewById(R.id.hintButton);
+		hintButton.setVisibility(View.VISIBLE);
 		
 	}
 

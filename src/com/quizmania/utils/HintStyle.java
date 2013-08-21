@@ -12,16 +12,12 @@ public class HintStyle {
 	private  int height;
 	private int letterSize;
 	
-	public HintStyle(Context androidContext){
+	public HintStyle(Context androidContext, int width, int height){
 		int[] attrs = {android.R.attr.textSize};
 		TypedArray ta = androidContext.obtainStyledAttributes(R.style.hintLettersStyle, attrs);    
         this.letterSize= ta.getDimensionPixelSize(0, 0);
-        this.width = ta.getDimensionPixelSize(1, 0);
-        Log.d("********", "newWidth: " + width);
-        
-        this.width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, androidContext.getResources().getDisplayMetrics());
-        Log.d("********", "workingWidth: " + width);
-        this.height= width;
+        this.width = width;                
+        this.height= height;
 	}
 	public int getWidth() {
 		return width;

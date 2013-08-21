@@ -10,6 +10,7 @@ public class StaticGlobalVariables {
 	public static String packageName;
 	public static final String LANGUAGE_ATTRIBUTE_NAME = "language";
 	public static final String LEVEL_ATTRIBUTE_NAME = "level";
+	public static final char BLANK_SPACE = ' ';
 	private static List<QuizElement> levelElements;
 	public static List<QuizElement> getLevelElements() {
 		return levelElements;

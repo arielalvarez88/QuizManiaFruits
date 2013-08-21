@@ -9,10 +9,11 @@ import com.quizmania.fruits.R;
 import com.quizmania.utils.BillingContext;
 import com.quizmania.utils.BillingEventListener;
 import com.quizmania.utils.BillingUtil;
+import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.QuizManiaBillingEventListenerImp;
 import com.quizmania.utils.ViewUtils;
 
-public class ItemStore extends Activity {
+public class ItemStore extends Activity implements QuizManiaActivity{
 
 	private BillingUtil billingUtil;
 
@@ -32,6 +33,7 @@ public class ItemStore extends Activity {
 		billingUtil.sellItem(itemIdToPurchase);
 	}
 
+	
 	private String getItemIdToPurchaseFromClickedView(View view) {
 		// TODO Auto-generated method stub
 		
@@ -48,6 +50,12 @@ public class ItemStore extends Activity {
 		Log.d("**********", "******* returning null :(" + view.getId());
 		
 		return null;
+	}
+
+	@Override
+	public void navigateBack(View view) {
+		super.onBackPressed();
+		
 	}
 
 }

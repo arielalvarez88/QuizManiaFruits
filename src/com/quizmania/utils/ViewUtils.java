@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
 import android.widget.TextView;
 
-import com.quizmania.entities.Hint;
+import com.quizmania.entities.NameHints;
 import com.quizmania.fruits.R;
 
 public class ViewUtils {

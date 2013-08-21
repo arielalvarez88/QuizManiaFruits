@@ -9,38 +9,92 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import android.app.Activity;
 import android.os.Environment;
 import android.util.Log;
 
-import com.quizmania.entities.Hint;
+import com.quizmania.entities.NameHints;
 import com.quizmania.entities.Language;
 import com.quizmania.entities.QuizElement;
 
 public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	Map<QuizElement,Set<Language>> answers;
-	Map<QuizElement,Map<Language,Hint>> revealedHints;
+	Map<QuizElement,Map<Language,NameHints>> revealedHints;
 	private static AnswerService answerSingletonInstance;
+
 	public static final String ANSWERS_FILE_PATH = Environment.getExternalStorageDirectory() + "/Android/data/" + StaticGlobalVariables.packageName + "/answers.quizmania";
 	private AnswerService(){	
 			answers = new HashMap<QuizElement,Set<Language>>();
-			revealedHints = new HashMap<QuizElement, Map<Language,Hint>>();
+			revealedHints = new HashMap<QuizElement, Map<Language,NameHints>>();
+	}
+	
+	
+	public NameHints getRevealedHintsForQuizElement(QuizElement element){
+		NameHints revealedHint = null;
+		if(revealedHints.containsKey(element)  && revealedHints.get(element).containsKey(UserConfig.getInstance().getLanguage())){
+			revealedHint = revealedHints.get(element).get(UserConfig.getInstance().getLanguage());
+		}
+		
+		return revealedHint; 
 	}
 		
-	public Hint revealRandomLetter(QuizElement element, Language language){
+	public boolean areAllLettersRevealed(QuizElement element){
+		NameHints revealedHintsForElement = getRevealedHintsForQuizElement(element);
+		int lettersRevealed = revealedHintsForElement == null ? 0 : revealedHintsForElement.getLettersRevealed().size();
+		int lettersInElement=0;
+		char[] allLetters = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0).toCharArray();
+		for(char letter : allLetters){
+			if(letter != StaticGlobalVariables.BLANK_SPACE)
+				lettersInElement ++ ;
+		}
 		
-		Hint hintToReturn; 
+		return lettersRevealed >= lettersInElement;
+	}
+	
+	public NameHints revealRandomLetter(QuizElement element, Activity androidContext){
+		if(areAllLettersRevealed(element)){
+			return null;
+		}
+		NameHints hintToReturn;
+		Language language = UserConfig.getInstance().getLanguage();
 		boolean isNewHint = !revealedHints.containsKey(element) || !revealedHints.get(element).containsKey(language);
 		String elementName = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
-		hintToReturn = isNewHint ? new Hint() : revealedHints.get(element).get(language);
+		
+		hintToReturn = isNewHint ? new NameHints() : revealedHints.get(element).get(language);
 		int randomLetterIndex; 	
 		do{
-			randomLetterIndex = (int) (Math.random() * (elementName.length() +1) ); 
+			randomLetterIndex = (int) (Math.random() * (elementName.length()) ); 
 													
-		}while(hintToReturn.hasLetterRevealed(randomLetterIndex));
+		}while(hintToReturn.hasLetterRevealed(randomLetterIndex) && elementName.charAt(randomLetterIndex) != StaticGlobalVariables.BLANK_SPACE);
 		hintToReturn.getLettersRevealed().put(randomLetterIndex, elementName.charAt(randomLetterIndex));
+		Log.d("*************", "randomLetter: " + elementName.charAt(randomLetterIndex));
+		saveAndConsumeHint(element, hintToReturn, androidContext);
 		return hintToReturn;
-							
+	}
+
+
+	private void saveAndConsumeHint(QuizElement element, NameHints hintToSave,Activity androidContext) {
+		boolean isNewHint = !revealedHints.containsKey(element);
+		Language language = UserConfig.getInstance().getLanguage();
+		if(!isNewHint){
+			
+			revealedHints.get(element).put(language,hintToSave);
+			Log.d("*************", "oldHint: " + hintToSave);
+		}else{
+			
+			HashMap<Language,NameHints> languageToHint = new HashMap<Language, NameHints>();
+			languageToHint.put(language, hintToSave);			
+			revealedHints.put(element, languageToHint);
+			Log.d("*************", "newHint: " + hintToSave);
+		}
+				
+		int hintsLeft = UserConfig.getInstance().getHintsLeft();
+		UserConfig.getInstance().setHintsLeft(hintsLeft-1);
+		UserConfig.getInstance().saveToSDCard(androidContext);
+		Log.d("*************", "hints Left after consumption: " + UserConfig.getInstance().getHintsLeft());
+			
+			
 	}
 	public boolean isAwnsered(QuizElement element, Language language){
 		

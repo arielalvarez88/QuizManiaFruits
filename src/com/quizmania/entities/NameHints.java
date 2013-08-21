@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Hint implements Serializable{
+import com.quizmania.utils.StaticGlobalVariables;
+
+public class NameHints implements Serializable{
 	
 	HashMap<Integer,Character> lettersRevealed;
-	public Hint(){
+	public NameHints(){
 		lettersRevealed = new HashMap<Integer,Character>();
 	}
 	public Map<Integer, Character> getLettersRevealed() {
@@ -16,7 +18,7 @@ public class Hint implements Serializable{
 	public void setLettersRevealed(HashMap<Integer, Character> lettersRevealed) {
 		this.lettersRevealed = lettersRevealed;
 	}
-	public Hint(int letterIndex,char character){
+	public NameHints(int letterIndex,char character){
 		this();
 		lettersRevealed.put(letterIndex, character);		
 	}
@@ -25,7 +27,11 @@ public class Hint implements Serializable{
 		if(lettersRevealed.containsKey(index))
 			return lettersRevealed.get(index);
 		
-		return ' ';
+		return StaticGlobalVariables.BLANK_SPACE;
+	}
+	@Override
+	public String toString() {
+		return "NameHints [lettersRevealed=" + lettersRevealed + "]";
 	}
 	public boolean hasLetterRevealed(int index){
 		return lettersRevealed.containsKey(index);
