@@ -14,7 +14,7 @@ import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
 
-public class QuizLevelPager extends FragmentActivity implements QuizManiaActivity{
+public class QuizLevelPager extends FragmentActivity{
 	
 	FragmentManager fragmentManager;
 	QuizElement initialElement;
@@ -23,13 +23,11 @@ public class QuizLevelPager extends FragmentActivity implements QuizManiaActivit
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.template);
-		ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
+		setContentView(R.layout.activity_quiz_level);
+		//ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
 		initializeElementsFromIntent();		
 		calculateInitialSlide();
-		initializeLevelPager();
-		Button hintButton = (Button) findViewById(R.id.hintButton);
-		hintButton.setVisibility(View.VISIBLE);
+		initializeLevelPager();		
 		
 	}
 
@@ -56,12 +54,7 @@ public class QuizLevelPager extends FragmentActivity implements QuizManiaActivit
 		
 		
 	}
-	
-
-	@Override
-	public void navigateBack(View view) {
-		super.onBackPressed();
-	}
+		
 
 
 

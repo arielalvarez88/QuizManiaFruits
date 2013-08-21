@@ -30,6 +30,7 @@ import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.HintStyle;
 import com.quizmania.utils.QuizElementUtil;
+import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
 import com.quizmania.utils.ViewUtils;
 
@@ -64,7 +65,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			Bundle savedInstanceState){
 		
 		View quizElementView = constructViewFromQuizElement(inflater, container);
-		hintButton = (Button) getActivity().findViewById(R.id.hintButton);
+		hintButton = (Button) thisView.findViewById(R.id.hintButton);
 		hintButton.setVisibility(View.VISIBLE);
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
@@ -204,7 +205,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void drawLineOfHints(LinearLayout hintContainer, char[] elementNameLetters,NameHints elementsRevealedHints, int offset, HintStyle hintStlye) {
-		
+		hintContainer.removeAllViews();
 		LayoutParams layoutParams = new LayoutParams(hintStlye.getWidth(),hintStlye.getHeight());
 		
 		for(int i=0 + offset; i < elementNameLetters.length; i++){
@@ -218,7 +219,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 				String letterAsString = "" + letter;								
 				hintLetter.setText(letterAsString.toUpperCase());
 			}
-			if(letter ==' '){
+			if(letter == StaticGlobalVariables.BLANK_SPACE){
 				hintLetter.setBackgroundResource(0);
 			}
 			
@@ -343,6 +344,10 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		
 	}
 
+	
+	public void navigateBack(View view) {
+		getActivity().onBackPressed();
+	}
 
 
 	@Override
