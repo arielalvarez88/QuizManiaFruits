@@ -1,22 +1,13 @@
 package com.quizmania.activities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.media.AudioManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.android.vending.billing.IabHelper;
-import com.android.vending.billing.IabResult;
-import com.android.vending.billing.Purchase;
 import com.quizmania.fruits.R;
-import com.quizmania.utils.BillingContext;
 import com.quizmania.utils.BillingUtil;
 import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.StaticGlobalVariables;
@@ -33,6 +24,7 @@ public class MainActivity extends Activity implements QuizManiaActivity{
 		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.template);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_main);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		StaticGlobalVariables.packageName = getPackageName();
 		
 	}
