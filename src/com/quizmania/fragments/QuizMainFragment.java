@@ -65,6 +65,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			Bundle savedInstanceState){
 		
 		View quizElementView = constructViewFromQuizElement(inflater, container);
+		
 		hintButton = (Button) thisView.findViewById(R.id.hintButton);
 		hintButton.setVisibility(View.VISIBLE);
 		setEventListeners(quizElementView);
@@ -122,9 +123,14 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			public void onClick(View v) {
 				Log.d("*******", "hintCLICK!!!!!!!!!!!!" + this.hashCode());
 				if(UserConfig.getInstance().getHintsLeft() > 0){
-					Log.d("*******", "element: " + element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0));
-					Log.d("*******", "hintsLeft = "  + UserConfig.getInstance().getHintsLeft());
-					AnswerService.getAnswerService().revealRandomLetter(element, getActivity());					
+					
+					AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
+					if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
+						AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
+						triggerCorrectAnswerEvents();
+						AnswerService.getAnswerService().saveToSDCard(getActivity());
+					}
+					
 					drawHintLetters();				
 				}else{
 					Intent intent = new Intent(getActivity(),ItemStore.class);
@@ -185,8 +191,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		int screenWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
 		int hintLetterWidth = screenWidth/NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN;
 		int hintLetterHeight = hintLetterWidth;		
-		HintStyle hintStlye = new HintStyle(getActivity(), hintLetterWidth,hintLetterHeight);
-		
+		HintStyle hintStlye = new HintStyle(getActivity(), hintLetterWidth,hintLetterHeight);		
 		LinearLayout hintHolder = (LinearLayout) thisView.findViewById(R.id.centralizedHintHolder);
 		NameHints elementsRevealedHints = AnswerService.getAnswerService().getRevealedHintsForQuizElement(element);
 		Log.d("********", "hintParaDibujar: " + elementsRevealedHints);
@@ -265,18 +270,21 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
 		
 		if(correctAnswer){
-			placeCorrectIcon();			
+			AnswerService.getAnswerService().revealAllLetters(element);
+			drawHintLetters();
+			triggerCorrectAnswerEvents();			
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			
+			
 		}else{
-			placeIncorrectIcon();
+			triggerIncorrectAnswerEvents();
 		}
 		Log.d("QuizMa/inFragment", "Fue correcta la respuesta: " + correctAnswer);
 	}
 
 
 
-	private void placeIncorrectIcon() {
+	private void triggerIncorrectAnswerEvents() {
 
 		showIncorrectImage();
 		playIncorrectSound();
@@ -317,7 +325,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 
-	private void placeCorrectIcon() {
+	private void triggerCorrectAnswerEvents() {
 		showCorrectAnsweredIcon();
 		playCorrectSound();
 		

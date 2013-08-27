@@ -18,8 +18,8 @@ public class NameHints implements Serializable{
 	public void setLettersRevealed(HashMap<Integer, Character> lettersRevealed) {
 		this.lettersRevealed = lettersRevealed;
 	}
-	public NameHints(int letterIndex,char character){
-		this();
+	public void revealLetter(int letterIndex,char character){
+		
 		lettersRevealed.put(letterIndex, character);		
 	}
 	

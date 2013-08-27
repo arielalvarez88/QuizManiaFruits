@@ -13,8 +13,8 @@ import android.app.Activity;
 import android.os.Environment;
 import android.util.Log;
 
-import com.quizmania.entities.NameHints;
 import com.quizmania.entities.Language;
+import com.quizmania.entities.NameHints;
 import com.quizmania.entities.QuizElement;
 
 public class AnswerService extends SDCardSavableEntity implements Serializable{
@@ -27,6 +27,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	private AnswerService(){	
 			answers = new HashMap<QuizElement,Set<Language>>();
 			revealedHints = new HashMap<QuizElement, Map<Language,NameHints>>();
+			
 	}
 	
 	
@@ -52,8 +53,29 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		return lettersRevealed >= lettersInElement;
 	}
 	
+	public void revealAllLetters(QuizElement element){
+		String elementNameInCurrentLanguage = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		char[] answerLetters = elementNameInCurrentLanguage.toCharArray();
+		
+		NameHints allHints = new NameHints();
+		int letterIndex = 0;
+		for(char letter : answerLetters){
+			allHints.revealLetter(letterIndex, letter);
+			letterIndex++;
+		}		
+		Language currentLanguage = UserConfig.getInstance().getLanguage();
+		
+		if(!revealedHints.containsKey(element)){
+			HashMap languageToHints = new HashMap<Language, NameHints>();
+			revealedHints.put(element, languageToHints);
+		}
+		
+					
+		revealedHints.get(element).put(currentLanguage, allHints);
+	}
+	
 	public NameHints revealRandomLetter(QuizElement element, Activity androidContext){
-		if(areAllLettersRevealed(element)){
+		if(isAwnsered(element, UserConfig.getInstance().getLanguage())){
 			return null;
 		}
 		NameHints hintToReturn;
@@ -70,7 +92,17 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		hintToReturn.getLettersRevealed().put(randomLetterIndex, elementName.charAt(randomLetterIndex));
 		Log.d("*************", "randomLetter: " + elementName.charAt(randomLetterIndex));
 		saveAndConsumeHint(element, hintToReturn, androidContext);
+		
 		return hintToReturn;
+	}
+
+	
+
+	public void markAsAnswered(QuizElement element,Activity androidContext) {
+		String correctAnswer = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		tryToAnswer(element, correctAnswer);
+		saveToSDCard(androidContext);
+		
 	}
 
 
@@ -110,10 +142,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		
 		if(isACorrectAnswer){
 			placeAnswerInMapAnswer(element);
-		}else{
-			answers.remove(element);
 		}
-		
 		return isACorrectAnswer;
 	}
 
