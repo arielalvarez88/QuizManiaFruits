@@ -47,7 +47,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	View thisView;
 	Button hintButton;
-	public static final int NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN = 8;
+	public static final int NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN = 9;
 	public QuizElement getElement() {
 		return element;
 	}
