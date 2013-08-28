@@ -19,7 +19,9 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 	
 	private BillingUtil billingUtil;
 	private String lastItemId;
-	private static final String TAG = StaticGlobalVariables.packageName + "." + QuizManiaBillingEventListenerImp.class.toString();
+	//private static final String TAG = StaticGlobalVariables.packageName + "." + QuizManiaBillingEventListenerImp.class.toString();
+	private static final String TAG = "QuizMania";
+	
 	public QuizManiaBillingEventListenerImp(BillingUtil billingUtil){
 		this.billingUtil = billingUtil;
 	}
@@ -42,8 +44,9 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 	}
 	@Override
 	public void onIabPurchaseFinished(IabResult result, Purchase info) {
+		Log.d(TAG,"************************Retorno : " + result);
 		if(result.isFailure()){
-			Log.e(TAG,"Error while purchasing: " + result);
+			Log.d(TAG,"************************Error while purchasing: " + result);
 			Log.d(TAG,"info: " + info);
 			boolean failedBecauseUserOwnsThisItem = result.getMessage().contains("Own");
 			if(failedBecauseUserOwnsThisItem) 
@@ -51,6 +54,8 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 			showErrorMessage();
 			
 		}else{
+			Log.d(TAG,"************* FUNCIONO! AHORA A CONSUMIR" + result);
+			
 			billingUtil.consumeAsync(info, this);
 		}
 		
@@ -66,9 +71,9 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 		Log.d(TAG, "trying to consume!");
 		try {
 			Purchase purchase= billingUtil.getPurchaseForItem(sku);			 
-			billingUtil.consumeAsync(purchase, null);
+			billingUtil.consumeAsync(purchase, this);
 		} catch (IabException e) {
-
+			Log.d(TAG,e.getMessage());
 			e.printStackTrace();			
 			showErrorMessage();
 		}
@@ -78,13 +83,16 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 
 	@Override
 	public void onConsumeFinished(Purchase purchase, IabResult result) {
+		Log.d("**************", "onConsumedFinished: "+ result.isSuccess());
 		if(result.isSuccess()){
 			Resources res = billingUtil.getBillingContext().androidContext.getResources();
 			String add50HintsItemId = res.getString(R.string.hintsPackCode50);
 			if(purchase.getSku().equals(add50HintsItemId)){
 				UserConfig.getInstance().addHints(50);
-				UserConfig.getInstance().saveToSDCard(billingUtil.getBillingContext().androidContext);
+				UserConfig.getInstance().saveToSDCard(billingUtil.getBillingContext().androidContext);				
 			}
+		}else{
+			showErrorMessage();
 		}
 		
 	}

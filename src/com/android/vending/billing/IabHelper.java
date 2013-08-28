@@ -402,6 +402,8 @@ public class IabHelper {
                                            requestCode, new Intent(),
                                            Integer.valueOf(0), Integer.valueOf(0),
                                            Integer.valueOf(0));
+            
+            
         }
         catch (SendIntentException e) {
             logError("SendIntentException while launching purchase flow for sku " + sku);

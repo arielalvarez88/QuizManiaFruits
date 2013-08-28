@@ -66,8 +66,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		
 		View quizElementView = constructViewFromQuizElement(inflater, container);
 		
-		hintButton = (Button) thisView.findViewById(R.id.hintButton);
+		
+		hintButton = (Button) thisView.findViewById(R.id.hintButton);		
 		hintButton.setVisibility(View.VISIBLE);
+		hintButton.setText(getActivity().getResources().getString(R.string.hintsButtonText) + "(" + UserConfig.getInstance().getHintsLeft() + ")");
+		
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
         return quizElementView;
@@ -131,7 +134,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 						AnswerService.getAnswerService().saveToSDCard(getActivity());
 					}
 					
-					drawHintLetters();				
+					drawHintLetters();	
+					hintButton.setText(getActivity().getResources().getString(R.string.hintsButtonText) + "(" + UserConfig.getInstance().getHintsLeft() + ")");
 				}else{
 					Intent intent = new Intent(getActivity(),ItemStore.class);
 					getActivity().startActivity(intent);
@@ -177,7 +181,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		View quizElementView = inflater.inflate(R.layout.fragment_quiz_main, container, false);
 		thisView = quizElementView;
 		drawElementImage(quizElementView);
+		
 		drawHintLetters();
+	
 		
 		return quizElementView;
 	}

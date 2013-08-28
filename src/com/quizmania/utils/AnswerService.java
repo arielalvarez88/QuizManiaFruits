@@ -88,7 +88,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		do{
 			randomLetterIndex = (int) (Math.random() * (elementName.length()) ); 
 													
-		}while(hintToReturn.hasLetterRevealed(randomLetterIndex) && elementName.charAt(randomLetterIndex) != StaticGlobalVariables.BLANK_SPACE);
+		}while(hintToReturn.hasLetterRevealed(randomLetterIndex) || elementName.charAt(randomLetterIndex) == StaticGlobalVariables.BLANK_SPACE);
 		hintToReturn.getLettersRevealed().put(randomLetterIndex, elementName.charAt(randomLetterIndex));
 		Log.d("*************", "randomLetter: " + elementName.charAt(randomLetterIndex));
 		saveAndConsumeHint(element, hintToReturn, androidContext);
