@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 
@@ -22,6 +23,7 @@ public class LevelChooser extends Activity implements QuizManiaActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.template);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_choose_level);
 		initializeViewToLanguageMap();
 		

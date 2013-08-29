@@ -64,17 +64,23 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);
-		
-		
-		hintButton = (Button) thisView.findViewById(R.id.hintButton);		
-		hintButton.setVisibility(View.VISIBLE);
-		hintButton.setText(getActivity().getResources().getString(R.string.hintsButtonText) + "(" + UserConfig.getInstance().getHintsLeft() + ")");
-		
+		View quizElementView = constructViewFromQuizElement(inflater, container);		
+		hintButton = (Button) thisView.findViewById(R.id.hintButton);
+		refreshHintButton();		
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
         return quizElementView;
 
+	}
+
+
+
+	public void refreshHintButton() {
+				
+		if(hintButton == null)
+			return;
+		hintButton.setVisibility(View.VISIBLE);
+		hintButton.setText(getActivity().getResources().getString(R.string.revealHintButtonText) + "(" + UserConfig.getInstance().getHintsLeft() + ")");
 	}
 
 
@@ -135,7 +141,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 					}
 					
 					drawHintLetters();	
-					hintButton.setText(getActivity().getResources().getString(R.string.hintsButtonText) + "(" + UserConfig.getInstance().getHintsLeft() + ")");
+					refreshHintButton();
 				}else{
 					Intent intent = new Intent(getActivity(),ItemStore.class);
 					getActivity().startActivity(intent);

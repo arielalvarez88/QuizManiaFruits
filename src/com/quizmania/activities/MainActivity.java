@@ -23,6 +23,7 @@ public class MainActivity extends Activity implements QuizManiaActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.template);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_main);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		StaticGlobalVariables.packageName = getPackageName();

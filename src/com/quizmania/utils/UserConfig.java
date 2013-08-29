@@ -18,7 +18,7 @@ public class UserConfig extends SDCardSavableEntity implements Serializable{
 	private Language language;
 	private int hintsLeft;
 	
-	private static String userConfigFilePath = Environment.getExternalStorageDirectory().toString()  + "/Android/data/" + StaticGlobalVariables.packageName + "/userConfig.quizmania";
+	private static String userConfigFilePath = Environment.getExternalStorageDirectory().toString()  + "/Android/data/com.quizmania/userConfig.quizmania";
 	public Language getLanguage() {
 		return language;
 	}

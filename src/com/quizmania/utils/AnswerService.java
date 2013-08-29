@@ -134,6 +134,10 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		return answerForQuizElementIsInCurrentLanguage; 
 	}
 	
+	public void areAllAnswers(String level){
+		
+	}
+	
 	public boolean tryToAnswer(QuizElement element, String userAnswer){
 		List<String> correctAnswers = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames();
 		

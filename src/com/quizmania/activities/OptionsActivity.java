@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
@@ -22,6 +23,7 @@ public class OptionsActivity extends Activity implements OnClickListener, QuizMa
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.template);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_options);
 		initializeOnOffButtons();
         initializeConfirmGameResetDialog();

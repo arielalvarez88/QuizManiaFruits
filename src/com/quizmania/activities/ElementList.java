@@ -7,6 +7,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
@@ -35,6 +36,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 		super.onCreate(savedInstanceState);
 		quizElementToViewMap = new HashMap<QuizElement, View>();
 		setContentView(R.layout.template);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_element_list);
 		level = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
 		
