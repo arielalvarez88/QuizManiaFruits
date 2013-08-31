@@ -21,12 +21,14 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	Map<QuizElement,Set<Language>> answers;
 	Map<QuizElement,Map<Language,NameHints>> revealedHints;
+	Set<String> levelsCompleted;
 	private static AnswerService answerSingletonInstance;
 
 	public static final String ANSWERS_FILE_PATH = Environment.getExternalStorageDirectory() + "/Android/data/" + StaticGlobalVariables.packageName + "/answers.quizmania";
 	private AnswerService(){	
 			answers = new HashMap<QuizElement,Set<Language>>();
 			revealedHints = new HashMap<QuizElement, Map<Language,NameHints>>();
+			levelsCompleted = new HashSet<String>();
 			
 	}
 	
@@ -134,9 +136,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		return answerForQuizElementIsInCurrentLanguage; 
 	}
 	
-	public void areAllAnswers(String level){
-		
-	}
+	
 	
 	public boolean tryToAnswer(QuizElement element, String userAnswer){
 		List<String> correctAnswers = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames();
@@ -146,6 +146,10 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		
 		if(isACorrectAnswer){
 			placeAnswerInMapAnswer(element);
+			if(checkIfLevelCompleted()){
+				
+				levelsCompleted.add(StaticGlobalVariables.currentLevel);
+			}
 		}
 		return isACorrectAnswer;
 	}
@@ -224,8 +228,23 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	}
 
 	public void reset() {
-		this.answerSingletonInstance = new AnswerService();
+		this.answerSingletonInstance = new AnswerService();		
+	}
+
+	public boolean checkIfLevelCompleted() {
 		
+		List<QuizElement> currentLevelElements = StaticGlobalVariables.getLevelElements();
+		Language currentLanguage = UserConfig.getInstance().getLanguage();
+		int levelAnsweredElements = 0;
+		for(QuizElement levelElement : currentLevelElements){
+			if(answers.containsKey(levelElement) && answers.get(levelElement).contains(currentLanguage))
+				levelAnsweredElements++;
+		}
+		return levelAnsweredElements == currentLevelElements.size();
+	}
+	public boolean isLevelComplete(String currentLevel) {
+		
+		return levelsCompleted.contains(currentLevel);
 	}
 	
 	

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -48,6 +49,8 @@ public class ElementList extends Activity implements QuizManiaActivity{
 		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;		
 		createView();
 		showOrHideNamesDependingIfElementIsAnswered();
+				
+		
 	}
 
 	

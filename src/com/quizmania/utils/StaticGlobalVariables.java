@@ -12,6 +12,7 @@ public class StaticGlobalVariables {
 	public static final String LEVEL_ATTRIBUTE_NAME = "level";
 	public static final char BLANK_SPACE = ' ';
 	private static List<QuizElement> levelElements;
+	public static String currentLevel;
 	public static List<QuizElement> getLevelElements() {
 		return levelElements;
 	}

@@ -49,7 +49,7 @@ public class LevelChooser extends Activity implements QuizManiaActivity{
 		Intent intent = new Intent(this, ElementList.class);
 		;
 		String level = viewIdToLanguageMap.get(clickedButton.getId());
-		
+		StaticGlobalVariables.currentLevel = level;
 		intent.putExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME, level);
 		startActivity(intent);
 		

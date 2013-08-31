@@ -278,7 +278,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	public void tryToAnswer() {
 		TextView textView = (TextView) thisView.findViewById(R.id.answerTextbox);
-		
+		boolean isFirstTimeCompletingLevel = AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) ? false : true;
+			
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
 		
 		if(correctAnswer){
@@ -286,6 +287,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			drawHintLetters();
 			triggerCorrectAnswerEvents();			
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
+			if(AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) && isFirstTimeCompletingLevel){
+				ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), null);
+			}
 			
 			
 		}else{

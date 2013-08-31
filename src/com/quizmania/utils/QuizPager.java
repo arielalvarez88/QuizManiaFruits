@@ -29,7 +29,7 @@ public class QuizPager extends FragmentStatePagerAdapter {
 	  @Override
 	    public void destroyItem(View collection, int position, Object o) {
 	        View view = (View)o;
-	        ((ViewPager) collection).removeView(view);
+	        ((ViewPager) collection).removeView(view);	        
 	        view = null;
 	    }
 
