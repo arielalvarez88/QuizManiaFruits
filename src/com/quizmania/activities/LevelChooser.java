@@ -23,9 +23,11 @@ public class LevelChooser extends Activity implements QuizManiaActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.template);
+		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_choose_level);
 		initializeViewToLanguageMap();
+		
 		
 	}
 	

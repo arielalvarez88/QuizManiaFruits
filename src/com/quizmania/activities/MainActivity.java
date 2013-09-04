@@ -1,7 +1,9 @@
 package com.quizmania.activities;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
@@ -23,21 +25,36 @@ public class MainActivity extends Activity implements QuizManiaActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);		
 		setContentView(R.layout.template);
+		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_main);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		StaticGlobalVariables.packageName = getPackageName();
 		
+		
 	}
 
 	
 	public void navigateBack(View backGUIButton){
-		super.onBackPressed();
+		onBackPressed();
 	}
 	
+	@Override
+	public void onBackPressed(){
+		OnClickListener handleBackButtonNormally = new OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				normalOnBackPressed();
+			}
+		};
+		ViewUtils.showVote(this, handleBackButtonNormally);
+	}
 
-
-
+	public void normalOnBackPressed(){
+		super.onBackPressed();
+	}
 
 	public void goToOptionsActivity(View button){
 		Intent intent = new Intent(this, OptionsActivity.class);

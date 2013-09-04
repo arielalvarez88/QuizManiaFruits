@@ -88,8 +88,8 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 			Resources res = billingUtil.getBillingContext().androidContext.getResources();
 			String add50HintsItemId = res.getString(R.string.hintsPackCode50);
 			if(purchase.getSku().equals(add50HintsItemId)){
-				UserConfig.getInstance().addHints(50);
-				UserConfig.getInstance().saveToSDCard(billingUtil.getBillingContext().androidContext);				
+				UserConfig.getInstance(billingUtil.getBillingContext().androidContext).addHints(50);
+				UserConfig.getInstance(billingUtil.getBillingContext().androidContext).saveToSDCard(billingUtil.getBillingContext().androidContext);				
 			}
 		}else{
 			showErrorMessage();

@@ -35,8 +35,10 @@ public class ElementList extends Activity implements QuizManiaActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		quizElementToViewMap = new HashMap<QuizElement, View>();
 		setContentView(R.layout.template);
+		StaticGlobalVariables.currentActivity = this;
+		quizElementToViewMap = new HashMap<QuizElement, View>();
+		
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_element_list);
 		level = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
@@ -44,7 +46,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 		//In QuizMania Fruits, the language is the level.
 		Language language = new Language(level);
 		
-		UserConfig.getInstance().setLanguage(language);
+		UserConfig.getInstance(this).setLanguage(language);
 		
 		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;		
 		createView();
@@ -102,7 +104,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 		View elementlRepresentation = getLayoutInflater().inflate(R.layout.quiz_list_element, null);
 		
 		TextView quizElementNameHolder = (TextView)elementlRepresentation.findViewById(R.id.listElementText);
-		String elementPrincipalName= element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		String elementPrincipalName= element.getLanguageToNamesMap().get(UserConfig.getInstance(this).getLanguage()).getNames().get(0);
 		quizElementNameHolder.setText(elementPrincipalName);
 					
 		ImageView quizElementImageHolder = (ImageView)elementlRepresentation.findViewById(R.id.listElementImage);
@@ -117,7 +119,7 @@ public class ElementList extends Activity implements QuizManiaActivity{
 	private void showOrHideNamesDependingIfElementIsAnswered() {
 		
 		for(QuizElement element : quizElementToViewMap.keySet()){
-			boolean isFruitAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance().getLanguage());
+			boolean isFruitAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance(this).getLanguage());
 			int fruitNameVisibility = isFruitAnswered? View.VISIBLE : View.INVISIBLE;
 			
 			quizElementToViewMap.get(element).findViewById(R.id.listElementText).setVisibility(fruitNameVisibility);

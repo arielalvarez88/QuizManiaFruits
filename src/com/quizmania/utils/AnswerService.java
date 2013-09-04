@@ -35,8 +35,8 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	public NameHints getRevealedHintsForQuizElement(QuizElement element){
 		NameHints revealedHint = null;
-		if(revealedHints.containsKey(element)  && revealedHints.get(element).containsKey(UserConfig.getInstance().getLanguage())){
-			revealedHint = revealedHints.get(element).get(UserConfig.getInstance().getLanguage());
+		if(revealedHints.containsKey(element)  && revealedHints.get(element).containsKey(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage())){
+			revealedHint = revealedHints.get(element).get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage());
 		}
 		
 		return revealedHint; 
@@ -46,7 +46,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		NameHints revealedHintsForElement = getRevealedHintsForQuizElement(element);
 		int lettersRevealed = revealedHintsForElement == null ? 0 : revealedHintsForElement.getLettersRevealed().size();
 		int lettersInElement=0;
-		char[] allLetters = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0).toCharArray();
+		char[] allLetters = element.getLanguageToNamesMap().get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage()).getNames().get(0).toCharArray();
 		for(char letter : allLetters){
 			if(letter != StaticGlobalVariables.BLANK_SPACE)
 				lettersInElement ++ ;
@@ -56,7 +56,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	}
 	
 	public void revealAllLetters(QuizElement element){
-		String elementNameInCurrentLanguage = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		String elementNameInCurrentLanguage = element.getLanguageToNamesMap().get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage()).getNames().get(0);
 		char[] answerLetters = elementNameInCurrentLanguage.toCharArray();
 		
 		NameHints allHints = new NameHints();
@@ -65,7 +65,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 			allHints.revealLetter(letterIndex, letter);
 			letterIndex++;
 		}		
-		Language currentLanguage = UserConfig.getInstance().getLanguage();
+		Language currentLanguage = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage();
 		
 		if(!revealedHints.containsKey(element)){
 			HashMap languageToHints = new HashMap<Language, NameHints>();
@@ -77,13 +77,13 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	}
 	
 	public NameHints revealRandomLetter(QuizElement element, Activity androidContext){
-		if(isAwnsered(element, UserConfig.getInstance().getLanguage())){
+		if(isAwnsered(element, UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage())){
 			return null;
 		}
 		NameHints hintToReturn;
-		Language language = UserConfig.getInstance().getLanguage();
+		Language language = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage();
 		boolean isNewHint = !revealedHints.containsKey(element) || !revealedHints.get(element).containsKey(language);
-		String elementName = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		String elementName = element.getLanguageToNamesMap().get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage()).getNames().get(0);
 		
 		hintToReturn = isNewHint ? new NameHints() : revealedHints.get(element).get(language);
 		int randomLetterIndex; 	
@@ -101,7 +101,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 
 	public void markAsAnswered(QuizElement element,Activity androidContext) {
-		String correctAnswer = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0);
+		String correctAnswer = element.getLanguageToNamesMap().get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage()).getNames().get(0);
 		tryToAnswer(element, correctAnswer);
 		saveToSDCard(androidContext);
 		
@@ -110,7 +110,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 
 	private void saveAndConsumeHint(QuizElement element, NameHints hintToSave,Activity androidContext) {
 		boolean isNewHint = !revealedHints.containsKey(element);
-		Language language = UserConfig.getInstance().getLanguage();
+		Language language = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage();
 		if(!isNewHint){
 			
 			revealedHints.get(element).put(language,hintToSave);
@@ -123,11 +123,11 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 			Log.d("*************", "newHint: " + hintToSave);
 		}
 				
-		int hintsLeft = UserConfig.getInstance().getHintsLeft();
-		UserConfig.getInstance().setHintsLeft(hintsLeft-1);
-		UserConfig.getInstance().saveToSDCard(androidContext);
-		Log.d("*************", "hints Left after consumption: " + UserConfig.getInstance().getHintsLeft());
-			
+		int hintsLeft = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getHintsLeft();
+		UserConfig.getInstance(StaticGlobalVariables.currentActivity).setHintsLeft(hintsLeft-1);
+		UserConfig.getInstance(StaticGlobalVariables.currentActivity).saveToSDCard(androidContext);
+		Log.d("*************", "hints Left after consumption: " + UserConfig.getInstance(StaticGlobalVariables.currentActivity).getHintsLeft());
+		
 			
 	}
 	public boolean isAwnsered(QuizElement element, Language language){
@@ -139,7 +139,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	
 	public boolean tryToAnswer(QuizElement element, String userAnswer){
-		List<String> correctAnswers = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames();
+		List<String> correctAnswers = element.getLanguageToNamesMap().get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage()).getNames();
 		
 		
 		boolean isACorrectAnswer = isACorrectAnswer(element, userAnswer, correctAnswers);
@@ -173,7 +173,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 			answers.put(element,new HashSet<Language>());
 		}
 				
-		answers.get(element).add(UserConfig.getInstance().getLanguage());
+		answers.get(element).add(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage());
 	}
 	
 	
@@ -234,7 +234,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	public boolean checkIfLevelCompleted() {
 		
 		List<QuizElement> currentLevelElements = StaticGlobalVariables.getLevelElements();
-		Language currentLanguage = UserConfig.getInstance().getLanguage();
+		Language currentLanguage = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage();
 		int levelAnsweredElements = 0;
 		for(QuizElement levelElement : currentLevelElements){
 			if(answers.containsKey(levelElement) && answers.get(levelElement).contains(currentLanguage))

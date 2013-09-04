@@ -13,6 +13,7 @@ import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.IOUtils;
 import com.quizmania.utils.QuizManiaActivity;
+import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
 import com.quizmania.utils.ViewUtils;
 
@@ -23,6 +24,7 @@ public class OptionsActivity extends Activity implements OnClickListener, QuizMa
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.template);
+		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_options);
 		initializeOnOffButtons();
@@ -51,11 +53,11 @@ public class OptionsActivity extends Activity implements OnClickListener, QuizMa
 		switch(toggleButton.getId()){
 			case R.id.soundOnOff:
 				System.out.println("SoundOn: " + castedToggleButton.isChecked());
-				UserConfig.getInstance().setSoundActivated(castedToggleButton.isChecked());
+				UserConfig.getInstance(this).setSoundActivated(castedToggleButton.isChecked());
 			break;
 			case R.id.vibrationOnOff:
 				System.out.println("VibrationOn: " + castedToggleButton.isChecked());
-				UserConfig.getInstance().setVibrationActivated(castedToggleButton.isChecked());
+				UserConfig.getInstance(this).setVibrationActivated(castedToggleButton.isChecked());
 			break;
 		}
 	}
@@ -63,14 +65,14 @@ public class OptionsActivity extends Activity implements OnClickListener, QuizMa
 	private void initializeOnOffButtons() {
 		ToggleButton soundOnOffButton = (ToggleButton) findViewById(R.id.soundOnOff);
 		ToggleButton vibrateOnOffButton = (ToggleButton) findViewById(R.id.vibrationOnOff);
-		soundOnOffButton.setChecked(UserConfig.getInstance().isSoundActivated());
-		vibrateOnOffButton.setChecked(UserConfig.getInstance().isVibrationActivated());
+		soundOnOffButton.setChecked(UserConfig.getInstance(this).isSoundActivated());
+		vibrateOnOffButton.setChecked(UserConfig.getInstance(this).isVibrationActivated());
 	}
 	
 	@Override
 	public void onStop(){
 		super.onStop();		
-		UserConfig.getInstance().saveToSDCard(this);
+		UserConfig.getInstance(this).saveToSDCard(this);
 	}
 
 

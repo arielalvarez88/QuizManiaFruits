@@ -80,13 +80,13 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		if(hintButton == null)
 			return;
 		hintButton.setVisibility(View.VISIBLE);
-		hintButton.setText(getActivity().getResources().getString(R.string.revealHintButtonText) + "(" + UserConfig.getInstance().getHintsLeft() + ")");
+		hintButton.setText(getActivity().getResources().getString(R.string.revealHintButtonText) + "(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
 	}
 
 
 
 	private void drawAnswerIconIfAnswered() {
-		boolean isCorrectAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance().getLanguage());
+		boolean isCorrectAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance(getActivity()).getLanguage());
 		if(isCorrectAnswered){
 			showCorrectAnsweredIcon();
 		}else{
@@ -99,7 +99,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	@Override
 	public void onResume(){
 		super.onResume();
-		if(!AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance().getLanguage())){
+		if(!AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance(getActivity()).getLanguage())){
 			hideAnswerIcon();
 		}
 	}
@@ -131,7 +131,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			@Override
 			public void onClick(View v) {
 				Log.d("*******", "hintCLICK!!!!!!!!!!!!" + this.hashCode());
-				if(UserConfig.getInstance().getHintsLeft() > 0){
+				if(UserConfig.getInstance(getActivity()).getHintsLeft() > 0){
 					
 					AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
 					if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
@@ -199,7 +199,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	private void drawHintLetters() {
 				
 		
-		char[] elementNameLetters = element.getLanguageToNamesMap().get(UserConfig.getInstance().getLanguage()).getNames().get(0).toCharArray();		 		
+		char[] elementNameLetters = element.getLanguageToNamesMap().get(UserConfig.getInstance(getActivity()).getLanguage()).getNames().get(0).toCharArray();		 		
 		int screenWidth = getActivity().getWindowManager().getDefaultDisplay().getWidth();
 		int hintLetterWidth = screenWidth/NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN;
 		int hintLetterHeight = hintLetterWidth;		
@@ -312,7 +312,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void vibrate() {
-		if(UserConfig.getInstance().isVibrationActivated()){
+		if(UserConfig.getInstance(getActivity()).isVibrationActivated()){
 			Vibrator v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);		 		
 			v.vibrate(500);
 		}
@@ -322,7 +322,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void playIncorrectSound() {
-		if(UserConfig.getInstance().isSoundActivated()){
+		if(UserConfig.getInstance(getActivity()).isSoundActivated()){
 			MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.fail);
 			playerMedia.start();
 		}
@@ -350,7 +350,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void playCorrectSound() {
-		if(UserConfig.getInstance().isSoundActivated()){
+		if(UserConfig.getInstance(getActivity()).isSoundActivated()){
 			MediaPlayer playerMedia = MediaPlayer.create(getActivity(), R.raw.correct);
 			playerMedia.start();	
 		}

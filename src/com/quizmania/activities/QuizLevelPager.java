@@ -29,6 +29,7 @@ public class QuizLevelPager extends FragmentActivity implements QuizManiaActivit
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quiz_level);
+		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		//ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
 		initializeElementsFromIntent();		

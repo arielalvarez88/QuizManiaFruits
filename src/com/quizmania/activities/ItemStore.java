@@ -12,6 +12,7 @@ import com.quizmania.utils.BillingEventListener;
 import com.quizmania.utils.BillingUtil;
 import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.QuizManiaBillingEventListenerImp;
+import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
 
 public class ItemStore extends Activity implements QuizManiaActivity{
@@ -22,8 +23,10 @@ public class ItemStore extends Activity implements QuizManiaActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.template);
+		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_item_store);
+		
 		billingUtil = new BillingUtil(this);
 		BillingEventListener consmptionHanlder = new QuizManiaBillingEventListenerImp(billingUtil);
 		billingUtil.addBillingEventListener(consmptionHanlder);

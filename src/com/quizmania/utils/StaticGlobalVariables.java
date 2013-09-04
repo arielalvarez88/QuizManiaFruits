@@ -3,6 +3,8 @@ package com.quizmania.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
+
 import com.quizmania.entities.QuizElement;
 
 public class StaticGlobalVariables {
@@ -13,6 +15,7 @@ public class StaticGlobalVariables {
 	public static final char BLANK_SPACE = ' ';
 	private static List<QuizElement> levelElements;
 	public static String currentLevel;
+	public static Activity currentActivity;
 	public static List<QuizElement> getLevelElements() {
 		return levelElements;
 	}
