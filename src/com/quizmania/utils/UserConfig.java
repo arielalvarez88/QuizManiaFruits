@@ -65,7 +65,7 @@ public class UserConfig extends SDCardSavableEntity implements Serializable{
 		language = new Language(Language.ENGLISH);
 	    SharedPreferences settings = activity.getSharedPreferences(HAS_BEEN_RUN_BEFORE, 0);
 	    
-	    boolean hasBeenRunBefore = settings.getBoolean("silentMode", false);
+	    boolean hasBeenRunBefore = settings.getBoolean(HAS_BEEN_RUN_BEFORE, false);
 
 		hintsLeft = hasBeenRunBefore? 0 : 10;
 		SharedPreferences.Editor editor = settings.edit();
@@ -86,7 +86,7 @@ public class UserConfig extends SDCardSavableEntity implements Serializable{
 	
 
 	private static UserConfig loadFromSDCard(Activity activity) {		
-		
+
 		try {
 			
 						

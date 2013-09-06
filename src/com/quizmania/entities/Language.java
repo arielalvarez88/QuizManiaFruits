@@ -15,6 +15,11 @@ public class Language implements Serializable{
 		this.languageName = languageName;
 	}
 	
+	@Override
+	public String toString() {
+		return "Language [languageName=" + languageName + "]";
+	}
+
 	public String getLanguageName() {
 		return languageName;
 	}

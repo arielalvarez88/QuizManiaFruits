@@ -201,7 +201,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		try {
 			
 			answerSingletonInstance = (AnswerService) IOUtils.loadFromSDCard(ANSWERS_FILE_PATH);
-			
+			Log.d("QuizMania", answerSingletonInstance.getRevealedHints().toString());
 			
 		} catch (OptionalDataException e) {
 			e.printStackTrace();
@@ -219,6 +219,17 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		
 	}
 
+
+
+	public Map<QuizElement, Map<Language, NameHints>> getRevealedHints() {
+		return revealedHints;
+	}
+
+
+	public void setRevealedHints(
+			Map<QuizElement, Map<Language, NameHints>> revealedHints) {
+		this.revealedHints = revealedHints;
+	}
 
 
 	@Override

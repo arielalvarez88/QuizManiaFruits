@@ -17,6 +17,11 @@ public class Answer implements Serializable{
 		this.response = response;
 	}
 
+	@Override
+	public String toString() {
+		return "Answer [language=" + language + ", response=" + response + "]";
+	}
+
 	public String getResponse() {
 		return response;
 	}

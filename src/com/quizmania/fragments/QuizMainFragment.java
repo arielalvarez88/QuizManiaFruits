@@ -137,9 +137,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 					if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
 						AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
 						triggerCorrectAnswerEvents();
-						AnswerService.getAnswerService().saveToSDCard(getActivity());
+						
 					}
-					
+					AnswerService.getAnswerService().saveToSDCard(getActivity());
 					drawHintLetters();	
 					refreshHintButton();
 				}else{
@@ -254,7 +254,13 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		
 	}*/
 
-
+	@Override
+	public void onDestroyView(){
+		super.onDestroyView();
+		ImageView elementImage = (ImageView) thisView.findViewById(R.id.elementImage);
+		
+		elementImage.setImageBitmap(null);
+	}
 
 	private void drawElementImage(View quizElementView) {
 		
