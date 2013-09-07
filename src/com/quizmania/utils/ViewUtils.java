@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -81,11 +83,13 @@ public class ViewUtils {
 	
 	
 	
-	public static void inflateContentInTemplate(Activity activity, int viewsResourceIdToInflate){
+	public static void inflateContentInTemplate(ActionBarActivity activity, int viewsResourceIdToInflate){
 		
 		View templateContent = activity.findViewById(R.id.templateContent);
 		LayoutInflater inflater = activity.getLayoutInflater();
 		inflater.inflate(viewsResourceIdToInflate, (ViewGroup) templateContent);
+	/*	ActionBar actionBar = activity.getActionBar();
+		actionBar.set*/
 	}
 	
 }

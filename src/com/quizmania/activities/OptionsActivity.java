@@ -1,11 +1,11 @@
 package com.quizmania.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.ToggleButton;
 
@@ -17,7 +17,7 @@ import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
 import com.quizmania.utils.ViewUtils;
 
-public class OptionsActivity extends Activity implements OnClickListener, QuizManiaActivity{
+public class OptionsActivity extends ActionBarActivity implements OnClickListener, QuizManiaActivity{
 
 	AlertDialog confirmGameReset;
 	@Override

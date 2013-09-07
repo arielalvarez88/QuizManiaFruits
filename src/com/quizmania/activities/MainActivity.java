@@ -2,10 +2,11 @@ package com.quizmania.activities;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.android.vending.billing.IabHelper;
@@ -15,7 +16,7 @@ import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
 
-public class MainActivity extends Activity implements QuizManiaActivity{
+public class MainActivity extends ActionBarActivity implements QuizManiaActivity{
 
 	private static final String TAG = "MainActivity";
 	public static String PACKAGE_NAME;

@@ -5,20 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.text.method.HideReturnsTransformationMethod;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.quizmania.fruits.R;
+
 import com.quizmania.entities.Language;
 import com.quizmania.entities.QuizElement;
+import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
 import com.quizmania.utils.QuizElementUtil;
 import com.quizmania.utils.QuizElementsLoader;
@@ -27,7 +26,7 @@ import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.UserConfig;
 import com.quizmania.utils.ViewUtils;
 
-public class ElementList extends Activity implements QuizManiaActivity{
+public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 
 	
 	Map<QuizElement,View> quizElementToViewMap;

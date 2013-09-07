@@ -376,7 +376,6 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	
 
-
 	@Override
 	public void onClick(View button) {		
 		tryToAnswer();
@@ -394,7 +393,4 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		
 	}
 
-
-
-	
 }

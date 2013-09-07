@@ -1,13 +1,13 @@
 package com.quizmania.activities;
 
+
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
-import android.widget.Button;
 
 import com.quizmania.entities.QuizElement;
 import com.quizmania.fragments.QuizMainFragment;
@@ -15,9 +15,8 @@ import com.quizmania.fruits.R;
 import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
-import com.quizmania.utils.ViewUtils;
 
-public class QuizLevelPager extends FragmentActivity implements QuizManiaActivity, OnPageChangeListener{
+public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivity, OnPageChangeListener{
 	
 	FragmentManager fragmentManager;
 	QuizElement initialElement;

@@ -1,9 +1,9 @@
 package com.quizmania.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 
@@ -15,7 +15,7 @@ import com.quizmania.utils.QuizManiaBillingEventListenerImp;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
 
-public class ItemStore extends Activity implements QuizManiaActivity{
+public class ItemStore extends ActionBarActivity implements QuizManiaActivity{
 
 	private BillingUtil billingUtil;
 

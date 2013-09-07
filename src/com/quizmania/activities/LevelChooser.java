@@ -3,10 +3,10 @@ package com.quizmania.activities;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.quizmania.entities.Language;
@@ -15,7 +15,7 @@ import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.StaticGlobalVariables;
 import com.quizmania.utils.ViewUtils;
 
-public class LevelChooser extends Activity implements QuizManiaActivity{
+public class LevelChooser extends ActionBarActivity implements QuizManiaActivity{
 
 	Map<Integer,String> viewIdToLanguageMap;
 	
