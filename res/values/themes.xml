@@ -5,7 +5,7 @@
            parent="@style/Theme.AppCompat.Light">
         
     	
-        
+        <item name="android:windowFullscreen">true</item>
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>

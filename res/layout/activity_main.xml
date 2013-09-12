@@ -8,41 +8,51 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:background="@color/white">
-
+    
+    
+        <RelativeLayout 
+            android:id="@+id/quizManiaLogoHolder"
+            android:background="@color/white"    
+            android:layout_width="fill_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerHorizontal="true">
+            
+        </RelativeLayout>
+        
+        <RelativeLayout 
+            android:id="@+id/quizManiaThemeHolder"               
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/quizManiaLogoHolder"
+            android:background="@color/quizManiaThemeColor"
+            android:layout_marginBottom="20dp">
+            
+            <TextView android:text="@string/quizManiaTheme"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="7dp"
+                android:textColor="@color/white"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:textSize="40sp"/>
+            
+        </RelativeLayout>
+    
     <Button
         android:id="@+id/button1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/quizManiaThemeHolder"
+        android:layout_centerHorizontal="true"        
+        android:background="@drawable/round_button"        
         android:onClick="goToLanguageActivity"
         android:text="@string/StartButton"
-        android:background="@drawable/bt_start"
-        android:layout_marginTop="24dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/button2"
-        android:textSize="@dimen/button_text_lang"/>
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/OptionsButton"
-        android:background="@drawable/bt_start"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:textSize="@dimen/button_text_lang"
-        android:onClick="goToOptionsActivity"/>
-       
-	  <Button
-        android:id="@+id/hintsButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hintsButtonText"
-        android:background="@drawable/bt_start"
-        android:layout_below="@+id/button2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="12dp"
-        android:textSize="@dimen/button_text_lang"
-        android:onClick="goToItemStoreActivity"/>   
+        android:textSize="@dimen/button_text_lang" 
+        android:textColor="@color/black"/>
     
 </RelativeLayout>

@@ -1,34 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <RelativeLayout android:layout_alignParentTop="true"
+    <RelativeLayout
+        android:id="@+id/templateContent"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-         
-        <Button android:text="Back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="navigateBack"/>
-        <Button android:text="Hint"
-            android:id="@+id/hintButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:onClick="getHint"
-            android:visibility="gone"/>
-        
-    </RelativeLayout> 
-    
-    <RelativeLayout android:id="@+id/templateContent" 
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        
-        
+        android:layout_height="fill_parent" 
+        >
     </RelativeLayout>
-    
-    
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="fill_parent"
+        android:layout_height="8dp" 
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+        
+        <RelativeLayout
+            android:id="@+id/footerFirstColor"             
+            android:background="@color/quizManiaBlue"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginRight="5dp"/>
+         <RelativeLayout
+            android:id="@+id/footerSecondColor"             
+            android:background="@color/quizManiaPurple"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginRight="5dp"
+            />
+         <RelativeLayout
+            android:id="@+id/footerThirdColor"             
+            android:background="@color/quizManiaGreen"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginRight="5dp"
+            />
+         <RelativeLayout
+            android:id="@+id/footerFourthColor"             
+            android:background="@color/quizManiaYellow"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginRight="5dp"
+            />
+         <RelativeLayout
+            android:id="@+id/footerFifthColor"             
+            android:background="@color/quizManiaRed"
+            android:layout_weight="0.20"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            />
+         
+    </LinearLayout>
+
+</RelativeLayout>

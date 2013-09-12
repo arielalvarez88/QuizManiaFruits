@@ -4,7 +4,7 @@
     <string name="app_name">com.quizmania</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="StartButton">Start</string>
+    <string name="StartButton">start</string>
     <string name="OptionsButton">Options</string>
     <string name="EnglishButton">English</string>
     <string name="FrenchButton">French</string>
@@ -33,5 +33,6 @@
 	<string name="voteMessage">Do you like this application? Take a time to vote</string>
 	<string name="voteButtonText">Vote</string>
 	<string name="exitButtonText">Exit</string>	
+	<string name="quizManiaTheme">fruits</string>
 	<string name="hintsPackCode50">50_hint_pack</string>
 </resources>

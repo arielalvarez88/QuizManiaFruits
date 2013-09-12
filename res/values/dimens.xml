@@ -5,6 +5,6 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- Default Text Size for Language buttons. -->
-    <dimen name="button_text_lang">50px</dimen>
+    <dimen name="button_text_lang">20sp</dimen>
 
 </resources>

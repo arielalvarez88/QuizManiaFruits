@@ -21,6 +21,11 @@
     <color name="blue">#0000ff</color>
     <color name="red">#ff0000</color>
     <color name="quizManiaThemeColor">#98cb00</color>
+    <color name="quizManiaBlue">#30b5ee</color>
+    <color name="quizManiaPurple">#a667d0</color>
+    <color name="quizManiaGreen">#98ce00</color>
+    <color name="quizManiaYellow">#f8be38</color>
+    <color name="quizManiaRed">#fd463e</color>
 
     
 </resources>
