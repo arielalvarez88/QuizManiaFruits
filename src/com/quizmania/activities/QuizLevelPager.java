@@ -7,6 +7,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.quizmania.entities.QuizElement;
@@ -90,8 +93,26 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 		currentFragment.refreshHintButton();
 		
 	}
-		
+	
+	@Override
+	public boolean  onCreateOptionsMenu(Menu menu){
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.action_bar_hint, menu);
+	    return super.onCreateOptionsMenu(menu);
 
+	}
+	
+	 @Override
+	 public boolean onOptionsItemSelected(MenuItem item){
+		 switch(item.getItemId()){
+		 	case R.id.actionsBarHintButton:
+		 		QuizMainFragment quizElementFragment = (QuizMainFragment) quizPager.getItem(quizPagerView.getCurrentItem());
+		 		quizElementFragment.hintButtonClick();
+		 	break;
+		 }
+		 return false;
+	 }
+	
 
 
 }

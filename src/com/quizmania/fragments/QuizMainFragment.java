@@ -154,6 +154,31 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	}
 
 
+	
+	
+	public void hintButtonClick() {
+		Log.d("*******", "hintCLICK!!!!!!!!!!!!" + this.hashCode());
+		if(UserConfig.getInstance(getActivity()).getHintsLeft() > 0){
+			
+			AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
+			if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
+				AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
+				triggerCorrectAnswerEvents();
+				
+			}
+			AnswerService.getAnswerService().saveToSDCard(getActivity());
+			drawHintLetters();	
+			refreshHintButton();
+		}else{
+			Intent intent = new Intent(getActivity(),ItemStore.class);
+			getActivity().startActivity(intent);
+		}
+		
+	}
+	
+
+
+	
 
 	private void addElementImageEvents() {
 		ImageView imageView = getElementImageView();
