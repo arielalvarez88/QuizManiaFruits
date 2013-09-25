@@ -1,12 +1,14 @@
 package com.quizmania.activities;
 
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,11 +36,18 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		//ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		initializeElementsFromIntent();		
 		calculateInitialSlide();
 		initializeLevelPager();		
 		
 	}
+
+
+	
+	
+		
+	
 
 
 	private void calculateInitialSlide() {
@@ -52,6 +61,12 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 	}
 
 
+	 public Intent getSupportParentActivityIntent(){
+		 Log.d("***TEST", "cliiiick!!!!!!!!");
+		 Intent parentIntent = new Intent(this,ElementList.class);
+		 parentIntent.putExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME, StaticGlobalVariables.currentLevel);
+		 return parentIntent;
+	 }
 
 	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
@@ -105,9 +120,8 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 	 @Override
 	 public boolean onOptionsItemSelected(MenuItem item){
 		 switch(item.getItemId()){
-		 	case R.id.actionsBarHintButton:
-		 		QuizMainFragment quizElementFragment = (QuizMainFragment) quizPager.getItem(quizPagerView.getCurrentItem());
-		 		quizElementFragment.hintButtonClick();
+		 	case R.id.actionsBarHintButton:		 				 		
+		 		quizPager.getCurrentFragment().hintButtonClick();
 		 	break;
 		 }
 		 return false;

@@ -163,13 +163,14 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
 			if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
 				AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
-				triggerCorrectAnswerEvents();
-				
+				triggerCorrectAnswerEvents();				
 			}
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			drawHintLetters();	
 			refreshHintButton();
 		}else{
+			
+			Log.d("***getActivity() = ", "" + getActivity());
 			Intent intent = new Intent(getActivity(),ItemStore.class);
 			getActivity().startActivity(intent);
 		}

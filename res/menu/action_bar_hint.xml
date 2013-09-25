@@ -1,9 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
-      
+          
+    
     <item android:id="@+id/actionsBarHintButton"        
           android:icon="@drawable/icon_hint"
           android:title="@string/hintsButtonText"
-          yourapp:showAsAction="always"  
+          yourapp:showAsAction="always|withText"  
           />
 </menu>

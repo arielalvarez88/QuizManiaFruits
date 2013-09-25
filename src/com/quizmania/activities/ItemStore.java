@@ -3,6 +3,7 @@ package com.quizmania.activities;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +27,8 @@ public class ItemStore extends ActionBarActivity implements QuizManiaActivity{
 		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_item_store);
-		
+		 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		    
 		billingUtil = new BillingUtil(this);
 		BillingEventListener consmptionHanlder = new QuizManiaBillingEventListenerImp(billingUtil);
 		billingUtil.addBillingEventListener(consmptionHanlder);
@@ -72,7 +74,14 @@ public class ItemStore extends ActionBarActivity implements QuizManiaActivity{
 	        Log.d("QuizMania", "onActivityResult handled by IABUtil.");
 	    }
 	}
-
+	
+	@Override
+	public Intent getSupportParentActivityIntent(){
+		Log.d("*********","getSupportParentActivityIntent");		
+		super.onBackPressed();
+		return null;
+	}
+	
 	@Override
 	public void navigateBack(View view) {
 		super.onBackPressed();

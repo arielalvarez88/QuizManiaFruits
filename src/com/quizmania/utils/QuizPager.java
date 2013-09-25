@@ -14,6 +14,17 @@ import com.quizmania.fragments.QuizMainFragment;
 public class QuizPager extends FragmentStatePagerAdapter {
 
 	List<QuizElement> elements;
+	QuizMainFragment currentFragment;
+	
+	
+	public QuizMainFragment getCurrentFragment() {
+		return currentFragment;
+	}
+
+	public void setCurrentFragment(QuizMainFragment currentFragment) {
+		this.currentFragment = currentFragment;
+	}
+
 	public QuizPager(List<QuizElement> elements, FragmentManager fm) {		
         super(fm);
         this.elements = elements;
@@ -21,9 +32,9 @@ public class QuizPager extends FragmentStatePagerAdapter {
 
 	@Override
 	public Fragment getItem(int numberToGet) {
-		QuizMainFragment fragment = new QuizMainFragment();
-		fragment.setElement(elements.get(numberToGet));
-		return fragment;
+		currentFragment = new QuizMainFragment();
+		currentFragment.setElement(elements.get(numberToGet));
+		return currentFragment;
 	}
 	
 	  @Override

@@ -11,12 +11,12 @@
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:logo="@drawable/quizmania_actionbar_icon"
         android:theme="@style/QuizmaniaFruitsTheme" >
         <activity
             android:name="com.quizmania.activities.MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait" 
-            >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,26 +26,46 @@
         <activity
             android:name="com.quizmania.activities.LevelChooser"
             android:label="@string/title_activity_language"
+            android:parentActivityName="com.quizmania.activities.MainActivity"
             android:screenOrientation="portrait" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quizmania.activities.MainActivity" />
         </activity>
         <activity
             android:name="com.quizmania.activities.QuizLevelPager"
-            android:label="@string/title_activity_fruit_viewer"
+            android:label="@string/title_activity_fruit_viewer"            
             android:screenOrientation="portrait" >
+            
         </activity>
         <activity
             android:name="com.quizmania.activities.ElementList"
             android:label="@string/title_activity_element_chooser"
+            android:parentActivityName="com.quizmania.activities.LevelChooser"
             android:screenOrientation="portrait" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quizmania.activities.LevelChooser" />
         </activity>
         <activity
             android:name="com.quizmania.activities.OptionsActivity"
             android:label="@string/title_activity_options"
+            android:parentActivityName="com.quizmania.activities.MainActivity"
             android:screenOrientation="portrait" >
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.quizmania.activities.MainActivity" />
         </activity>
         <activity
             android:name="com.quizmania.activities.ItemStore"
-            android:label="@string/title_activity_item_store" >
+            android:label="@string/title_activity_item_store" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
