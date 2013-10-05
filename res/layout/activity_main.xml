@@ -51,14 +51,13 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="150dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/quizManiaThemeHolder"
-        android:layout_centerHorizontal="true"        
-        android:background="@drawable/round_button"        
+        android:layout_height="40dp"
+        android:background="@drawable/round_button"
         android:onClick="goToLanguageActivity"
         android:text="@string/StartButton"
         android:textSize="@dimen/button_text_lang" 
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:layout_below="@+id/quizManiaThemeHolder"
+        android:layout_centerHorizontal="true" />
     
 </RelativeLayout>
