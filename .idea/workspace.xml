@@ -9,63 +9,32 @@
     <shared>
       <config />
     </shared>
+    <layouts>
+      <layout url="file://$PROJECT_DIR$/res/layout/fragment_quiz_main.xml">
+        <config>
+          <device>Nexus S</device>
+          <theme>@style/QuizmaniaFruitsTheme</theme>
+        </config>
+      </layout>
+    </layouts>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60c841b9-d90d-4fc6-8bbd-decd306b493f" name="Default" comment="Design update; New icon files; Update json file and new fruit view design.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuizManiaFruits.iml" afterPath="$PROJECT_DIR$/QuizManiaFruits.iml" />
+      <change type="DELETED" beforePath="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-hdpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-hdpi\letter_holder.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-mdpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-mdpi\letter_holder.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-xhdpi\ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-xxhdpi\ic_launcher.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/AndroidManifest.xml" afterPath="$PROJECT_DIR$/bin/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-    </list>
-    <list id="f5c4e429-0844-4c4f-a282-d42567135398" name="New changelist" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/icon_send.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/icon_send.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-hdpi/letter_holder.png" afterPath="$PROJECT_DIR$/res/drawable-hdpi/letter_holder.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable-mdpi/letter_holder.png" afterPath="$PROJECT_DIR$/res/drawable-mdpi/letter_holder.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/entities/Answer.java" afterPath="$PROJECT_DIR$/src/com/quizmania/entities/Answer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/AnswerService.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/AnswerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/BillingContext.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/BillingContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/BillingEventListener.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/BillingEventListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/BillingUtil.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/BillingUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/activities/ElementList.java" afterPath="$PROJECT_DIR$/src/com/quizmania/activities/ElementList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/HintLetterAdapter.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/HintLetterAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/HintStyle.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/HintStyle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/activities/ItemStore.java" afterPath="$PROJECT_DIR$/src/com/quizmania/activities/ItemStore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/entities/Language.java" afterPath="$PROJECT_DIR$/src/com/quizmania/entities/Language.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/activities/LevelChooser.java" afterPath="$PROJECT_DIR$/src/com/quizmania/activities/LevelChooser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/activities/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/quizmania/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/entities/NameHints.java" afterPath="$PROJECT_DIR$/src/com/quizmania/entities/NameHints.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/activities/OptionsActivity.java" afterPath="$PROJECT_DIR$/src/com/quizmania/activities/OptionsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/entities/QuizElement.java" afterPath="$PROJECT_DIR$/src/com/quizmania/entities/QuizElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/QuizElementsLoader.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/QuizElementsLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/activities/QuizLevelPager.java" afterPath="$PROJECT_DIR$/src/com/quizmania/activities/QuizLevelPager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/fragments/QuizMainFragment.java" afterPath="$PROJECT_DIR$/src/com/quizmania/fragments/QuizMainFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/QuizManiaActivity.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/QuizManiaActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/QuizPager.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/QuizPager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/StaticGlobalVariables.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/StaticGlobalVariables.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/UserConfig.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/UserConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/ViewUtils.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/ViewUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/quizmania/utils/YesNoAlertParams.java" afterPath="$PROJECT_DIR$/src/com/quizmania/utils/YesNoAlertParams.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/action_bar_hint.xml" afterPath="$PROJECT_DIR$/res/menu/action_bar_hint.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_item_store.xml" afterPath="$PROJECT_DIR$/res/layout/activity_item_store.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/dimens.xml" afterPath="$PROJECT_DIR$/res/values/dimens.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/fragment_quiz_main.xml" afterPath="$PROJECT_DIR$/res/layout/fragment_quiz_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/hintLettersStyle.xml" afterPath="$PROJECT_DIR$/res/values/hintLettersStyle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/menu/item_store.xml" afterPath="$PROJECT_DIR$/res/menu/item_store.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/itemsForSale.xml" afterPath="$PROJECT_DIR$/res/values/itemsForSale.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/drawable/round_button.xml" afterPath="$PROJECT_DIR$/res/drawable/round_button.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/styles.xml" afterPath="$PROJECT_DIR$/res/values/styles.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/template.xml" afterPath="$PROJECT_DIR$/res/layout/template.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/themes.xml" afterPath="$PROJECT_DIR$/res/values/themes.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values-v11/themes.xml" afterPath="$PROJECT_DIR$/res/values-v11/themes.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="QuizManiaFruits.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/misc.xml" ignored="false" />
-    <file path="$PROJECT_DIR$/res/layout/fragment_quiz_main.xml" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,10 +98,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fragment_quiz_main.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/res/layout/fragment_quiz_main.xml">
+      <file leaf-file-name="activity_element_list.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/activity_element_list.xml">
           <provider editor-type-id="text-editor">
-            <state line="60" column="17" selection-start="2200" selection-end="2200" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="2737">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
               <folding />
             </state>
           </provider>
@@ -141,12 +110,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="themes.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values-v11/themes.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="442">
+      <file leaf-file-name="activity_item_store.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/layout/activity_item_store.xml">
+          <provider editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
               <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="35" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
+              <folding>
+                <element signature="e#373#391#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_choose_level.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/activity_choose_level.xml">
+          <provider editor-type-id="text-editor">
+            <state line="27" column="57" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1190">
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -186,7 +181,9 @@
         <option value="$PROJECT_DIR$/res/layout/activity_choose_level.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/assets/quiz_elements.json" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/res/layout/fragment_quiz_main.xml" />
+        <option value="$PROJECT_DIR$/bin/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -253,78 +250,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values-v11" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values-sw720dp-land" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="menu" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -446,31 +371,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="bin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuizManiaFruits" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="QuizManiaFruits" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appcompat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuizManiaFruits" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appcompat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -499,11 +414,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\res\drawable-xhdpi" />
+      <recent name="C:\Documents and Settings\renato kimizuka\My Documents\Dropbox\QuizMania\QuizManiaFruits\bin" />
       <recent name="$PROJECT_DIR$/res/drawable-hdpi" />
       <recent name="$PROJECT_DIR$/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/res/drawable-xxhdpi" />
-      <recent name="$PROJECT_DIR$/res/drawable-mdpi" />
-      <recent name="$PROJECT_DIR$/res/drawable-ldpi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/res/drawable-xhdpi" />
@@ -686,7 +601,7 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="60c841b9-d90d-4fc6-8bbd-decd306b493f" name="Default" comment="" />
-      <changelist id="f5c4e429-0844-4c4f-a282-d42567135398" name="New changelist" comment="" />
+      <changelist id="" name="New changelist" comment="" />
       <created>1374440244529</created>
       <updated>1374440244529</updated>
     </task>
@@ -718,16 +633,29 @@
       <created>1381019417453</created>
       <updated>1381019417453</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="New design for fruit view">
+      <created>1381021417109</created>
+      <updated>1381021417109</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Changing Label from all activities to QuizMania Fruits">
+      <created>1381021673781</created>
+      <updated>1381021673781</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fix textbox.">
+      <created>1381023040718</created>
+      <updated>1381023040718</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="746" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17324185" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869694" sideWeight="0.671521" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3982906" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -736,19 +664,18 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32761577" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32847896" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24958813" sideWeight="0.67066896" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2489019" sideWeight="0.671521" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2489019" sideWeight="0.671521" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17961165" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.67066896" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933104" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -768,92 +695,15 @@
     <MESSAGE value="update json file" />
     <MESSAGE value="Design update; New icon files; Update json file and new fruit view design." />
     <MESSAGE value="Design update; New icon files;&#10; &#10; Update json file;&#10;  &#10; New fruit view design." />
-    <option name="LAST_COMMIT_MESSAGE" value="Design update; New icon files;&#10; &#10; Update json file;&#10;  &#10; New fruit view design." />
+    <MESSAGE value="New design for fruit view" />
+    <MESSAGE value="Changing Label from all activities to QuizMania Fruits" />
+    <MESSAGE value="Fix textbox." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix textbox." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="25" selection-start="810" selection-end="810" vertical-scroll-proportion="0.7" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_quiz_level.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="423">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/quiz_list_element.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="44" selection-start="511" selection-end="511" vertical-scroll-proportion="0.40243903" vertical-offset="0" max-vertical-offset="420">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/border.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_element_list.xml">
-      <provider editor-type-id="text-editor">
-        <state line="11" column="4" selection-start="522" selection-end="522" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="495">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/menu/language.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/menu/element_chooser.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_choose_level.xml">
-      <provider editor-type-id="text-editor">
-        <state line="27" column="57" selection-start="1064" selection-end="1064" vertical-scroll-proportion="0.0" vertical-offset="268" max-vertical-offset="1050">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
       <provider editor-type-id="text-editor">
         <state line="12" column="24" selection-start="560" selection-end="560" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1156">
@@ -862,13 +712,6 @@
       </provider>
       <provider selected="true" editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/quiz_elements.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="527" selection-end="527" vertical-scroll-proportion="0.12889813" vertical-offset="329" max-vertical-offset="11186">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/quizmania/utils/QuizElementUtil.java">
@@ -887,16 +730,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/values-v11/themes.xml">
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+        <state line="69" column="18" selection-start="2868" selection-end="2868" vertical-scroll-proportion="0.6503856" vertical-offset="920" max-vertical-offset="1377">
+          <folding>
+            <element signature="e#373#391#0" expanded="true" />
+            <element signature="e#613#631#0" expanded="true" />
+            <element signature="e#1016#1034#0" expanded="true" />
+            <element signature="e#1527#1545#0" expanded="true" />
+            <element signature="e#1738#1756#0" expanded="true" />
+            <element signature="e#2250#2268#0" expanded="true" />
+            <element signature="e#2756#2774#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/adt-bundle-windows-x86-201309172/sdk/extras/android/support/v7/appcompat/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="843" selection-end="843" vertical-scroll-proportion="0.8303342" vertical-offset="0" max-vertical-offset="425">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/values-v11/themes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.13624679" vertical-offset="53" max-vertical-offset="442">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-xxhdpi/ic_app.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/quiz_elements.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="40" selection-start="683" selection-end="683" vertical-scroll-proportion="-1.907455" vertical-offset="1167" max-vertical-offset="11186">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/template.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/fragment_quiz_main.xml">
       <provider editor-type-id="text-editor">
-        <state line="60" column="17" selection-start="2200" selection-end="2200" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="2737">
+        <state line="60" column="17" selection-start="2231" selection-end="2231" vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="2737">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-mdpi/ic_app.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable-hdpi/ic_app.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="35" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1377">
+          <folding>
+            <element signature="e#373#391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_choose_level.xml">
+      <provider editor-type-id="text-editor">
+        <state line="27" column="57" selection-start="1075" selection-end="1075" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1190">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_element_list.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_item_store.xml">
+      <provider editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
           <folding />
         </state>
       </provider>

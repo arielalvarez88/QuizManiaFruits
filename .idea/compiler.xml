@@ -4,6 +4,7 @@
     <option name="DEFAULT_COMPILER" value="Javac" />
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/gen" includeSubdirectories="true" />
+      <directory url="file://C:/adt-bundle-windows-x86-201309172/sdk/extras/android/support/v7/appcompat/gen" includeSubdirectories="true" />
     </excludeFromCompile>
     <resourceExtensions />
     <wildcardResourcePatterns>
