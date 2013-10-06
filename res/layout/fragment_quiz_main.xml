@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:onClick="getHint"
-            />
+            android:visibility="invisible" />
 
     </RelativeLayout>
 
@@ -65,19 +65,19 @@
         android:layout_above="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp">
+        android:layout_marginLeft="25dp"
+        android:gravity="center_horizontal">
 
         <EditText
             android:id="@+id/answerTextbox"
-            android:layout_width="fill_parent"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".90"
-            android:background="@drawable/textfield_focused_holo_light"
+            android:background="@drawable/textfield_activated_holo_light"
             android:inputType="text"
             android:textColor="@color/quizManiaGreen"
             android:layout_marginTop="13dp"
-            android:layout_gravity="bottom"
-            android:autoText="false" />
+            android:autoText="false"
+            android:layout_gravity="bottom" />
 
         <Button
             android:id="@+id/answerButton"
