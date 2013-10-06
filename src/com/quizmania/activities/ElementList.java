@@ -50,8 +50,9 @@ public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;		
 		createView();
 		showOrHideNamesDependingIfElementIsAnswered();
-				
-		
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 	}
 
 	

@@ -9,9 +9,6 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -61,41 +58,20 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		this.element = element;
 	}
 
-	
-	@Override
-	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){	    
-	    inflater.inflate(R.menu.action_bar_hint, menu);	    
-	}
 
-
-	
-	@Override
-	 public boolean onOptionsItemSelected(MenuItem item){
-		 switch(item.getItemId()){
-		 	case R.id.actionsBarHintButton:		 				 		
-		 		hintButtonClick();
-		 	break;
-		 }
-		 return false;
-	 }
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);
-		
+		View quizElementView = constructViewFromQuizElement(inflater, container);		
 		hintButton = (Button) thisView.findViewById(R.id.hintButton);
-		refreshHintButton();		
+		refreshHintButton();
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
-		setHasOptionsMenu(true);
         return quizElementView;
 
 	}
-	
-
 
 
 
@@ -103,7 +79,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 				
 		if(hintButton == null)
 			return;
-		hintButton.setVisibility(View.VISIBLE);
+		hintButton.setVisibility(View.INVISIBLE);
 		hintButton.setText(getActivity().getResources().getString(R.string.revealHintButtonText) + "(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
 	}
 
