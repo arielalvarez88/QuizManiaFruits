@@ -5,27 +5,23 @@
     android:padding="0dp"
     android:background="@color/white" >
 
-    <RelativeLayout 
+    <RelativeLayout
         android:id="@+id/topMenu"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true">
-         
-        <Button android:text="Back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="navigateBack"/>
+
         <Button android:text="@string/revealHintButtonText"
             android:id="@+id/hintButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:onClick="getHint"
-            />
-        
+            android:visibility="invisible" />
+
     </RelativeLayout>
-    
-    
+
+
     <ImageView
         android:id="@+id/elementImage"
         android:layout_width="wrap_content"
@@ -41,35 +37,11 @@
         android:layout_centerVertical="true" />
 
     <LinearLayout
-        android:id="@+id/answerTextboxContainer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" >
-
-        <EditText
-            android:id="@+id/answerTextbox"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_weight=".90"
-            android:background="@drawable/border"
-            android:inputType="text"
-            android:textColor="@android:color/primary_text_light" />
-
-        <Button
-            android:id="@+id/answerButton"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_weight=".10"
-            android:text="Ok" />
-    </LinearLayout>
-
-    <LinearLayout
             android:id="@+id/centralizedHintHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/topMenu"
-            android:layout_centerHorizontal="true"                                                            
+            android:layout_centerHorizontal="true"
             android:padding="0dp"
             android:orientation="horizontal"
             android:layout_marginBottom="0dp"                         
@@ -85,8 +57,87 @@
             android:layout_below="@+id/centralizedHintHolder"
             android:layout_marginBottom="0dp"                         
             />
-    
-    
+
+    <LinearLayout
+        android:id="@+id/answerTextboxContainer"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/answerTextbox"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textfield_activated_holo_light"
+            android:inputType="text"
+            android:textColor="@color/quizManiaGreen"
+            android:layout_marginTop="13dp"
+            android:autoText="false"
+            android:layout_gravity="bottom" />
+
+        <Button
+            android:id="@+id/answerButton"
+            android:layout_width="64px"
+            android:layout_height="64px"
+            android:background="@drawable/icon_send" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:baselineAligned="false" >
+
+        <RelativeLayout
+            android:id="@+id/footerFifthColor"
+            android:background="@color/quizManiaRed"
+            android:layout_weight="0.21"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/footerFourthColor"
+            android:background="@color/quizManiaYellow"
+            android:layout_weight="0.21"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/footerSecondColor"
+            android:background="@color/quizManiaPurple"
+            android:layout_weight="0.21"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/footerFirstColor"
+            android:background="@color/quizManiaBlue"
+            android:layout_weight="0.21"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="5dp" />
+
+        <RelativeLayout
+            android:id="@+id/footerThirdColor"
+            android:background="@color/quizManiaGreen"
+            android:layout_weight="0.21"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="right"
+            android:layout_marginRight="-1dp" />
+    </LinearLayout>
+
+
     <!--     <GridView
             android:id="@+id/multipleLineHintHolder"
             android:layout_width="wrap_content"

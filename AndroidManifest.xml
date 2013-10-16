@@ -5,11 +5,11 @@
     android:versionName="1.2" >
 
     <uses-sdk
-        android:minSdkVersion="5"
+        android:minSdkVersion="7"
         android:targetSdkVersion="18" />
 
     <application
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_app"
         android:label="@string/app_name"
         android:logo="@drawable/quizmania_actionbar_icon"
         android:theme="@style/QuizmaniaFruitsTheme" >
@@ -25,7 +25,7 @@
         </activity>
         <activity
             android:name="com.quizmania.activities.LevelChooser"
-            android:label="@string/title_activity_language"
+            android:label="@string/app_name"
             android:parentActivityName="com.quizmania.activities.MainActivity"
             android:screenOrientation="portrait" >
 
@@ -36,13 +36,13 @@
         </activity>
         <activity
             android:name="com.quizmania.activities.QuizLevelPager"
-            android:label="@string/title_activity_fruit_viewer"            
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
             
         </activity>
         <activity
             android:name="com.quizmania.activities.ElementList"
-            android:label="@string/title_activity_element_chooser"
+            android:label="@string/app_name"
             android:parentActivityName="com.quizmania.activities.LevelChooser"
             android:screenOrientation="portrait" >
 
@@ -53,7 +53,7 @@
         </activity>
         <activity
             android:name="com.quizmania.activities.OptionsActivity"
-            android:label="@string/title_activity_options"
+            android:label="@string/app_name"
             android:parentActivityName="com.quizmania.activities.MainActivity"
             android:screenOrientation="portrait" >
 
@@ -64,7 +64,7 @@
         </activity>
         <activity
             android:name="com.quizmania.activities.ItemStore"
-            android:label="@string/title_activity_item_store" 
+            android:label="@string/app_name"
             android:screenOrientation="portrait">
         </activity>
     </application>

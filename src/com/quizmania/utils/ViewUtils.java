@@ -72,7 +72,7 @@ public class ViewUtils {
 	
 	public static TextView createHintLetter(Context androidContext){
 		TextView letterHolder = new TextView(androidContext);
-		letterHolder.setBackgroundResource(R.drawable.icon_letter);
+		letterHolder.setBackgroundResource(R.color.blue);
 		letterHolder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);		
 		letterHolder.setGravity(Gravity.CENTER);
 		letterHolder.setTextColor(Color.WHITE);
