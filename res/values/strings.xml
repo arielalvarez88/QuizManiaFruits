@@ -11,6 +11,7 @@
     <string name="PortButton">Portuguese</string>
     <string name="SpanishButton">Spanish</string>
     <string name="title_activity_language">Language</string>
+    <string name="levels">Levels</string>
     <string name="title_activity_fruit_viewer">FruitViewer</string>
     <string name="title_activity_element_chooser">ElementChooser</string>
     <string name="soundOptionText">Sound:</string>

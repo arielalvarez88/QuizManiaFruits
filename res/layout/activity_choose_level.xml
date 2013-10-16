@@ -5,27 +5,54 @@
     tools:context=".LevelChooser"
     android:background="@color/white">
 
+    <TextView
+        android:id="@+id/levelsTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_border"        
+        android:text="@string/levels"        
+        android:textSize="20sp" 
+        android:textColor="@color/titleGray"/>
+
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-         >
+         android:layout_below="@+id/levelsTitle">
 
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" 
+            android:orientation="vertical"
+            >
 
-            <Button
+            
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:orientation="horizontal"
+            android:background="@drawable/bottom_border">
+            	<Button
                 android:id="@+id/englishLevelButton"
-                android:layout_width="match_parent"
-                android:layout_height="176dp"
-                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"                
                 android:text="@string/EnglishButton" 
                 android:onClick="goToLevel"
+                android:layout_weight="0.8"
+                android:
                 android:textSize="@dimen/button_text_lang"
-                android:background="@drawable/bt_lang_en"/>
+                />
+            	
+            	<ImageView 
+            	    android:layout_width="wrap_content"
+            	    android:layout_height="40dp"            	   
+            	    android:layout_weight="0.2"
+            	    android:src="@drawable/icon_trofeo"/>
+            </LinearLayout>
+            
 
             <Button
                 android:id="@+id/spanishLevelButton"
