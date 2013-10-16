@@ -109,9 +109,24 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 		
 	}
 	
+	@Override
+	public boolean  onCreateOptionsMenu(Menu menu){
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.action_bar_hint, menu);
+	    return super.onCreateOptionsMenu(menu);
+
+	}
 	
+	 @Override
+	 public boolean onOptionsItemSelected(MenuItem item){
+		 switch(item.getItemId()){
+		 	case R.id.actionsBarHintButton:		 				 		
+		 		quizPager.getCurrentFragment().hintButtonClick();
+		 	break;
+		 }
+		 return false;
+	 }
 	
-	 
 
 
 }

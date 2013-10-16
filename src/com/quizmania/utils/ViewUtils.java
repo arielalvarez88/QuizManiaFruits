@@ -72,7 +72,7 @@ public class ViewUtils {
 	
 	public static TextView createHintLetter(Context androidContext){
 		TextView letterHolder = new TextView(androidContext);
-		letterHolder.setBackgroundResource(R.drawable.letter_holder);			
+		letterHolder.setBackgroundResource(R.drawable.icon_letter);
 		letterHolder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);		
 		letterHolder.setGravity(Gravity.CENTER);
 		letterHolder.setTextColor(Color.WHITE);
@@ -88,8 +88,8 @@ public class ViewUtils {
 		View templateContent = activity.findViewById(R.id.templateContent);
 		LayoutInflater inflater = activity.getLayoutInflater();
 		inflater.inflate(viewsResourceIdToInflate, (ViewGroup) templateContent);
-	/*	ActionBar actionBar = activity.getActionBar();
-		actionBar.set*/
+		//ActionBar actionBar = activity.getActionBar();
+		//actionBar.set
 	}
 	
 }

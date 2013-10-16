@@ -31,8 +31,8 @@ public class MainActivity extends ActionBarActivity implements QuizManiaActivity
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_main);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		StaticGlobalVariables.packageName = getPackageName();
-		
-		
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	

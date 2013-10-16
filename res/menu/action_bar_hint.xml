@@ -7,4 +7,11 @@
           android:title="@string/hintsButtonText"
           yourapp:showAsAction="always|withText"  
           />
+
+    <item android:id="@+id/actionsBarOptions"
+        android:icon="@drawable/icon_options"
+        android:title="@string/OptionsButton"
+        yourapp:showAsAction="always"
+        />
+
 </menu>

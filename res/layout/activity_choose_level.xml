@@ -5,54 +5,51 @@
     tools:context=".LevelChooser"
     android:background="@color/white">
 
-    <TextView
-        android:id="@+id/levelsTitle"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_border"        
-        android:text="@string/levels"        
-        android:textSize="20sp" 
-        android:textColor="@color/titleGray"/>
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-         android:layout_below="@+id/levelsTitle">
+         >
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" 
-            android:orientation="vertical"
-            >
-
-            
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" 
-            android:orientation="horizontal"
-            android:background="@drawable/bottom_border">
-            	<Button
-                android:id="@+id/englishLevelButton"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"                
+                android:layout_height="30dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Levels"
+                android:id="@+id/textView" />
+
+            <ListView
+                android:layout_width="fill_parent"
+                android:layout_height="200dp"
+                android:id="@+id/listView"
+                tools:listitem="@android:layout/simple_list_item_1"
+                android:divider="@color/quizManiaGrey"
+                android:dividerHeight="2dp"
+                android:clickable="true"
+                android:choiceMode="singleChoice"
+                android:listSelector="@color/quizManiaGreen" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView" />
+
+            <Button
+                android:id="@+id/englishLevelButton"
+                android:layout_width="match_parent"
+                android:layout_height="176dp"
+                android:layout_margin="10dp"
                 android:text="@string/EnglishButton" 
                 android:onClick="goToLevel"
-                android:layout_weight="0.8"
-                android:
                 android:textSize="@dimen/button_text_lang"
-                />
-            	
-            	<ImageView 
-            	    android:layout_width="wrap_content"
-            	    android:layout_height="40dp"            	   
-            	    android:layout_weight="0.2"
-            	    android:src="@drawable/icon_trofeo"/>
-            </LinearLayout>
-            
+                android:background="@drawable/bt_lang_en"/>
 
             <Button
                 android:id="@+id/spanishLevelButton"
