@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -17,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.quizmania.fruits.R;
 
@@ -72,7 +72,7 @@ public class ViewUtils {
 	
 	public static TextView createHintLetter(Context androidContext){
 		TextView letterHolder = new TextView(androidContext);
-		letterHolder.setBackgroundResource(R.color.blue);
+		letterHolder.setBackgroundResource(R.drawable.icon_letter);
 		letterHolder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);		
 		letterHolder.setGravity(Gravity.CENTER);
 		letterHolder.setTextColor(Color.WHITE);
@@ -90,6 +90,11 @@ public class ViewUtils {
 		inflater.inflate(viewsResourceIdToInflate, (ViewGroup) templateContent);
 		//ActionBar actionBar = activity.getActionBar();
 		//actionBar.set
+	}
+
+	public static void showToast(Context androidContext, String toastMessage, int secondsInScreen) {
+		Toast toast = Toast.makeText(androidContext, toastMessage, secondsInScreen);
+		toast.show();		
 	}
 	
 }

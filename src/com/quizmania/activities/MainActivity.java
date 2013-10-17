@@ -81,6 +81,11 @@ public class MainActivity extends ActionBarActivity implements QuizManiaActivity
 	   billingUtil = null;
 	}
 	
+	@Override
+	public Intent getSupportParentActivityIntent(){		
+		onBackPressed();
+		return null;
+	}
 
 
 }

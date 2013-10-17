@@ -36,4 +36,6 @@
 	<string name="exitButtonText">Exit</string>	
 	<string name="quizManiaTheme">fruits</string>
 	<string name="hintsPackCode50">50_hint_pack</string>
+	<string name="plusOneHintMessage">You get +1 hint for answering right!</string>
+	<string name="minusOneHintMessage">You loose 1 hint for answering wrong! think before answering!</string>
 </resources>

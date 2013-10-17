@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,7 +38,7 @@ import com.quizmania.utils.UserConfig;
 import com.quizmania.utils.ViewUtils;
 
 public class QuizMainFragment extends Fragment implements OnKeyListener, OnClickListener, OnTouchListener {
-
+	
 	QuizElement element;
 	@Override
 	public String toString() {
@@ -58,20 +61,41 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		this.element = element;
 	}
 
+	
+	@Override
+	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){	    
+	    inflater.inflate(R.menu.action_bar_hint, menu);	    
+	}
 
+
+	
+	@Override
+	 public boolean onOptionsItemSelected(MenuItem item){
+		 switch(item.getItemId()){
+		 	case R.id.actionsBarHintButton:		 				 		
+		 		hintButtonClick();
+		 	break;
+		 }
+		 return false;
+	 }
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);		
+		View quizElementView = constructViewFromQuizElement(inflater, container);
+		
 		hintButton = (Button) thisView.findViewById(R.id.hintButton);
-		refreshHintButton();
+		refreshHintButton();		
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
+		setHasOptionsMenu(true);
         return quizElementView;
 
 	}
+	
+
 
 
 
@@ -79,7 +103,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 				
 		if(hintButton == null)
 			return;
-		hintButton.setVisibility(View.INVISIBLE);
+		hintButton.setVisibility(View.VISIBLE);
 		hintButton.setText(getActivity().getResources().getString(R.string.revealHintButtonText) + "(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
 	}
 
@@ -311,23 +335,41 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public void tryToAnswer() {
 		TextView textView = (TextView) thisView.findViewById(R.id.answerTextbox);
 		boolean isFirstTimeCompletingLevel = AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) ? false : true;
-			
+		boolean wasAlreadyAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance(getActivity()).getLanguage());
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
-		
+		int hintsToAdd = 0;
+		Log.d("******!","numberOfHints before: " + UserConfig.getInstance(getActivity()).getHintsLeft());
 		if(correctAnswer){
+			
 			AnswerService.getAnswerService().revealAllLetters(element);
 			drawHintLetters();
-			triggerCorrectAnswerEvents();			
+			triggerCorrectAnswerEvents();
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			if(AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) && isFirstTimeCompletingLevel){
 				ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), null);
 			}
-			
+			hintsToAdd = 1;
 			
 		}else{
+			hintsToAdd = -1;	
 			triggerIncorrectAnswerEvents();
 		}
-		Log.d("QuizMa/inFragment", "Fue correcta la respuesta: " + correctAnswer);
+		if(!wasAlreadyAnswered)
+			addNumberOfHints(hintsToAdd);
+		
+		Log.d("******!","numberOfHints after: " + UserConfig.getInstance(getActivity()).getHintsLeft());
+		refreshHintButton();		
+	}
+
+
+
+	private void addNumberOfHints(int toAdd) {
+		UserConfig config = UserConfig.getInstance(getActivity());
+		int currentHintsAvailable =  config.getHintsLeft();
+		currentHintsAvailable += toAdd;
+		config.setHintsLeft(currentHintsAvailable);
+		config.saveToSDCard(getActivity());
+		
 	}
 
 
@@ -336,6 +378,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 		showIncorrectImage();
 		playIncorrectSound();
+		String minusOneHintMessage = getString(R.string.minusOneHintMessage);
+		ViewUtils.showToast(getActivity(),minusOneHintMessage,3);
 		vibrate();
 		
 	}
@@ -376,6 +420,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	private void triggerCorrectAnswerEvents() {
 		showCorrectAnsweredIcon();
 		playCorrectSound();
+		String plusOneHintMessage = getString(R.string.plusOneHintMessage);
+		ViewUtils.showToast(getActivity(),plusOneHintMessage,3);
 		
 	}
 
