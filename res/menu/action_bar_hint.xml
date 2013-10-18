@@ -1,6 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:yourapp="http://schemas.android.com/apk/res-auto" >
           
+    <item android:id="@+id/actionsBarShare"
+        android:icon="@drawable/icon_share"
+        android:title="@string/shareButtonText"
+        yourapp:showAsAction="always"
+        
+        />
     
     <item android:id="@+id/actionsBarHintButton"        
           android:icon="@drawable/icon_hint"
@@ -13,5 +19,7 @@
         android:title="@string/OptionsButton"
         yourapp:showAsAction="always"
         />
+    
+    
 
 </menu>

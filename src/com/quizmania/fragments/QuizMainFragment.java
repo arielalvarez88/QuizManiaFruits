@@ -3,6 +3,7 @@ package com.quizmania.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
@@ -49,7 +50,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	View thisView;
-	Button hintButton;
+	MenuItem hintButton;
+	
+	
 	public static final int NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN = 9;
 	public QuizElement getElement() {
 		return element;
@@ -64,7 +67,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	
 	@Override
 	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){	    
-	    inflater.inflate(R.menu.action_bar_hint, menu);	    
+	    inflater.inflate(R.menu.action_bar_hint, menu);
+	    hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintButton);
+		refreshHintButton();		
 	}
 
 
@@ -75,19 +80,37 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		 	case R.id.actionsBarHintButton:		 				 		
 		 		hintButtonClick();
 		 	break;
+		 	case R.id.actionsBarShare:		 				 		
+		 		share();
+		 	break;
 		 }
 		 return false;
 	 }
 	
 
+	private void share() {
+		
+		Intent shareIntent = new Intent();
+		shareIntent.setAction(Intent.ACTION_SEND);		
+		int elementImageResId = QuizElementUtil.getResourceIdFromQuizElement(this, element);		
+		Uri screenshotUri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + elementImageResId);
+		Log.d(StaticGlobalVariables.packageName,"****** uri To image: " + screenshotUri.toString());
+		Log.d(StaticGlobalVariables.packageName,"****** resourceId to Image: " + elementImageResId);
+		//shareIntent.setData(screenshotUri);
+		shareIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
+		//shareIntent.putExtra(Intent.EXTRA_TITLE, "test 1 2");
+		shareIntent.setType("image/*");
+		startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.shareViaText)));
+		
+	}
+
+
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);
-		
-		hintButton = (Button) thisView.findViewById(R.id.hintButton);
-		refreshHintButton();		
+		View quizElementView = constructViewFromQuizElement(inflater, container);				
 		setEventListeners(quizElementView);
 		drawAnswerIconIfAnswered();
 		setHasOptionsMenu(true);
@@ -102,9 +125,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public void refreshHintButton() {
 				
 		if(hintButton == null)
-			return;
-		hintButton.setVisibility(View.VISIBLE);
-		hintButton.setText(getActivity().getResources().getString(R.string.revealHintButtonText) + "(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
+			return;		
+		hintButton.setTitle("(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
 	}
 
 
@@ -142,44 +164,10 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		addAnswerTextboxEvents();
 		addAnswerButtonEvents();
 		addElementImageEvents();
-		addHintButtonEvents();
+		//addHintButtonEvents();
 		
 	}
 
-
-
-	private void addHintButtonEvents() {
-		hintButton.setOnClickListener(null);
-		hintButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Log.d("*******", "hintCLICK!!!!!!!!!!!!" + this.hashCode());
-				if(UserConfig.getInstance(getActivity()).getHintsLeft() > 0){
-					
-					AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
-					if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
-						AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
-						triggerCorrectAnswerEvents();
-						
-					}
-					AnswerService.getAnswerService().saveToSDCard(getActivity());
-					drawHintLetters();	
-					refreshHintButton();
-				}else{
-					Intent intent = new Intent(getActivity(),ItemStore.class);
-					getActivity().startActivity(intent);
-				}
-				
-			}
-			
-		});
-		
-	}
-
-
-	
-	
 	public void hintButtonClick() {
 		Log.d("*******", "hintCLICK!!!!!!!!!!!!" + this.hashCode());
 		if(UserConfig.getInstance(getActivity()).getHintsLeft() > 0){

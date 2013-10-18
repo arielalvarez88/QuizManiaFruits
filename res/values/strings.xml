@@ -10,6 +10,7 @@
     <string name="FrenchButton">French</string>
     <string name="PortButton">Portuguese</string>
     <string name="SpanishButton">Spanish</string>
+    <string name="shareButtonText">Ask For Help</string>
     <string name="title_activity_language">Language</string>
     <string name="levels">Levels</string>
     <string name="title_activity_fruit_viewer">FruitViewer</string>
@@ -38,4 +39,8 @@
 	<string name="hintsPackCode50">50_hint_pack</string>
 	<string name="plusOneHintMessage">You get +1 hint for answering right!</string>
 	<string name="minusOneHintMessage">You loose 1 hint for answering wrong! think before answering!</string>
+	<string name="loadingText">Now Loading</string>
+	<string name="loadingHeader">Loading</string>
+	<string name="shareViaText">Share via</string>
+	
 </resources>
