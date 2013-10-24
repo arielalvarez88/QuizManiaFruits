@@ -8,32 +8,110 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ItemStore" >
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
 
-        <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/sellItem1Icon"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:text="Icon TODO" />
-        </TableRow>
-
-        <TableRow
-             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
-
-            <Button
-                android:id="@+id/buy50HintsPackButton"
+    
+    <LinearLayout
+    
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+    
+        
+        
+          <TextView
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="purchaseItem"
-                android:text="@string/buy" />
-        </TableRow>
-    </TableLayout>
+                android:text="@string/titleActivityStore"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/titleGray"
+                android:textSize="19sp" 
+                />
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/titleGray"
+                android:layout_marginBottom="10dp" 
+                />
+
+        
+
+    <RelativeLayout
+        
+        android:id="@+id/buy50HintsPackButton"
+        style="@style/levelStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="purchaseItem" >
+
+        <TextView
+            android:id="@+id/levelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="3dp"
+            android:text="@string/hints50Package"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/levelTrofee"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_hint_dark" />
+    </RelativeLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/quizManiaGrey" />
+        
+        
+        
+     <RelativeLayout
+        
+        android:id="@+id/buy100HintsPackButton"
+        style="@style/levelStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="purchaseItem" >
+
+        <TextView
+            android:id="@+id/levelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="3dp"
+            android:text="@string/hints100Package"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/levelTrofee"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_hint_dark" />
+    </RelativeLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/quizManiaGrey" />
+        
+        
+        
+
+</LinearLayout>
+    
+    
+           
+        
 </RelativeLayout>

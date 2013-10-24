@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.quizmania.entities.Language;
+import com.quizmania.entities.Level;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.fruits.R;
 import com.quizmania.utils.AnswerService;
@@ -30,7 +31,7 @@ public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 
 	
 	Map<QuizElement,View> quizElementToViewMap;
-	String level;
+	Level level;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,10 +41,10 @@ public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 		
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 		ViewUtils.inflateContentInTemplate(this, R.layout.activity_element_list);
-		level = (String) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
+		level = (Level) getIntent().getSerializableExtra(StaticGlobalVariables.LEVEL_ATTRIBUTE_NAME);
 		
 		//In QuizMania Fruits, the language is the level.
-		Language language = new Language(level);
+		Language language = new Language(level.getName());
 		
 		UserConfig.getInstance(this).setLanguage(language);
 		

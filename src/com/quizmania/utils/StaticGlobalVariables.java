@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 
+import com.quizmania.entities.Level;
 import com.quizmania.entities.QuizElement;
 
 public class StaticGlobalVariables {
@@ -14,7 +15,7 @@ public class StaticGlobalVariables {
 	public static final String LEVEL_ATTRIBUTE_NAME = "level";
 	public static final char BLANK_SPACE = ' ';
 	private static List<QuizElement> levelElements;
-	public static String currentLevel;
+	public static Level currentLevel;
 	public static Activity currentActivity;
 	public static List<QuizElement> getLevelElements() {
 		return levelElements;

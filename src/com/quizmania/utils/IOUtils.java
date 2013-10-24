@@ -1,16 +1,21 @@
 package com.quizmania.utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
 
@@ -107,11 +112,23 @@ public class IOUtils {
 				e.printStackTrace();
 				ViewUtils.showAlertMessage(activity, activity.getResources().getString(R.string.sdCardError), null);
 		}
-		
-		
-		
-		
-		
+
+	}
+	
+	public static StringBuilder getAssetsFileContent(
+			Context activity, String fileName) throws IOException {
+
+		AssetManager assetManager = activity.getAssets();
+		InputStream stream = assetManager.open(fileName);
+		BufferedReader reader = new BufferedReader(
+				new InputStreamReader(stream,"UTF-8"));
+		StringBuilder fileContent = new StringBuilder();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			fileContent.append(line);
+		}
+		reader.close();
+		return fileContent;
 	}
 
 

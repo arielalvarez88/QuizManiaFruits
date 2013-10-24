@@ -1,35 +1,30 @@
 package com.quizmania.utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.quizmania.entities.Language;
+import com.quizmania.entities.Level;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.entities.QuizElementNames;
 
 public class QuizElementsLoader {
 
-	public static List<QuizElement> loadElementsFromLevel(String level,
+	public static String QUIZ_ELEMENTS_FILE_NAME = "quiz_elements.json";
+	public static List<QuizElement> loadElementsFromLevel(Level level,
 			Context activity) throws IOException {
 
-		StringBuilder fileContent = getQuizElementsDeclarationsFileContent(activity);		
+		StringBuilder fileContent = IOUtils.getAssetsFileContent(activity,QUIZ_ELEMENTS_FILE_NAME);		
 		List<QuizElement> levelElements = getQuizLevelElements(level,
 				fileContent);
 		
@@ -37,7 +32,7 @@ public class QuizElementsLoader {
 
 	}
 
-	private static List<QuizElement> getQuizLevelElements(String level,
+	private static List<QuizElement> getQuizLevelElements(Level level,
 			StringBuilder fileContent) {
 		
 		List<QuizElement> allQuizElements= getAllQuizElementsFromFileContent(fileContent);		
@@ -49,12 +44,12 @@ public class QuizElementsLoader {
 
 	
 
-	private static List<QuizElement> filterQuizElementsByLevel(String level,
+	private static List<QuizElement> filterQuizElementsByLevel(Level level,
 			List<QuizElement> allQuizElements) {
 		
 		List<QuizElement> filteredLevels = new ArrayList<QuizElement>();
 		for(QuizElement element : allQuizElements){
-			if(element.getLevels().contains(level))
+			if(element.getLevels().contains(level.getName()))
 				filteredLevels.add(element);
 		}
 		return filteredLevels;
@@ -63,15 +58,11 @@ public class QuizElementsLoader {
 
 	private static List<QuizElement> getAllQuizElementsFromFileContent(StringBuilder fileContent) {
 		List<QuizElement> allQuizElements = new ArrayList<QuizElement>();
-		JsonElement element = new JsonParser().parse(fileContent.toString());
+		List<JsonElement> quizElementJsonElements = JsonUtils.jsonArrayToList(fileContent.toString());
 		Gson gson = new Gson();
-		JsonArray values = element.getAsJsonArray();
-		Iterator<JsonElement> iterator = values.iterator();
-
-		while (iterator.hasNext()) {
-			JsonElement quizElementJsonElement = iterator.next();
+		for(JsonElement quizElementJsonElement : quizElementJsonElements){		
 			QuizElement quizElement = gson.fromJson(quizElementJsonElement, QuizElement.class);		
-			quizElement.setLanguageToNamesMap(parseLanguageToNamesMap(gson, iterator, quizElementJsonElement));
+			quizElement.setLanguageToNamesMap(parseLanguageToNamesMap(gson, quizElementJsonElement));
 			System.out.println("Good parsing!" + quizElement);
 			allQuizElements.add(quizElement);		
 		}
@@ -79,7 +70,7 @@ public class QuizElementsLoader {
 	}
 
 	private static Map<Language,QuizElementNames> parseLanguageToNamesMap(Gson gson,
-			Iterator<JsonElement> iterator, JsonElement quizElementJsonElement) {
+			 JsonElement quizElementJsonElement) {
 		JsonObject languageToMapJsonObject = getLanguateToNamesMapJsonObject(quizElementJsonElement);
 		Set<Entry<String,JsonElement>> languagueToNamesUnparsedMap = languageToMapJsonObject.entrySet();
 		
@@ -110,19 +101,5 @@ public class QuizElementsLoader {
 		return languageToMapJsonObject;
 	}
 
-	private static StringBuilder getQuizElementsDeclarationsFileContent(
-			Context activity) throws IOException {
 
-		AssetManager assetManager = activity.getAssets();
-		InputStream stream = assetManager.open("quiz_elements.json");
-		BufferedReader reader = new BufferedReader(
-				new InputStreamReader(stream,"UTF-8"));
-		StringBuilder fileContent = new StringBuilder();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			fileContent.append(line);
-		}
-		reader.close();
-		return fileContent;
-	}
 }

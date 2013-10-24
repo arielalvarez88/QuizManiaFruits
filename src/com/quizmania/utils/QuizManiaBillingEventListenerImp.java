@@ -86,7 +86,7 @@ public class QuizManiaBillingEventListenerImp implements BillingEventListener, O
 		Log.d("**************", "onConsumedFinished: "+ result.isSuccess());
 		if(result.isSuccess()){
 			Resources res = billingUtil.getBillingContext().androidContext.getResources();
-			String add50HintsItemId = res.getString(R.string.hintsPackCode50);
+			String add50HintsItemId = res.getString(R.string.hintsPack50Code);
 			if(purchase.getSku().equals(add50HintsItemId)){
 				UserConfig.getInstance(billingUtil.getBillingContext().androidContext).addHints(50);
 				UserConfig.getInstance(billingUtil.getBillingContext().androidContext).saveToSDCard(billingUtil.getBillingContext().androidContext);				

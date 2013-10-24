@@ -32,7 +32,7 @@
                 android:textOff="@string/off"
                 android:textOn="@string/on" 
                 android:onClick="onToggleButtonClick"
-                android:background="@color/quizManiaGreen" />
+                />
 
         </TableRow>
 

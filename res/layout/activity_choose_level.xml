@@ -1,89 +1,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"   
-    tools:context=".LevelChooser"
-    android:background="@color/white">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    
+    tools:context=".LevelChooser" >
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-         >
+        android:layout_height="fill_parent" >
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
+            android:id="@+id/levelsHolder"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" 
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp" >
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Levels"
-                android:id="@+id/textView" />
-
-            <ListView
-                android:layout_width="fill_parent"
-                android:layout_height="200dp"
-                android:id="@+id/listView"
-                tools:listitem="@android:layout/simple_list_item_1"
-                android:divider="@color/quizManiaGrey"
-                android:dividerHeight="2dp"
-                android:clickable="true"
-                android:choiceMode="singleChoice"
-                android:listSelector="@color/quizManiaGreen" />
-
-            <ImageView
+                
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView" />
+                android:text="@string/levels"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/titleGray"
+                android:textSize="19sp" 
+                />
 
-            <Button
-                android:id="@+id/englishLevelButton"
-                android:layout_width="match_parent"
-                android:layout_height="176dp"
-                android:layout_margin="10dp"
-                android:text="@string/EnglishButton" 
-                android:onClick="goToLevel"
-                android:textSize="@dimen/button_text_lang"
-                android:background="@drawable/bt_lang_en"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/titleGray"
+                android:layout_marginBottom="10dp" 
+                />
 
-            <Button
-                android:id="@+id/spanishLevelButton"
-                android:layout_width="match_parent"
-                android:layout_height="176dp"
-                android:layout_margin="10dp"
-                android:text="@string/SpanishButton"
-                android:onClick="goToLevel"
-                android:background="@drawable/bt_lang_sp"
-                android:textSize="@dimen/button_text_lang"/>
-
-            <Button
-                android:id="@+id/portugueseLevelButton"
-                android:layout_width="match_parent"
-                android:layout_height="176dp"
-                android:layout_margin="10dp"
-                android:text="@string/PortButton"
-                android:onClick="goToLevel"
-                android:textSize="@dimen/button_text_lang"
-                android:background="@drawable/bt_lang_pt"/>
-
-            <Button
-                    android:id="@+id/frenchLevelButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="176dp"
-                    android:layout_margin="10dp"
-                    android:text="@string/FrenchButton"
-                    android:onClick="goToLevel"
-                    android:textSize="@dimen/button_text_lang"
-                    android:background="@drawable/bt_lang_fr"
-                    android:textColorHint="@color/blue"
-                    android:textColorLink="@color/red"/>
-
-        </LinearLayout>
+            
+            
+                        
+            
+    	</LinearLayout>
     </ScrollView>
 
 </RelativeLayout>

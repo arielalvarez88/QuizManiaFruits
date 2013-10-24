@@ -45,17 +45,12 @@ public class ItemStore extends ActionBarActivity implements QuizManiaActivity{
 		// TODO Auto-generated method stub
 		
 		switch (view.getId()) {
-		case R.id.buy50HintsPackButton:
-			Log.d("QuizMania", "******* resourceId: " + R.id.buy50HintsPackButton);
-			Log.d("QuizMania", "******* in-app id:  " + getResources().getString(R.string.hintsPackCode50));
-			return getResources().getString(R.string.hintsPackCode50);
-			
-		
+		case R.id.buy50HintsPackButton:			
+			return getResources().getString(R.string.hintsPack50Code);
+		case R.id.buy100HintsPackButton:
+			getResources().getString(R.string.hintsPack100Code);
 		}
-		
-		Log.d("**********", "******* returning null :(");
-		Log.d("**********", "******* returning null :(" + view.getId());
-		
+						
 		return null;
 	}
 

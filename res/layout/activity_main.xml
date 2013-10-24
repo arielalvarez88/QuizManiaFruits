@@ -58,6 +58,7 @@
         android:textSize="@dimen/button_text_lang" 
         android:textColor="@color/black"
         android:layout_below="@+id/quizManiaThemeHolder"
+        style="@drawable/green_background_button"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -71,6 +72,7 @@
         android:textColor="@color/black"
         android:layout_below="@+id/button1"
         android:layout_centerHorizontal="true"
+        style="@drawable/green_background_button"
         android:layout_marginTop="10dp" />
 
 </RelativeLayout>

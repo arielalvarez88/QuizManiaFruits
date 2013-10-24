@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.quizmania.entities.Language;
+import com.quizmania.entities.Level;
 import com.quizmania.entities.NameHints;
 import com.quizmania.entities.QuizElement;
 
@@ -21,15 +22,29 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	Map<QuizElement,Set<Language>> answers;
 	Map<QuizElement,Map<Language,NameHints>> revealedHints;
-	Set<String> levelsCompleted;
+	Set<Level> levelsCompleted;
 	private static AnswerService answerSingletonInstance;
 
 	public static final String ANSWERS_FILE_PATH = Environment.getExternalStorageDirectory() + "/Android/data/" + StaticGlobalVariables.packageName + "/answers.quizmania";
 	private AnswerService(){	
 			answers = new HashMap<QuizElement,Set<Language>>();
 			revealedHints = new HashMap<QuizElement, Map<Language,NameHints>>();
-			levelsCompleted = new HashSet<String>();
+			levelsCompleted = new HashSet<Level>();
 			
+	}
+	
+	
+	
+	public int countAnswersForLevel(Activity activity,Level level){
+		int answerInLevelCounter = 0;
+		Language currentLanguage = UserConfig.getInstance(activity).getLanguage();
+		//TODO sOnly in QquizmaniaFruits
+		currentLanguage = new Language(level.getName());
+		for(QuizElement quizElement : answers.keySet()){
+			if(quizElement.getLevels().contains(level.getName()) && answers.get(quizElement).contains(currentLanguage))
+				answerInLevelCounter++;
+		}
+		return answerInLevelCounter;
 	}
 	
 	
@@ -139,15 +154,17 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 	
 	
 	public boolean tryToAnswer(QuizElement element, String userAnswer){
-		List<String> correctAnswers = element.getLanguageToNamesMap().get(UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage()).getNames();
+		
+		Language language = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage();
+
+		List<String> correctAnswers = element.getLanguageToNamesMap().get(language).getNames();
 		
 		
 		boolean isACorrectAnswer = isACorrectAnswer(element, userAnswer, correctAnswers);
 		
 		if(isACorrectAnswer){
 			placeAnswerInMapAnswer(element);
-			if(checkIfLevelCompleted()){
-				
+			if(checkIfCurrentLevelCompleted()){				
 				levelsCompleted.add(StaticGlobalVariables.currentLevel);
 			}
 		}
@@ -242,7 +259,7 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		this.answerSingletonInstance = new AnswerService();		
 	}
 
-	public boolean checkIfLevelCompleted() {
+	public boolean checkIfCurrentLevelCompleted() {
 		
 		List<QuizElement> currentLevelElements = StaticGlobalVariables.getLevelElements();
 		Language currentLanguage = UserConfig.getInstance(StaticGlobalVariables.currentActivity).getLanguage();
@@ -253,7 +270,13 @@ public class AnswerService extends SDCardSavableEntity implements Serializable{
 		}
 		return levelAnsweredElements == currentLevelElements.size();
 	}
-	public boolean isLevelComplete(String currentLevel) {
+	
+	public boolean checkIfLevelIsCompleted(Activity activity,Level level){
+		
+		return countAnswersForLevel(activity,level) == level.getLevelsQuizElementsCount();
+	}
+	
+	public boolean isLevelComplete(Level currentLevel) {
 		
 		return levelsCompleted.contains(currentLevel);
 	}

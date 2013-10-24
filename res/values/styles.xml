@@ -28,6 +28,7 @@
     <color name="quizManiaGreen">#98ce00</color>
     <color name="quizManiaYellow">#f8be38</color>
     <color name="quizManiaRed">#fd463e</color>
+    <color name="quizManiaBlack">#141414</color>
 	<color name="quizManiaGrey">#cccccc</color>
     
 </resources>
