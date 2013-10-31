@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- the theme applied to the application or activity -->
+    
+    
     <style name="QuizmaniaFruitsTheme"
            parent="@style/Theme.AppCompat.Light">
         
@@ -8,6 +10,8 @@
         <item name="android:windowFullscreen">true</item>
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="android:disabledAlpha">1</item>
+        
     </style>
 
     <!-- ActionBar styles -->
@@ -18,5 +22,9 @@
         
         <!-- Support library compatibility -->        
         <item name="background">@color/quizManiaThemeColor</item>
+        <item name="android:divider">@null</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:disabledAlpha">1</item>
+        
     </style>
 </resources>

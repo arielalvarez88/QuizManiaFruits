@@ -94,6 +94,7 @@ public class ViewUtils {
 
 	public static void showToast(Context androidContext, String toastMessage, int secondsInScreen) {
 		Toast toast = Toast.makeText(androidContext, toastMessage, secondsInScreen);
+		toast.setGravity(Gravity.TOP, 0, 0);
 		toast.show();		
 	}
 	

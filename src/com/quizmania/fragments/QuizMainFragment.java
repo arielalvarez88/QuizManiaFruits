@@ -68,7 +68,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	@Override
 	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){	    
 	    inflater.inflate(R.menu.action_bar_hint, menu);
-	    hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintButton);
+	    
+	    hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintText);
 		refreshHintButton();		
 	}
 
@@ -127,6 +128,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		if(hintButton == null)
 			return;		
 		hintButton.setTitle("(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
+		
 	}
 
 
@@ -169,20 +171,19 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	}
 
 	public void hintButtonClick() {
-		Log.d("*******", "hintCLICK!!!!!!!!!!!!" + this.hashCode());
+		
 		if(UserConfig.getInstance(getActivity()).getHintsLeft() > 0){
 			
 			AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
 			if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
 				AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
-				triggerCorrectAnswerEvents();				
+				triggerCorrectAnswerEvents(false);				
 			}
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			drawHintLetters();	
 			refreshHintButton();
 		}else{
-			
-			Log.d("***getActivity() = ", "" + getActivity());
+						
 			Intent intent = new Intent(getActivity(),ItemStore.class);
 			getActivity().startActivity(intent);
 		}
@@ -243,8 +244,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		int hintLetterHeight = hintLetterWidth;		
 		HintStyle hintStlye = new HintStyle(getActivity(), hintLetterWidth,hintLetterHeight);		
 		LinearLayout hintHolder = (LinearLayout) thisView.findViewById(R.id.centralizedHintHolder);
-		NameHints elementsRevealedHints = AnswerService.getAnswerService().getRevealedHintsForQuizElement(element);
-		Log.d("********", "hintParaDibujar: " + elementsRevealedHints);
+		NameHints elementsRevealedHints = AnswerService.getAnswerService().getRevealedHintsForQuizElement(element);		
 		drawLineOfHints(hintHolder,elementNameLetters,elementsRevealedHints,0,hintStlye);
 		if(elementNameLetters.length  > NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN){
 			hintHolder = (LinearLayout) thisView.findViewById(R.id.secondLineHintHolder);
@@ -324,6 +324,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		TextView textView = (TextView) thisView.findViewById(R.id.answerTextbox);
 		boolean isFirstTimeCompletingLevel = AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) ? false : true;
 		boolean wasAlreadyAnswered = AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance(getActivity()).getLanguage());
+		boolean showHintsAddedToast = !wasAlreadyAnswered;
 		boolean correctAnswer = AnswerService.getAnswerService().tryToAnswer(element, textView.getText().toString());
 		int hintsToAdd = 0;
 		Log.d("******!","numberOfHints before: " + UserConfig.getInstance(getActivity()).getHintsLeft());
@@ -331,7 +332,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			
 			AnswerService.getAnswerService().revealAllLetters(element);
 			drawHintLetters();
-			triggerCorrectAnswerEvents();
+			triggerCorrectAnswerEvents(showHintsAddedToast);
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			if(AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) && isFirstTimeCompletingLevel){
 				ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), null);
@@ -340,7 +341,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			
 		}else{
 			hintsToAdd = -1;	
-			triggerIncorrectAnswerEvents();
+			triggerIncorrectAnswerEvents(showHintsAddedToast);
 		}
 		if(!wasAlreadyAnswered)
 			addNumberOfHints(hintsToAdd);
@@ -354,7 +355,8 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	private void addNumberOfHints(int toAdd) {
 		UserConfig config = UserConfig.getInstance(getActivity());
 		int currentHintsAvailable =  config.getHintsLeft();
-		currentHintsAvailable += toAdd;
+		
+		currentHintsAvailable += currentHintsAvailable > 0 || toAdd > 0 ? toAdd : 0;
 		config.setHintsLeft(currentHintsAvailable);
 		config.saveToSDCard(getActivity());
 		
@@ -362,12 +364,14 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 
-	private void triggerIncorrectAnswerEvents() {
+	private void triggerIncorrectAnswerEvents(boolean showToast) {
 
 		showIncorrectImage();
 		playIncorrectSound();
-		String minusOneHintMessage = getString(R.string.minusOneHintMessage);
-		ViewUtils.showToast(getActivity(),minusOneHintMessage,3);
+		if(showToast){
+			String minusOneHintMessage = getString(R.string.minusOneHintMessage);
+			ViewUtils.showToast(getActivity(),minusOneHintMessage,3);
+		}		
 		vibrate();
 		
 	}
@@ -405,11 +409,14 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 
-	private void triggerCorrectAnswerEvents() {
+	private void triggerCorrectAnswerEvents(boolean showToast) {
 		showCorrectAnsweredIcon();
 		playCorrectSound();
-		String plusOneHintMessage = getString(R.string.plusOneHintMessage);
-		ViewUtils.showToast(getActivity(),plusOneHintMessage,3);
+		if(showToast){
+			String plusOneHintMessage = getString(R.string.plusOneHintMessage);
+			ViewUtils.showToast(getActivity(),plusOneHintMessage,5);
+		}
+		
 		
 	}
 

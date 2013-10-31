@@ -11,15 +11,15 @@
     <item android:id="@+id/actionsBarHintButton"        
           android:icon="@drawable/icon_hint"
           android:title="@string/hintsButtonText"
-          yourapp:showAsAction="always|withText"  
+          yourapp:showAsAction="withText|always"  
+          />
+    
+    <item android:id="@+id/actionsBarHintText"                  
+          android:title="@string/hintsButtonText"
+          android:enabled="true"               
+          yourapp:showAsAction="withText|always"  
           />
 
-    <item android:id="@+id/actionsBarOptions"
-        android:icon="@drawable/icon_options"
-        android:title="@string/OptionsButton"
-        yourapp:showAsAction="always"
-        />
-    
     
 
 </menu>

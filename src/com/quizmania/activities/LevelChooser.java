@@ -130,10 +130,13 @@ public class LevelChooser extends ActionBarActivity implements QuizManiaActivity
 		
 		Log.d(StaticGlobalVariables.packageName, "Elements file content: " + quizElementsFile.toString() );
 		for(Level level : levels){
-			Pattern levelNamePattern = Pattern.compile(level.getName());
+			Pattern levelNamePattern = Pattern.compile("levels:\\s*\\[.*?['\"]" + level.getName() + "['\"].+?\\]");
 			Matcher levelNameMatcher = levelNamePattern.matcher(quizElementsFile.toString());
 			int levelsQuizElementsCount = 0;
+			
 			while(levelNameMatcher.find()){
+				Log.d(StaticGlobalVariables.packageName, "group: " + levelNameMatcher.group());
+				
 				levelsQuizElementsCount++;
 			}
 			level.setLevelsQuizElementsCount(levelsQuizElementsCount);
