@@ -53,7 +53,6 @@ public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 		showOrHideNamesDependingIfElementIsAnswered();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 	}
 
 	

@@ -69,7 +69,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){	    
 	    inflater.inflate(R.menu.action_bar_hint, menu);
 	    
-	    hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintText);
+	    hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintButton);
 		refreshHintButton();		
 	}
 
