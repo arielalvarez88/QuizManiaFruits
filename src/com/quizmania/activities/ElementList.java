@@ -95,7 +95,7 @@ public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 	@Override
 	public void onResume(){
 		super.onResume();
-		createView();
+		//createView();
 		showOrHideNamesDependingIfElementIsAnswered();
 	}
 
