@@ -34,7 +34,7 @@
     <string name="title_activity_options">OptionsActivity</string>
     <string name="title_activity_item_store">ItemStore</string>
 	<string name="buy">Buy</string>
-	<string name="levelCompleteMessage">Congratulations you have completed this level! you have won 10 hints! try to complete the next level!</string>
+	<string name="levelCompleteMessage">Congratulations you have completed this level! try to complete the next level!</string>
 	<string name="revealHintButtonText">Hint</string>
 	<string name="voteMessage">Do you like this application? Take a time to vote</string>
 	<string name="voteButtonText">Vote</string>
@@ -43,9 +43,14 @@
 	<string name="hintsPack50Code">50_hint_pack</string>
 	<string name="hintsPack100Code">100_hint_pack</string>
 	<string name="plusOneHintMessage">You get +1 hint for answering right!</string>
-	<string name="minusOneHintMessage">You loose 1 hint for answering wrong! think before answering!</string>
+	<string name="minusOneHintMessage">You loose 1 hint for answering wrong! think before answering!</string>	
 	<string name="loadingText">Now Loading</string>
 	<string name="loadingHeader">Loading</string>
+	<string name="shareMessage">I\'m playing QuizMania fruits, have great fun learning the names of fruits and vegetables in many languages. Try it for Android: https://play.google.com/store/apps/details?id=com.quizmania.fruits</string>
+	<string name="slideForNext">Slide Left or Right for Previous and Next Fruit</string>
+	
+	
+	
 	<string name="shareViaText">Share via</string>
 	
 	

@@ -15,6 +15,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,6 +99,46 @@ public class ViewUtils {
 		Toast toast = Toast.makeText(androidContext, toastMessage, secondsInScreen);
 		toast.setGravity(Gravity.TOP, 0, 0);
 		toast.show();		
+	}
+	
+	public static void showSlideMessage(LayoutInflater inflater, final ViewGroup parent){		
+		final View slideMessageView = inflater.inflate(R.layout.slide_for_next, null);
+		parent.addView(slideMessageView);
+		AlphaAnimation fadeInFadeOutAnimation = createFadeInFadoutAnimation();
+		fadeInFadeOutAnimation.setAnimationListener(new AnimationListener() {
+			
+			@Override
+			public void onAnimationStart(Animation animation) {
+				
+				
+			}
+			
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+				
+				
+			}
+			
+			@Override
+			public void onAnimationEnd(Animation animation) {
+
+				slideMessageView.destroyDrawingCache();
+				parent.removeView(slideMessageView);
+			}
+		});
+		slideMessageView.startAnimation(fadeInFadeOutAnimation);
+		
+		
+								
+	}
+
+	private static AlphaAnimation createFadeInFadoutAnimation() {
+		AlphaAnimation fadeInFadeOutAnimation = new AlphaAnimation(0.0f	, 1.0f);		
+		
+		fadeInFadeOutAnimation.setDuration(2000);
+		fadeInFadeOutAnimation.setRepeatCount(1);
+		fadeInFadeOutAnimation.setRepeatMode(Animation.REVERSE);				
+		return fadeInFadeOutAnimation;
 	}
 	
 }

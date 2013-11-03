@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -51,7 +52,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	View thisView;
 	MenuItem hintButton;
-	
+	MenuItem shareButton;
 	
 	public static final int NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN = 9;
 	public QuizElement getElement() {
@@ -68,26 +69,45 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	@Override
 	public void onCreateOptionsMenu(Menu menu,MenuInflater inflater){	    
 	    inflater.inflate(R.menu.action_bar_hint, menu);
-	    
-	    hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintButton);
+	    addClickListenersToActionBarItems(menu);	    	    
 		refreshHintButton();		
 	}
 
 
 	
-	@Override
-	 public boolean onOptionsItemSelected(MenuItem item){
-		 switch(item.getItemId()){
-		 	case R.id.actionsBarHintButton:		 				 		
-		 		hintButtonClick();
-		 	break;
-		 	case R.id.actionsBarShare:		 				 		
-		 		share();
-		 	break;
-		 }
-		 return false;
-	 }
+	private void addClickListenersToActionBarItems(Menu menu) {
+		hintButton = (MenuItem) menu.findItem(R.id.actionsBarHintButton);
+	    setClickListenerToHintButton(hintButton);
+	    
+	    shareButton = (MenuItem) menu.findItem(R.id.actionsBarShare);
+	    setClickListenerToShareButton(shareButton);
+		
+	}
+
+
+
+	private void setClickListenerToHintButton(MenuItem hintButton) {
+		ViewGroup actionView= (ViewGroup) MenuItemCompat.getActionView(hintButton);
+		actionView.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				hintButtonClick();
+			}
+		});
+		
+	}
 	
+	private void setClickListenerToShareButton(MenuItem shareButton) {
+		ViewGroup actionView= (ViewGroup) MenuItemCompat.getActionView(shareButton);
+		actionView.setOnClickListener(new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				share();
+			}
+		});
+		
+	}
+
 
 	private void share() {
 		
@@ -97,10 +117,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		Uri screenshotUri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + elementImageResId);
 		Log.d(StaticGlobalVariables.packageName,"****** uri To image: " + screenshotUri.toString());
 		Log.d(StaticGlobalVariables.packageName,"****** resourceId to Image: " + elementImageResId);
-		//shareIntent.setData(screenshotUri);
+		shareIntent.addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		shareIntent.setType("text/plain");
+		shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, getString(R.string.shareMessage));
 		shareIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
-		//shareIntent.putExtra(Intent.EXTRA_TITLE, "test 1 2");
-		shareIntent.setType("image/*");
+		
 		startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.shareViaText)));
 		
 	}
@@ -111,11 +132,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
 		
-		View quizElementView = constructViewFromQuizElement(inflater, container);				
-		setEventListeners(quizElementView);
+		constructViewFromQuizElement(inflater, container);				
+		setEventListeners(thisView);
 		drawAnswerIconIfAnswered();
 		setHasOptionsMenu(true);
-        return quizElementView;
+        return thisView;
 
 	}
 	
@@ -126,8 +147,12 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	public void refreshHintButton() {
 				
 		if(hintButton == null)
-			return;		
-		hintButton.setTitle("(" + UserConfig.getInstance(getActivity()).getHintsLeft() + ")");
+			return;
+		
+		ViewGroup actionView= (ViewGroup) MenuItemCompat.getActionView(hintButton);
+		TextView hintNumberLabel = (TextView) actionView.findViewById(R.id.hintNumber);
+		Log.d(StaticGlobalVariables.packageName,"*****el textview" + hintNumberLabel);				
+		hintNumberLabel.setText("" + UserConfig.getInstance(getActivity()).getHintsLeft());
 		
 	}
 
@@ -150,6 +175,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		if(!AnswerService.getAnswerService().isAwnsered(element, UserConfig.getInstance(getActivity()).getLanguage())){
 			hideAnswerIcon();
 		}
+		refreshHintButton();
 	}
 
 
@@ -164,7 +190,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	private void setEventListeners(View quizElementView) {
 		addAnswerTextboxEvents();
-		addAnswerButtonEvents();
+		addAnswerButtonEvents();		
 		addElementImageEvents();
 		//addHintButtonEvents();
 		
@@ -200,14 +226,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	}
 
 
-
 	private void addAnswerButtonEvents() {
 		Button answerButton =  (Button) thisView.findViewById(R.id.answerButton);
 		answerButton.setOnClickListener(this);
 	}
-
-
-
+	
 	private void addAnswerTextboxEvents() {
 		TextView answerTextbox = (TextView) thisView.findViewById(R.id.answerTextbox);
 		answerTextbox.setOnKeyListener(this);
@@ -223,14 +246,13 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	private View constructViewFromQuizElement(LayoutInflater inflater,
 			ViewGroup container) {
-		View quizElementView = inflater.inflate(R.layout.fragment_quiz_main, container, false);
-		thisView = quizElementView;
-		drawElementImage(quizElementView);
+		thisView = inflater.inflate(R.layout.fragment_quiz_main, container, false);		
+		drawElementImage(thisView);
 		
 		drawHintLetters();
 	
 		
-		return quizElementView;
+		return thisView;
 	}
 
 
@@ -373,6 +395,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			ViewUtils.showToast(getActivity(),minusOneHintMessage,3);
 		}		
 		vibrate();
+		hideKeyboard();
+		ViewGroup parentActivityRootView = (ViewGroup) getActivity().findViewById(android.R.id.content);
+		ViewUtils.showSlideMessage(getActivity().getLayoutInflater(),parentActivityRootView );
 		
 	}
 	
@@ -416,6 +441,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			String plusOneHintMessage = getString(R.string.plusOneHintMessage);
 			ViewUtils.showToast(getActivity(),plusOneHintMessage,5);
 		}
+		hideKeyboard();
 		
 		
 	}
@@ -452,12 +478,18 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 	@Override
 	public boolean onTouch(View arg0, MotionEvent arg1) {
+		return hideKeyboard();
+		
+	}
+
+
+
+	private boolean hideKeyboard() {
 		InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
 			      Context.INPUT_METHOD_SERVICE);
 		EditText answerTextBox = (EditText) thisView.findViewById(R.id.answerTextbox);
 			imm.hideSoftInputFromWindow(answerTextBox.getWindowToken(), 0);
 		return true;
-		
 	}
 
 }

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.quizmania.entities.QuizElement;
 import com.quizmania.fragments.QuizMainFragment;
@@ -20,6 +21,7 @@ import com.quizmania.fruits.R;
 import com.quizmania.utils.QuizManiaActivity;
 import com.quizmania.utils.QuizPager;
 import com.quizmania.utils.StaticGlobalVariables;
+import com.quizmania.utils.ViewUtils;
 
 public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivity, OnPageChangeListener{
 	
@@ -39,7 +41,9 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		initializeElementsFromIntent();		
 		calculateInitialSlide();
-		initializeLevelPager();		
+		initializeLevelPager();
+		ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
+		ViewUtils.showSlideMessage(getLayoutInflater(),rootView);
 		
 	}
 

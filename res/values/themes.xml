@@ -12,6 +12,8 @@
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="android:disabledAlpha">1</item>
         
+        
+        
     </style>
 
     <!-- ActionBar styles -->

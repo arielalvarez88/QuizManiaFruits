@@ -3,22 +3,18 @@
           
     <item android:id="@+id/actionsBarShare"
         android:icon="@drawable/icon_share"
-        android:title="@string/shareButtonText"
+        yourapp:actionLayout="@layout/share"
         yourapp:showAsAction="always"
         
         />
     
-    <item android:id="@+id/actionsBarHintButton"        
-          android:icon="@drawable/icon_hint"
-          android:title="@string/hintsButtonText"
-          yourapp:showAsAction="withText|always"  
+    <item android:id="@+id/actionsBarHintButton"
+        android:icon="@drawable/icon_hint"
+          yourapp:showAsAction="always"            
+  		  yourapp:actionLayout="@layout/hint_counter"
+  		  android:background="@drawable/clickable_view"
           />
-    
-    <item android:id="@+id/actionsBarHintText"                  
-          android:title="@string/hintsButtonText"
-          android:enabled="true"               
-          yourapp:showAsAction="withText|always"  
-          />
+
 
     
 
