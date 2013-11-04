@@ -397,7 +397,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		vibrate();
 		hideKeyboard();
 		ViewGroup parentActivityRootView = (ViewGroup) getActivity().findViewById(android.R.id.content);
-		ViewUtils.showSlideMessage(getActivity().getLayoutInflater(),parentActivityRootView );
+		
 		
 	}
 	
@@ -443,7 +443,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		}
 		hideKeyboard();
 		ViewGroup parentActivityRootView= (ViewGroup)getActivity().findViewById(android.R.id.content);
-		ViewUtils.showSlideMessage(getActivity().getLayoutInflater(), parentActivityRootView);
+		
 		
 	}
 
