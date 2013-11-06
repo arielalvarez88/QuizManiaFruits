@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.io.StreamCorruptedException;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.util.Log;
@@ -63,14 +64,15 @@ public class UserConfig extends SDCardSavableEntity implements Serializable{
 		vibrationActivated = true;
 		soundActivated = true;
 		language = new Language(Language.ENGLISH);
-	    SharedPreferences settings = activity.getSharedPreferences(HAS_BEEN_RUN_BEFORE, 0);
+	    SharedPreferences settings = activity.getSharedPreferences(HAS_BEEN_RUN_BEFORE, Context.MODE_MULTI_PROCESS);
 	    
 	    boolean hasBeenRunBefore = settings.getBoolean(HAS_BEEN_RUN_BEFORE, false);
-
+	    Log.d(StaticGlobalVariables.packageName, "has been run before: "+   hasBeenRunBefore);
 		hintsLeft = hasBeenRunBefore? 0 : 10;
 		SharedPreferences.Editor editor = settings.edit();
 	    editor.putBoolean(HAS_BEEN_RUN_BEFORE, true);
-		System.out.println("language: " +   language);
+	    editor.commit();
+		
 		
 	}
 	

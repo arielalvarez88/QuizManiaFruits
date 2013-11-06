@@ -95,9 +95,9 @@ public class ViewUtils {
 		//actionBar.set
 	}
 
-	public static void showToast(Context androidContext, String toastMessage, int secondsInScreen) {
-		Toast toast = Toast.makeText(androidContext, toastMessage, secondsInScreen);
-		toast.setGravity(Gravity.TOP, 0, 0);
+	public static void showToast(Context androidContext, String toastMessage, int gravity) {
+		Toast toast = Toast.makeText(androidContext, toastMessage, Toast.LENGTH_LONG);
+		toast.setGravity(gravity, 0, 0);
 		toast.show();		
 	}
 	

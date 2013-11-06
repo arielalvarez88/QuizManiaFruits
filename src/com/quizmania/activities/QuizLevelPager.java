@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -43,7 +44,7 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 		calculateInitialSlide();
 		initializeLevelPager();
 		ViewGroup rootView = (ViewGroup) findViewById(android.R.id.content);
-		ViewUtils.showSlideMessage(getLayoutInflater(),rootView);
+		ViewUtils.showToast(this, getString(R.string.slideForNext), Gravity.CENTER);
 		
 	}
 

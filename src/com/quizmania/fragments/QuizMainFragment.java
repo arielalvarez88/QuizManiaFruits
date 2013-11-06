@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -392,7 +393,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		playIncorrectSound();
 		if(showToast){
 			String minusOneHintMessage = getString(R.string.minusOneHintMessage);
-			ViewUtils.showToast(getActivity(),minusOneHintMessage,3);
+			ViewUtils.showToast(getActivity(),minusOneHintMessage,Gravity.CENTER);
 		}		
 		vibrate();
 		hideKeyboard();
@@ -439,7 +440,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		playCorrectSound();
 		if(showToast){
 			String plusOneHintMessage = getString(R.string.plusOneHintMessage);
-			ViewUtils.showToast(getActivity(),plusOneHintMessage,5);
+			ViewUtils.showToast(getActivity(),plusOneHintMessage,Gravity.CENTER);
 		}
 		hideKeyboard();
 		ViewGroup parentActivityRootView= (ViewGroup)getActivity().findViewById(android.R.id.content);
