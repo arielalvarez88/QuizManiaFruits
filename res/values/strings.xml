@@ -6,7 +6,7 @@
     <string name="app_name">QuizMania Fruits</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="StartButton">start</string>
+    <string name="StartButton">Start</string>
     <string name="OptionsButton">Options</string>
     <string name="EnglishButton">English</string>
     <string name="FrenchButton">French</string>

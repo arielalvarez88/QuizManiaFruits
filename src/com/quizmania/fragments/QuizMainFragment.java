@@ -43,7 +43,9 @@ import com.quizmania.utils.ViewUtils;
 public class QuizMainFragment extends Fragment implements OnKeyListener, OnClickListener, OnTouchListener {
 	
 	QuizElement element;
-	@Override
+    private  OnClickListener showKeyboardEventListener;
+
+    @Override
 	public String toString() {
 		return "QuizMainFragment [element=" + element + ", thisView="
 				+ thisView + ", hintButton=" + hintButton + "]";
@@ -132,7 +134,15 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState){
-		
+        showKeyboardEventListener = new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(StaticGlobalVariables.packageName,"Click en hint!");
+                showKeyboard();
+            }
+        };
+
+
 		constructViewFromQuizElement(inflater, container);				
 		setEventListeners(thisView);
 		drawAnswerIconIfAnswered();
@@ -193,6 +203,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		addAnswerTextboxEvents();
 		addAnswerButtonEvents();		
 		addElementImageEvents();
+
 		//addHintButtonEvents();
 		
 	}
@@ -291,7 +302,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 				break;
 			char letter = elementNameLetters[i];			
 			TextView hintLetter = ViewUtils.createHintLetter(getActivity());
-			
+			hintLetter.setOnClickListener(this.showKeyboardEventListener);
 			hintLetter.setLayoutParams(layoutParams);
 			if(elementsRevealedHints != null && elementsRevealedHints.hasLetterRevealed(i)){
 				String letterAsString = "" + letter;								
@@ -493,5 +504,17 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			imm.hideSoftInputFromWindow(answerTextBox.getWindowToken(), 0);
 		return true;
 	}
+
+
+
+    private boolean showKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(
+                Context.INPUT_METHOD_SERVICE);
+        EditText answerTextBox = (EditText) thisView.findViewById(R.id.answerTextbox);
+        imm.showSoftInput(answerTextBox,0);
+        return true;
+    }
+
+
 
 }

@@ -81,6 +81,7 @@ public class ViewUtils {
 		letterHolder.setTextColor(Color.WHITE);
 		letterHolder.setTypeface(null, Typeface.BOLD);			        			        				
 		letterHolder.setPadding(0, 0, 0, 0);
+
 		return letterHolder;
 	}
 	
