@@ -215,7 +215,11 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			AnswerService.getAnswerService().revealRandomLetter(element, getActivity());
 			if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
 				AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
-				triggerCorrectAnswerEvents(false);				
+				triggerCorrectAnswerEvents(false);
+				boolean isFirstTimeCompletingLevel = AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) ? false : true;
+				if(AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) && isFirstTimeCompletingLevel){
+					ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), null);
+				}
 			}
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			drawHintLetters();	
