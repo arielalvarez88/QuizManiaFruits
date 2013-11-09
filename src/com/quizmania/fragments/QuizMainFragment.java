@@ -1,6 +1,7 @@
 package com.quizmania.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -29,7 +30,9 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
+import com.quizmania.activities.ElementList;
 import com.quizmania.activities.ItemStore;
+import com.quizmania.activities.LevelChooser;
 import com.quizmania.entities.NameHints;
 import com.quizmania.entities.QuizElement;
 import com.quizmania.fruits.R;
@@ -56,6 +59,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 	View thisView;
 	MenuItem hintButton;
 	MenuItem shareButton;
+	android.content.DialogInterface.OnClickListener goToChooseLevelScreen;
 	
 	public static final int NUMBER_OF_HINTS_THAT_FIT_IN_SCREEN = 9;
 	public QuizElement getElement() {
@@ -162,8 +166,10 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		
 		ViewGroup actionView= (ViewGroup) MenuItemCompat.getActionView(hintButton);
 		TextView hintNumberLabel = (TextView) actionView.findViewById(R.id.hintNumber);
-		Log.d(StaticGlobalVariables.packageName,"*****el textview" + hintNumberLabel);				
-		hintNumberLabel.setText("" + UserConfig.getInstance(getActivity()).getHintsLeft());
+		Log.d(StaticGlobalVariables.packageName,"*****el textview" + hintNumberLabel);
+		int hintsLeft = UserConfig.getInstance(getActivity()).getHintsLeft();
+		String hintsButtonText = hintsLeft <= 0 ? "Buy" : String.valueOf(hintsLeft);
+		hintNumberLabel.setText(hintsButtonText);
 		
 	}
 
@@ -203,12 +209,21 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 		addAnswerTextboxEvents();
 		addAnswerButtonEvents();		
 		addElementImageEvents();
-
+		goToChooseLevelScreen = new android.content.DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				Log.d("click", "click end level");				
+				Intent intent = new Intent(getActivity(),LevelChooser.class);						
+				startActivity(intent);
+			}
+		};
 		//addHintButtonEvents();
 		
 	}
 
 	public void hintButtonClick() {
+		boolean isFirstTimeCompletingLevel = AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) ? false : true;
 		
 		if(UserConfig.getInstance(getActivity()).getHintsLeft() > 0){
 			
@@ -216,9 +231,9 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			if(AnswerService.getAnswerService().areAllLettersRevealed(element)){
 				AnswerService.getAnswerService().markAsAnswered(element,getActivity());						
 				triggerCorrectAnswerEvents(false);
-				boolean isFirstTimeCompletingLevel = AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) ? false : true;
+				
 				if(AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) && isFirstTimeCompletingLevel){
-					ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), null);
+					ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), goToChooseLevelScreen);
 				}
 			}
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
@@ -373,7 +388,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 			triggerCorrectAnswerEvents(showHintsAddedToast);
 			AnswerService.getAnswerService().saveToSDCard(getActivity());
 			if(AnswerService.getAnswerService().isLevelComplete(StaticGlobalVariables.currentLevel) && isFirstTimeCompletingLevel){
-				ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), null);
+				ViewUtils.showAlertMessage(getActivity(), getActivity().getResources().getString(R.string.levelCompleteMessage), goToChooseLevelScreen);
 			}
 			hintsToAdd = 1;
 			

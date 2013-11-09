@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -48,7 +49,8 @@ public class ElementList extends ActionBarActivity implements QuizManiaActivity{
 		
 		UserConfig.getInstance(this).setLanguage(language);
 		
-		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;		
+		StaticGlobalVariables.setLevelElements(initializeQuizElements()) ;
+		
 		createView();
 		showOrHideNamesDependingIfElementIsAnswered();
 
