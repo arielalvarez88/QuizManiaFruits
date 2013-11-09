@@ -258,7 +258,7 @@ public class QuizMainFragment extends Fragment implements OnKeyListener, OnClick
 
 
 	private void addAnswerButtonEvents() {
-		Button answerButton =  (Button) thisView.findViewById(R.id.answerButton);
+		View answerButton =  thisView.findViewById(R.id.answerButton);
 		answerButton.setOnClickListener(this);
 	}
 	
