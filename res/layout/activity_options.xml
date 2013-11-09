@@ -8,44 +8,49 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OptionsActivity" >
 
-    <TableLayout       
+    <TableLayout
         android:id="@+id/tableLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentTop="true">
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dip" >
 
             <TextView
                 android:id="@+id/TextView01"
                 style="@style/optionLabels"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/soundOptionText" />
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="@string/soundOptionText"
+                android:textSize="@dimen/button_text_lang" />
 
             <ToggleButton
                 android:id="@+id/soundOnOff"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"                
+                android:layout_height="wrap_content"
                 android:textOff="@string/off"
-                android:textOn="@string/on" 
+                android:textOn="@string/on"
                 android:onClick="onToggleButtonClick"
                 />
 
         </TableRow>
 
         <TableRow
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:padding="5dip" >
 
             <TextView
                 android:id="@+id/vibrateOptionLabel"
                 android:text="@string/vibrationOptionText"
-                android:layout_width="wrap_content"
-                style="@style/optionLabels"/>
+                android:layout_width="fill_parent"
+                style="@style/optionLabels"
+                android:textSize="@dimen/button_text_lang" />
 
             <ToggleButton
                 android:id="@+id/vibrationOnOff"
@@ -57,28 +62,27 @@
 
         </TableRow>
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dip" >
-
-            <TextView
-                android:id="@+id/resetGameOptionLabel"
-                style="@style/optionLabels"
-                android:layout_width="wrap_content"
-                android:paddingRight="20dp"
-                android:text="@string/resetGameOptionText" />
-
-            <Button
-                android:id="@+id/resetGameButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resetText" 
-                android:onClick="resetAnswers"/>
-            
-        </TableRow>
-
 
     </TableLayout>
+
+    <TextView
+        android:id="@+id/resetGameOptionLabel"
+        style="@style/optionLabels"
+        android:layout_width="wrap_content"
+        android:text="@string/resetGameOptionText"
+        android:textSize="@dimen/button_text_lang"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tableLayout1"
+        android:paddingTop="20dp" />
+
+    <Button
+        android:id="@+id/resetGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resetText"
+        android:onClick="resetAnswers"
+        android:layout_below="@+id/resetGameOptionLabel"
+        android:layout_alignRight="@+id/resetGameOptionLabel"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>
