@@ -63,7 +63,7 @@
         android:id="@+id/answerTextboxContainer"
         android:layout_width="fill_parent"
         android:layout_height="60dp"
-        android:layout_above="@+id/linearLayout2"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
@@ -96,73 +96,5 @@
 
     </LinearLayout>
 
-    <LinearLayout   
-        android:id="@+id/linearLayout2"     
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_above="@+id/ads"
-        android:orientation="horizontal"
-        android:baselineAligned="false" >
-
-        <RelativeLayout
-            android:id="@+id/footerFifthColor"
-            android:background="@color/quizManiaRed"
-            android:layout_weight="0.21"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="5dp" />
-
-        <RelativeLayout
-            android:id="@+id/footerFourthColor"
-            android:background="@color/quizManiaYellow"
-            android:layout_weight="0.21"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="5dp" />
-
-        <RelativeLayout
-            android:id="@+id/footerSecondColor"
-            android:background="@color/quizManiaPurple"
-            android:layout_weight="0.21"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="5dp" />
-
-        <RelativeLayout
-            android:id="@+id/footerFirstColor"
-            android:background="@color/quizManiaBlue"
-            android:layout_weight="0.21"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginRight="5dp" />
-
-        <RelativeLayout
-            android:id="@+id/footerThirdColor"
-            android:background="@color/quizManiaGreen"
-            android:layout_weight="0.21"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_gravity="right"
-            android:layout_marginRight="-1dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ads"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black"
-        >
-    <com.google.ads.AdView
-         android:id="@+id/adInPager"
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"
-         android:layout_alignParentBottom="true"         
-         ads:adSize="SMART_BANNER"
-         ads:adUnitId="a15272e50eb806a"
-         ads:loadAdOnCreate="true"
-         >
-     </com.google.ads.AdView>
-    </LinearLayout>
 
 </RelativeLayout>

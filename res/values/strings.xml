@@ -21,8 +21,8 @@
     <string name="title_activity_element_chooser">ElementChooser</string>
     <string name="soundOptionText">Sound:</string>
     <string name="vibrationOptionText">Vibration:</string>
-    <string name="on">On</string>
-    <string name="off">Off</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
     <string name="resetGameOptionText">"Reset Game:\n(you won\'t loose your hints)"</string>
     <string name="sdCardError">Could not write to SD Card in this moment.</string>
     <string name="resetGameAreYouSure">Are you sure you want to reset the game? (you will loose all the answers)</string>

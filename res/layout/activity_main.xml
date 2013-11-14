@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
     tools:context=".MainActivity"
-    android:background="@color/white"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/quizManiaGreyFront">
 
 
     <LinearLayout

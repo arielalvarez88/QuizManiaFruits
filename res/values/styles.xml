@@ -30,5 +30,6 @@
     <color name="quizManiaRed">#fd463e</color>
     <color name="quizManiaBlack">#141414</color>
 	<color name="quizManiaGrey">#cccccc</color>
+    <color name="quizManiaGreyFront">#e8e8e8</color>
     
 </resources>

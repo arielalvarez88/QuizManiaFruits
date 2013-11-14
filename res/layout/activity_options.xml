@@ -6,7 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".OptionsActivity" >
+    tools:context=".OptionsActivity"
+    android:background="@color/quizManiaGreyFront">
 
     <TableLayout
         android:id="@+id/tableLayout1"
@@ -24,10 +25,11 @@
             <TextView
                 android:id="@+id/TextView01"
                 style="@style/optionLabels"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/soundOptionText"
-                android:textSize="@dimen/button_text_lang" />
+                android:textSize="@dimen/button_text_lang"
+                android:layout_column="0" />
 
             <ToggleButton
                 android:id="@+id/soundOnOff"
@@ -36,7 +38,10 @@
                 android:textOff="@string/off"
                 android:textOn="@string/on"
                 android:onClick="onToggleButtonClick"
-                />
+                android:background="@drawable/green_background_button"
+                android:textSize="20sp"
+                android:textColor="@drawable/green_background_button"
+                android:layout_column="1" />
 
         </TableRow>
 
@@ -48,9 +53,11 @@
             <TextView
                 android:id="@+id/vibrateOptionLabel"
                 android:text="@string/vibrationOptionText"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 style="@style/optionLabels"
-                android:textSize="@dimen/button_text_lang" />
+                android:textSize="@dimen/button_text_lang"
+                android:layout_height="wrap_content"
+                android:layout_column="0" />
 
             <ToggleButton
                 android:id="@+id/vibrationOnOff"
@@ -58,7 +65,11 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/off"
                 android:textOn="@string/on"
-                android:onClick="onToggleButtonClick" />
+                android:onClick="onToggleButtonClick"
+                android:background="@drawable/green_background_button"
+                android:textSize="20sp"
+                android:textColor="@drawable/green_background_button"
+                android:layout_column="1" />
 
         </TableRow>
 
@@ -83,6 +94,8 @@
         android:onClick="resetAnswers"
         android:layout_below="@+id/resetGameOptionLabel"
         android:layout_alignRight="@+id/resetGameOptionLabel"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/green_background_button"
+        android:textColor="@drawable/green_background_button" />
 
 </RelativeLayout>

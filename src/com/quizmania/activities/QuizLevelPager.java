@@ -35,10 +35,10 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_quiz_level);
+		setContentView(R.layout.template);
 		StaticGlobalVariables.currentActivity = this;
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
-		//ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
+		ViewUtils.inflateContentInTemplate(this, R.layout.activity_quiz_level);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		initializeElementsFromIntent();		
 		calculateInitialSlide();
@@ -76,7 +76,7 @@ public class QuizLevelPager extends ActionBarActivity implements QuizManiaActivi
 	private void initializeLevelPager() {
 		fragmentManager = getSupportFragmentManager();
 		this.quizPager = new QuizPager(StaticGlobalVariables.getLevelElements(), fragmentManager);
-		this.quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);		
+		this.quizPagerView = (ViewPager) findViewById(R.id.quizElementPager);
 		quizPagerView.setAdapter(quizPager);
 		quizPagerView.setOnPageChangeListener(this);
 		quizPagerView.setCurrentItem(initialSlide);
