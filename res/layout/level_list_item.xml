@@ -11,14 +11,14 @@
         style="@style/levelStyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:onClick="goToLevel" >
+        android:onClick="goToLevel"
+        android:layout_marginTop="-7dp">
 
         <TextView
             android:id="@+id/levelName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="3dp"
             android:text="English"
             android:textAppearance="?android:attr/textAppearanceLarge" />
         
@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/levelTrofee"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:scaleType="fitXY"

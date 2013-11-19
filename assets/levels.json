@@ -2,17 +2,18 @@
 {
 	name: 'english',
 	label: 'English'
-	
 },
 {
 	name: 'spanish',
 	label: 'Spanish'
-	
 },
 {
 	name: 'portuguese',
 	label: 'Portuguese'
-	
+},
+{
+	name: 'french',
+	label: 'French'
 }
 
 ]
