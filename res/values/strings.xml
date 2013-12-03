@@ -15,10 +15,10 @@
     <string name="shareButtonText">Ask For Help</string>
     <string name="title_activity_language">Language</string>
     <string name="titleActivityStore">Get Hints</string>
-    
     <string name="levels">Levels</string>
     <string name="title_activity_fruit_viewer">FruitViewer</string>
     <string name="title_activity_element_chooser">ElementChooser</string>
+    <string name="titleChooseAGameActivity">Choose a Game</string>
     <string name="soundOptionText">Sound:</string>
     <string name="vibrationOptionText">Vibration:</string>
     <string name="on">ON</string>
@@ -33,25 +33,25 @@
     <string name="appPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArGPyOPJR5NuhrZ1DSxy4eZ69a9YfN8isI4XH8FFtVBSCnNMMst9gXCtW7X6pDYTIXqnJPSLX6dVce1P0IjoalRhbuYZDq6/hQWBCKECxoqWQL1LOz0DUMPMRTrJNURdnCmzxM221GhwyqljRggzwBtBz7EpZJ5UiwWW/MSZKAUA3HdPMP4TqXJonf00i/9M++vHhMApjbYbPY+NhO0m8PtQAWYHQcV8mtz2j8RGcjY3jded6RqXr5flqjYm+LXb5d9lsggJP8/aLibS14zlJ0X7uD3GrDjOjzdWF4Dj5aPk61DdVRMRg0pwt9++3Yz6ALxR8mBKq6MJl2jBOHwN00wIDAQAB</string>
     <string name="title_activity_options">OptionsActivity</string>
     <string name="title_activity_item_store">ItemStore</string>
-	<string name="buy">Buy</string>
-	<string name="levelCompleteMessage">Congratulations you have completed this level! try to complete the next level!</string>
-	<string name="revealHintButtonText">Hint</string>
-	<string name="voteMessage">Do you like this application? Take a time to vote</string>
-	<string name="voteButtonText">Vote</string>
-	<string name="exitButtonText">Exit</string>	
-	<string name="quizManiaTheme">fruits</string>
-	<string name="hintsPack50Code">50_hint_pack</string>
-	<string name="hintsPack100Code">100_hint_pack</string>
-	<string name="plusOneHintMessage">You get +1 hint for answering right!</string>
-	<string name="minusOneHintMessage">You loose 1 hint for answering wrong! think before answering!</string>	
-	<string name="loadingText">Now Loading</string>
-	<string name="loadingHeader">Loading</string>
-	<string name="shareMessage">I\'m playing QuizMania fruits, have great fun learning the names of fruits and vegetables in many languages. Try it for Android: https://play.google.com/store/apps/details?id=com.quizmania.fruits</string>
-	<string name="slideForNext">Slide Left or Right for Previous and Next Fruit</string>
-	
-	
-	
-	<string name="shareViaText">Share via</string>
-	
-	
+    <string name="buy">Buy</string>
+    <string name="levelCompleteMessage">Congratulations you have completed this level! try to complete the next level!</string>
+    <string name="revealHintButtonText">Hint</string>
+    <string name="voteMessage">Do you like this application? Take a time to vote</string>
+    <string name="voteButtonText">Vote</string>
+    <string name="exitButtonText">Exit</string>
+    <string name="quizManiaTheme">fruits</string>
+    <string name="hintsPack50Code">50_hint_pack</string>
+    <string name="hintsPack100Code">100_hint_pack</string>
+    <string name="plusOneHintMessage">You get +1 hint for answering right!</string>
+    <string name="minusOneHintMessage">You loose 1 hint for answering wrong! think before answering!</string>
+    <string name="loadingText">Now Loading</string>
+    <string name="loadingHeader">Loading</string>
+    <string name="shareMessage">I\'m playing QuizMania fruits, have great fun learning the names of fruits and vegetables in many languages. Try it for Android: https://play.google.com/store/apps/details?id=com.quizmania.fruits</string>
+    <string name="slideForNext">Slide Left or Right for Previous and Next Fruit</string>
+    <string name="shareViaText">Share via</string>
+    <string name="quizManiaFruits">QuizMania Fruits</string>
+    <string name="quizManiaFlags">QuizMania Flags</string>
+    <string name="quizManiaCartoons">QuizMani Cartoons</string>
+    <string name="title_activity_choose_game">ChooseGame</string>
+
 </resources>

@@ -1,0 +1,117 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ItemStore" >
+
+
+    
+    <LinearLayout
+    
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp" >
+    
+        
+        
+          <TextView
+                
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titleChooseAGameActivity"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/titleGray"
+                android:textSize="19sp" 
+                />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:background="@color/titleGray"
+                android:layout_marginBottom="10dp" 
+                />
+
+        
+
+    <RelativeLayout
+        
+        android:id="@+id/quizmaniaFruitsGame"
+        style="@style/levelStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="chooseGame" >
+
+        <TextView
+            android:id="@+id/levelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="3dp"
+            android:text="@string/quizManiaFruits"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/levelTrofee"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/quizmania_fruits_splash" />
+    </RelativeLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/quizManiaGrey" />
+        
+        
+        
+     <RelativeLayout
+        
+        android:id="@+id/quizmaniaFlagsGame"
+        style="@style/levelStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="chooseGame" >
+
+        <TextView
+            android:id="@+id/levelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="3dp"
+            android:text="@string/quizManiaFlags"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <ImageView
+            android:id="@+id/levelTrofee"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/quizmania_flags_splash" />
+    </RelativeLayout>
+
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="@color/quizManiaGrey" />
+        
+        
+        
+
+</LinearLayout>
+    
+    
+           
+        
+</RelativeLayout>
